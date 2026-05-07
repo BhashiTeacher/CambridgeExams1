@@ -1,50 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Portal | Cambridge Exams</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge Exam Portal</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <div class="container">
-    <header>
-      <h1>Exam Portal</h1>
-      <p>Select an exam to begin your session</p>
-    </header>
+<body class="portal-page">
 
-    <main id="portal-main">
-      <div id="student-login" class="welcome-screen">
-        <h2>Welcome Student</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Please enter your details to continue</p>
-        
-        <form id="login-form">
-          <div class="form-group" style="text-align: left;">
-            <label class="form-label">Full Name</label>
-            <input type="text" id="student-name" class="form-control" required placeholder="e.g. John Smith">
-          </div>
-          <div class="form-group" style="text-align: left;">
-            <label class="form-label">Class / Group</label>
-            <input type="text" id="student-class" class="form-control" required placeholder="e.g. Year 10A">
-          </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%;">View Available Exams</button>
-        </form>
-      </div>
+<div class="portal-header">
+  <div class="portal-header-inner">
+    <div class="portal-logo">
+      <span class="logo-badge">CAMBRIDGE</span>
+      <span class="logo-title">Exam Portal</span>
+    </div>
+    <a href="admin/index.html" class="portal-admin-link">Admin ›</a>
+  </div>
+</div>
 
-      <div id="exam-selection" style="display: none;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-          <h2 id="student-greeting">Available Exams</h2>
-          <button class="btn btn-outline" id="btn-logout" style="padding: 0.5rem 1rem;">Change User</button>
-        </div>
-        
-        <div class="card-grid" id="exams-container">
-          <!-- Exams will be injected here via JS -->
-        </div>
-      </div>
-    </main>
+<div class="portal-body">
+
+  <div class="portal-hero">
+    <h1>Welcome to the Exam Portal</h1>
+    <p>Choose an exam below to begin. Enter your name when prompted — your timer starts immediately.</p>
   </div>
 
-  <script src="js/app.js"></script>
+  <!-- Login form (shown when exam selected) -->
+  <div class="login-modal" id="loginModal" style="display:none;">
+    <div class="login-modal-card">
+      <button class="modal-close" onclick="closeLogin()">✕</button>
+      <div class="cambridge-logo">CAMBRIDGE</div>
+      <h2 id="modalExamTitle">—</h2>
+      <p class="modal-meta" id="modalExamMeta">—</p>
+      <div class="form-group">
+        <label>Your Full Name</label>
+        <input type="text" id="studentNameInput" placeholder="e.g. Sarah Ahmed" autocomplete="name">
+        <div class="field-error" id="nameErr"></div>
+      </div>
+      <div class="form-group">
+        <label>Class / Group <span class="opt-label">(optional)</span></label>
+        <input type="text" id="studentClassInput" placeholder="e.g. Grade 8A">
+      </div>
+      <button class="btn-primary" onclick="beginExam()">Begin Exam →</button>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="modalBackdrop" onclick="closeLogin()"></div>
+
+  <!-- Subject filter tabs -->
+  <div class="subject-tabs" id="subjectTabs">
+    <button class="stab active" data-subject="all" onclick="filterSubject('all',this)">All Exams</button>
+  </div>
+
+  <!-- Exam cards grid -->
+  <div class="exam-grid" id="examGrid">
+    <div class="no-exams-state">
+      <div style="font-size:40px; margin-bottom:12px;">📋</div>
+      <div style="font-weight:600; margin-bottom:6px;">No exams published yet</div>
+      <div style="font-size:13px; color:var(--muted);">Ask your administrator to add exams.</div>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/seed.js"></script>
+<script>
+  let allExams = [];
+  let selectedExamId = null;
+
+  function loadExams() {
+    allExams = Storage.getExams();
+    const published = allExams.filter(e => e.published);
+
+    // Build subject tabs
+    const subjects = [...new Set(published.map(e => e.subject).filter(Boolean))];
+    const tabsEl = document.getElementById('subjectTabs');
+    tabsEl.innerHTML = '<button class="stab active" data-subject="all" onclick="filterSubject(\'all\',this)">All Exams</button>';
+    subjects.forEach(s => {
+      tabsEl.innerHTML += `<button class="stab" data-subject="${s}" onclick="filterSubject('${s}',this)">${s}</button>`;
+    });
+
+    renderExams(published);
+  }
+
+  function filterSubject(subj, btn) {
+    document.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const published = allExams.filter(e => e.published);
+    renderExams(subj === 'all' ? published : published.filter(e => e.subject === subj));
+  }
+
+  function renderExams(list) {
+    const grid = document.getElementById('examGrid');
+    if (!list.length) {
+      grid.innerHTML = `<div class="no-exams-state">
+        <div style="font-size:40px;margin-bottom:12px;">📋</div>
+        <div style="font-weight:600;margin-bottom:6px;">No exams in this category</div>
+      </div>`;
+      return;
+    }
+
+    const subjectColors = {
+      'Reading': '#003865', 'Writing': '#7b3f00', 'Listening': '#1a5c3a',
+      'Speaking': '#4a1070', 'Maths': '#0a3d62', 'Science': '#0d4f3c'
+    };
+
+    grid.innerHTML = list.map(e => {
+      const color = subjectColors[e.subject] || '#003865';
+      const qCount = (e.questions || []).length;
+      const mins = e.duration || 45;
+      return `
+      <div class="exam-card" onclick="openLogin('${e.id}')">
+        <div class="exam-card-stripe" style="background:${color}"></div>
+        <div class="exam-card-body">
+          <div class="exam-card-subject" style="color:${color}">${e.subject || 'General'}</div>
+          <div class="exam-card-title">${e.title}</div>
+          <div class="exam-card-desc">${e.description || ''}</div>
+          <div class="exam-card-meta">
+            <span>⏱ ${mins} min</span>
+            <span>📝 ${qCount} questions</span>
+          </div>
+          <button class="btn-start" style="background:${color}">Start Exam →</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function openLogin(examId) {
+    selectedExamId = examId;
+    const exam = allExams.find(e => e.id === examId);
+    if (!exam) return;
+    document.getElementById('modalExamTitle').textContent = exam.title;
+    document.getElementById('modalExamMeta').textContent =
+      `${exam.subject || ''} · ${exam.duration || 45} minutes · ${(exam.questions||[]).length} questions`;
+    document.getElementById('studentNameInput').value = '';
+    document.getElementById('studentClassInput').value = '';
+    document.getElementById('nameErr').textContent = '';
+    document.getElementById('loginModal').style.display = 'flex';
+    document.getElementById('modalBackdrop').style.display = 'block';
+    setTimeout(() => document.getElementById('studentNameInput').focus(), 100);
+  }
+
+  function closeLogin() {
+    document.getElementById('loginModal').style.display = 'none';
+    document.getElementById('modalBackdrop').style.display = 'none';
+    selectedExamId = null;
+  }
+
+  function beginExam() {
+    const name = document.getElementById('studentNameInput').value.trim();
+    if (!name) {
+      document.getElementById('nameErr').textContent = 'Please enter your full name.';
+      return;
+    }
+    sessionStorage.setItem('studentName', name);
+    sessionStorage.setItem('studentClass', document.getElementById('studentClassInput').value.trim() || '—');
+    sessionStorage.setItem('examId', selectedExamId);
+    sessionStorage.setItem('examStart', new Date().toISOString());
+    window.location.href = 'take-exam.html';
+  }
+
+  loadExams();
+</script>
 </body>
 </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Results</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="results-page">
+
+<div class="results-card">
+  <div class="cambridge-logo">CAMBRIDGE</div>
+  <h2>Exam Complete</h2>
+  <div class="student-greeting" id="greeting">Loading…</div>
+
+  <div class="score-circle">
+    <div class="score-number" id="scoreNum">—</div>
+    <div class="score-total" id="scoreTotal">out of —</div>
+  </div>
+
+  <div class="score-breakdown" id="breakdown"></div>
+
+  <div id="sheetsMsg" class="submit-notice" style="display:none;"></div>
+
+  <button class="btn-retry" onclick="window.location.href='index.html'">← Back to Exams</button>
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/seed.js"></script>
+<script>
+  const raw = sessionStorage.getItem('lastResult');
+  if (!raw) { window.location.href = 'index.html'; }
+
+  const r = JSON.parse(raw);
+  document.getElementById('greeting').textContent   = `Well done, ${r.studentName}!`;
+  document.getElementById('scoreNum').textContent   = r.correct;
+  document.getElementById('scoreTotal').textContent = `out of ${r.total}`;
+
+  let bdHtml = '';
+  try {
+    const bd = JSON.parse(r.breakdown || '{}');
+    Object.entries(bd).forEach(([part, v]) => {
+      bdHtml += `<div class="breakdown-row">
+        <span class="label">${part}</span>
+        <span class="val">${v.correct} / ${v.total}</span>
+      </div>`;
+    });
+  } catch {}
+
+  document.getElementById('breakdown').innerHTML = `
+    ${bdHtml}
+    <div class="breakdown-row"><span class="label">Total Score</span><span class="val">${r.correct} / ${r.total}</span></div>
+    <div class="breakdown-row"><span class="label">Percentage</span><span class="val">${r.pct}%</span></div>
+    <div class="breakdown-row"><span class="label">Time Taken</span><span class="val">${r.timeTaken}</span></div>
+    <div class="breakdown-row"><span class="label">Grade</span><span class="val">${r.grade}</span></div>
+  `;
+
+  if (Storage.getSetting('sheetsUrl')) {
+    const el = document.getElementById('sheetsMsg');
+    el.style.display = 'block';
+    el.textContent = '✅ Your result has been sent to your teacher.';
+  }
+</script>
+</body>
+</html>

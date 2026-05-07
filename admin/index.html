@@ -1,78 +1,1203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard | Cambridge Exams</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="css/admin.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin – Exam Manager</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  /* ── Admin-specific styles ── */
+  .admin-shell { display:flex; min-height:100vh; background:#f0f2f5; }
+
+  .sidebar {
+    width: 220px;
+    background: #1a1a2e;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  @media(max-width:700px){
+    .sidebar { display:none; }
+    .mobile-top-nav { display:flex !important; }
+  }
+
+  .mobile-top-nav {
+    display:none;
+    background:#1a1a2e;
+    padding:10px 14px;
+    gap:6px;
+    flex-wrap:wrap;
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+
+  .sidebar-logo {
+    padding: 20px 16px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .sidebar-logo .s-badge {
+    background: #003865;
+    font-size:10px; font-weight:700; letter-spacing:1px;
+    padding: 3px 8px; border-radius: 3px; margin-bottom:6px;
+    display:inline-block;
+  }
+
+  .sidebar-logo .s-title { font-family:'Source Serif 4',serif; font-size:15px; font-weight:600; }
+  .sidebar-logo .s-sub { font-size:11px; opacity:0.5; margin-top:2px; }
+
+  .sidebar-nav { padding:12px 0; flex:1; }
+
+  .snav-section { font-size:10px; font-weight:700; letter-spacing:1px; color:rgba(255,255,255,0.35); padding:10px 16px 4px; }
+
+  .snav-item {
+    display:flex; align-items:center; gap:10px;
+    padding: 9px 16px;
+    font-size:13px; cursor:pointer;
+    transition: background 0.15s;
+    color: rgba(255,255,255,0.75);
+    border:none; background:none; width:100%; text-align:left;
+    font-family:'DM Sans',sans-serif;
+  }
+
+  .snav-item:hover { background:rgba(255,255,255,0.07); color:white; }
+  .snav-item.active { background:rgba(255,255,255,0.12); color:white; font-weight:600; }
+  .snav-item .icon { font-size:15px; width:18px; text-align:center; }
+
+  .sidebar-footer { padding:12px 16px; border-top:1px solid rgba(255,255,255,0.08); }
+  .sidebar-footer a { font-size:12px; color:rgba(255,255,255,0.4); text-decoration:none; }
+  .sidebar-footer a:hover { color:white; }
+
+  .admin-main { flex:1; overflow-x:hidden; }
+
+  .admin-topbar {
+    background:white;
+    border-bottom:1px solid #e0e0e0;
+    padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    position:sticky; top:0; z-index:40;
+  }
+
+  .admin-topbar h2 { font-family:'Source Serif 4',serif; font-size:18px; color:#1a1a2e; }
+  .topbar-actions { display:flex; gap:8px; }
+
+  .admin-content { padding: 20px 24px 60px; }
+  @media(max-width:600px){ .admin-content{ padding:14px 12px 60px; } }
+
+  /* ── Panels ── */
+  .panel { display:none; }
+  .panel.active { display:block; }
+
+  /* ── Exam list ── */
+  .exam-list-item {
+    background:white;
+    border:1px solid #e0e6f0;
+    border-radius:8px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+
+  .eli-color { width:5px; height:48px; border-radius:3px; flex-shrink:0; }
+  .eli-body { flex:1; min-width:0; }
+  .eli-title { font-weight:700; font-size:14px; color:#1a1a2e; }
+  .eli-meta { font-size:12px; color:var(--muted); margin-top:2px; }
+  .eli-actions { display:flex; gap:6px; flex-shrink:0; }
+
+  .btn-icon {
+    background:none; border:1px solid #dde2ec;
+    border-radius:5px; padding:6px 10px; cursor:pointer;
+    font-size:13px; transition:all 0.15s;
+    font-family:'DM Sans',sans-serif;
+  }
+
+  .btn-icon:hover { background:#f0f4ff; border-color:#b0bcd4; }
+  .btn-icon.danger:hover { background:#fff0f0; border-color:#f5b0b0; }
+
+  .publish-badge {
+    font-size:10px; font-weight:700; padding:2px 8px; border-radius:20px;
+  }
+  .publish-badge.yes { background:#e8f5e9; color:#2e7d32; }
+  .publish-badge.no  { background:#fff3e0; color:#e65100; }
+
+  /* ── Builder ── */
+  .builder-wrap { display:grid; grid-template-columns:1fr 340px; gap:16px; }
+  @media(max-width:900px){ .builder-wrap{ grid-template-columns:1fr; } }
+
+  .builder-form .field-group { margin-bottom:14px; }
+  .builder-form label { display:block; font-size:12px; font-weight:600; color:#1a1a2e; margin-bottom:5px; }
+  .builder-form input, .builder-form select, .builder-form textarea {
+    width:100%; border:1.5px solid #dde2ec; border-radius:5px; padding:8px 11px;
+    font-size:13px; font-family:'DM Sans',sans-serif; background:white;
+    transition:border-color 0.15s;
+  }
+  .builder-form input:focus, .builder-form select:focus, .builder-form textarea:focus {
+    outline:none; border-color:var(--cambridge-light);
+  }
+  .builder-form textarea { resize:vertical; min-height:70px; }
+
+  .section-card {
+    background:white; border:1px solid #e0e6f0; border-radius:8px;
+    overflow:hidden; margin-bottom:12px;
+  }
+
+  .section-card-header {
+    background:#f8f9fc; border-bottom:1px solid #e0e6f0;
+    padding:10px 14px; display:flex; align-items:center;
+    justify-content:space-between; font-size:13px; font-weight:600; color:#1a1a2e;
+  }
+
+  .section-card-body { padding:14px; }
+
+  /* Question rows in builder */
+  .q-builder-row {
+    border:1px solid #e8ecf5; border-radius:6px; padding:12px;
+    margin-bottom:8px; background:#fafbff;
+  }
+
+  .q-builder-row .q-row-header {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:10px;
+  }
+
+  .q-row-num { font-weight:700; font-size:12px; color:var(--cambridge-blue); }
+
+  .option-input-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .option-letter-tag {
+    background:var(--cambridge-blue); color:white; width:22px; height:22px;
+    border-radius:4px; font-size:11px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+
+  .correct-radio { cursor:pointer; }
+
+  /* AI Import panel */
+  .ai-import-box {
+    background:white; border:1px solid #e0e6f0; border-radius:8px; overflow:hidden;
+  }
+
+  .ai-import-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #003865 100%);
+    color:white; padding:16px;
+  }
+
+  .ai-import-header h3 { font-family:'Source Serif 4',serif; font-size:16px; margin-bottom:4px; }
+  .ai-import-header p  { font-size:12px; opacity:0.75; }
+
+  .ai-import-body { padding:16px; }
+
+  .api-key-row { display:flex; gap:8px; margin-bottom:14px; }
+  .api-key-row input { flex:1; }
+
+  .upload-zone {
+    border: 2px dashed #b0bcd4;
+    border-radius:8px;
+    padding: 28px 16px;
+    text-align:center;
+    cursor:pointer;
+    transition: border-color 0.2s, background 0.2s;
+    background: #f8f9fc;
+    margin-bottom:12px;
+  }
+
+  .upload-zone:hover, .upload-zone.drag { border-color:var(--cambridge-light); background:#eef4fb; }
+  .upload-zone .uz-icon { font-size:32px; margin-bottom:8px; }
+  .upload-zone .uz-text { font-size:13px; font-weight:600; color:#1a1a2e; }
+  .upload-zone .uz-sub  { font-size:11px; color:var(--muted); margin-top:4px; }
+
+  .ai-log {
+    background:#1a1a2e; border-radius:6px; padding:12px;
+    font-family:monospace; font-size:11px; color:#a8d8a8;
+    min-height:60px; max-height:140px; overflow-y:auto;
+    margin-top:12px; line-height:1.6;
+  }
+
+  .ai-log .log-line { margin-bottom:2px; }
+  .ai-log .log-line.err { color:#ff8a80; }
+  .ai-log .log-line.ok  { color:#b9f6ca; }
+
+  /* Preview panel */
+  .preview-empty {
+    text-align:center; padding:40px 20px; color:var(--muted); font-size:13px;
+  }
+
+  .q-preview-card {
+    border:1px solid #e8ecf5; border-radius:6px; padding:11px;
+    margin-bottom:8px; font-size:12px; background:white;
+  }
+
+  .q-preview-card .qp-num { font-weight:700; color:var(--cambridge-blue); }
+  .q-preview-card .qp-text { font-size:13px; margin:4px 0; }
+  .q-preview-card .qp-ans  { display:inline-block; background:var(--cambridge-blue); color:white; font-size:10px; font-weight:700; padding:1px 8px; border-radius:20px; }
+
+  /* Results table */
+  .results-filter { display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; align-items:center; }
+  .results-filter select, .results-filter input {
+    border:1.5px solid #dde2ec; border-radius:5px; padding:7px 10px;
+    font-size:13px; font-family:'DM Sans',sans-serif; background:white;
+  }
+
+  table.rtable { width:100%; border-collapse:collapse; font-size:12px; }
+  .rtable th { background:#1a1a2e; color:white; padding:9px 12px; text-align:left; font-size:11px; font-weight:600; white-space:nowrap; }
+  .rtable td { padding:9px 12px; border-bottom:1px solid #f0f0f0; vertical-align:middle; }
+  .rtable tr:nth-child(even) td { background:#fafafa; }
+  .rtable tr:hover td { background:#f0f7ff; }
+  .rtable-wrap { overflow-x:auto; }
+
+  .score-pill { background:var(--cambridge-blue); color:white; padding:2px 9px; border-radius:20px; font-size:11px; font-weight:700; }
+
+  /* Settings */
+  .settings-row { display:flex; align-items:center; gap:12px; padding:14px 0; border-bottom:1px solid #f0f0f0; }
+  .settings-row:last-child { border-bottom:none; }
+  .settings-row .sr-label { flex:1; }
+  .settings-row .sr-label strong { display:block; font-size:13px; margin-bottom:2px; }
+  .settings-row .sr-label span  { font-size:12px; color:var(--muted); }
+  .settings-row input, .settings-row select { width:220px; border:1.5px solid #dde2ec; border-radius:5px; padding:7px 10px; font-size:13px; font-family:'DM Sans',sans-serif; }
+
+  .btn-save-setting { background:var(--cambridge-blue); color:white; border:none; border-radius:5px; padding:8px 18px; font-size:13px; font-weight:600; font-family:'DM Sans',sans-serif; cursor:pointer; }
+
+  /* Login */
+  #adminLoginWrap { position:fixed; inset:0; background:#1a1a2e; display:flex; align-items:center; justify-content:center; z-index:1000; padding:20px; }
+  .admin-login-card { background:white; border-radius:10px; padding:36px 32px; max-width:360px; width:100%; text-align:center; box-shadow:0 20px 50px rgba(0,0,0,0.4); }
+  .admin-login-card h2 { font-family:'Source Serif 4',serif; color:#1a1a2e; font-size:20px; margin-bottom:6px; }
+  .admin-login-card p { color:var(--muted); font-size:13px; margin-bottom:22px; }
+
+  .btn-sm { padding:6px 14px; font-size:12px; border:none; border-radius:4px; cursor:pointer; font-family:'DM Sans',sans-serif; font-weight:600; }
+  .btn-sm.primary { background:var(--cambridge-blue); color:white; }
+  .btn-sm.success { background:#2e7d32; color:white; }
+  .btn-sm.danger  { background:#c62828; color:white; }
+  .btn-sm.neutral { background:#e0e6f0; color:#1a1a2e; }
+</style>
 </head>
-<body style="background-color: var(--bg-color);">
-  <aside class="admin-sidebar">
-    <div style="margin-bottom: 2rem;">
-      <h2 style="font-weight: 800; color: var(--primary-color);">ExamAdmin</h2>
-      <p style="font-size: 0.875rem; color: var(--text-muted);">Control Panel</p>
-    </div>
-    
-    <nav class="sidebar-nav">
-      <a href="index.html" class="sidebar-link active">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-        Dashboard
-      </a>
-      <a href="builder.html" class="sidebar-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-        Exam Builder
-      </a>
-      <a href="settings.html" class="sidebar-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-        Settings
-      </a>
-      <a href="../index.html" class="sidebar-link" style="margin-top: auto;" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-        Student Portal
-      </a>
-    </nav>
-  </aside>
+<body>
 
-  <main class="admin-main">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-      <h2>Exam Management</h2>
-      <a href="builder.html" class="btn btn-primary">+ Create New Exam</a>
+<!-- LOGIN -->
+<div id="adminLoginWrap">
+  <div class="admin-login-card">
+    <div style="font-size:36px;margin-bottom:10px;">🎓</div>
+    <h2>Exam Manager</h2>
+    <p>Administrator access only</p>
+    <div class="form-group" style="text-align:left;">
+      <label style="font-size:13px;font-weight:600;margin-bottom:6px;display:block;">Password</label>
+      <input type="password" id="passIn" placeholder="Enter password" class="form-group"
+             style="width:100%;border:1.5px solid #dde2ec;border-radius:5px;padding:9px 12px;font-size:14px;font-family:'DM Sans',sans-serif;"
+             onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="btn-primary" style="margin-top:8px;" onclick="doLogin()">Enter Admin →</button>
+    <div style="color:#c62828;font-size:12px;margin-top:8px;min-height:18px;" id="loginErr"></div>
+    <div style="margin-top:16px;font-size:11px;color:var(--muted);">
+      Default password: <code>cambridge2024</code><br>Change in Settings tab.
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-top-nav" id="mobileNav">
+  <button class="snav-item" style="width:auto;padding:7px 12px;" onclick="showPanel('exams',this)">📋 Exams</button>
+  <button class="snav-item" style="width:auto;padding:7px 12px;" onclick="showPanel('builder',this)">✏️ Builder</button>
+  <button class="snav-item" style="width:auto;padding:7px 12px;" onclick="showPanel('results',this)">📊 Results</button>
+  <button class="snav-item" style="width:auto;padding:7px 12px;" onclick="showPanel('settings',this)">⚙️ Settings</button>
+</div>
+
+<div class="admin-shell" id="adminShell" style="display:none;">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <div class="s-badge">CAMBRIDGE</div>
+      <div class="s-title">Exam Manager</div>
+      <div class="s-sub">Administrator</div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="snav-section">MANAGE</div>
+      <button class="snav-item active" id="snav-exams" onclick="showPanel('exams',this)"><span class="icon">📋</span> All Exams</button>
+      <button class="snav-item" id="snav-builder" onclick="showPanel('builder',this)"><span class="icon">✏️</span> Exam Builder</button>
+      <div class="snav-section">MONITOR</div>
+      <button class="snav-item" id="snav-results" onclick="showPanel('results',this)"><span class="icon">📊</span> Results Log</button>
+      <div class="snav-section">SYSTEM</div>
+      <button class="snav-item" id="snav-settings" onclick="showPanel('settings',this)"><span class="icon">⚙️</span> Settings</button>
+    </div>
+    <div class="sidebar-footer">
+      <a href="../index.html">← Student Portal</a><br><br>
+      <a href="#" onclick="logout()" style="color:rgba(255,255,255,0.3);">Logout</a>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="admin-main">
+
+    <!-- TOPBAR -->
+    <div class="admin-topbar">
+      <h2 id="topbarTitle">All Exams</h2>
+      <div class="topbar-actions" id="topbarActions"></div>
     </div>
 
-    <div class="table-wrapper">
-      <table id="exams-table">
-        <thead>
-          <tr>
-            <th>Status</th>
-            <th>Title</th>
-            <th>Subject</th>
-            <th>Questions</th>
-            <th>Duration</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="exams-list">
-          <!-- Populated by JS -->
-        </tbody>
-      </table>
-    </div>
+    <div class="admin-content">
 
-    <div style="margin-top: 3rem;">
-      <h3>GitHub Export Workflow</h3>
-      <p style="color: var(--text-muted); margin-bottom: 1rem;">Export your exams to a JSON file and commit it to GitHub to update the live student portal.</p>
-      
-      <div class="json-actions">
-        <button id="btn-export-json" class="btn btn-outline" style="border-color: var(--primary-color); color: var(--primary-color);">Export exams.json</button>
-        <label class="btn btn-outline" style="cursor: pointer;">
-          Import exams.json
-          <input type="file" id="btn-import-json" accept=".json" style="display: none;">
+      <!-- ═══ PANEL: EXAMS ═══ -->
+      <div class="panel active" id="panel-exams">
+        <div id="examListWrap"></div>
+      </div>
+
+      <!-- ═══ PANEL: BUILDER ═══ -->
+      <div class="panel" id="panel-builder">
+        <div class="builder-wrap">
+
+          <!-- Left: form -->
+          <div>
+            <!-- Exam Info -->
+            <div class="section-card builder-form">
+              <div class="section-card-header">
+                <span>📄 Exam Details</span>
+                <span id="editingLabel" style="font-size:11px;color:var(--muted);font-weight:400;">New exam</span>
+              </div>
+              <div class="section-card-body">
+                <div class="field-group">
+                  <label>Exam Title *</label>
+                  <input type="text" id="f_title" placeholder="e.g. Test 6 – Reading & Writing">
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                  <div class="field-group">
+                    <label>Subject</label>
+                    <select id="f_subject">
+                      <option>Reading</option>
+                      <option>Writing</option>
+                      <option>Listening</option>
+                      <option>Speaking</option>
+                      <option>Maths</option>
+                      <option>Science</option>
+                      <option>General</option>
+                    </select>
+                  </div>
+                  <div class="field-group">
+                    <label>Duration (minutes)</label>
+                    <input type="number" id="f_duration" value="45" min="1" max="240">
+                  </div>
+                </div>
+                <div class="field-group">
+                  <label>Description <span class="opt-label">(optional)</span></label>
+                  <input type="text" id="f_description" placeholder="Short description for students">
+                </div>
+                <div class="field-group">
+                  <label>Google Sheets URL <span class="opt-label">(optional)</span></label>
+                  <input type="text" id="f_sheets" placeholder="Paste Apps Script web app URL">
+                </div>
+              </div>
+            </div>
+
+            <!-- Questions -->
+            <div class="section-card builder-form">
+              <div class="section-card-header">
+                <span>❓ Questions</span>
+                <button class="btn-sm primary" onclick="addQuestion()">+ Add Question</button>
+              </div>
+              <div class="section-card-body" id="questionsContainer">
+                <div style="text-align:center;color:var(--muted);font-size:13px;padding:20px 0;">
+                  No questions yet. Click <strong>+ Add Question</strong> or use the AI importer →
+                </div>
+              </div>
+            </div>
+
+            <!-- Save buttons -->
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="btn-sm success" onclick="saveExam(false)">💾 Save as Draft</button>
+              <button class="btn-sm primary" onclick="saveExam(true)">🚀 Save & Publish</button>
+              <button class="btn-sm neutral" onclick="resetBuilder()">✕ Clear</button>
+            </div>
+          </div>
+
+          <!-- Right: AI import -->
+          <div>
+            <div class="ai-import-box">
+              <div class="ai-import-header">
+                <h3>🤖 AI Question Importer</h3>
+                <p>Upload a PDF or image of your exam paper and let AI extract the questions automatically.</p>
+              </div>
+              <div class="ai-import-body">
+
+                <div class="field-group builder-form">
+                  <label>Anthropic API Key</label>
+                  <div class="api-key-row">
+                    <input type="password" id="apiKeyInput" placeholder="sk-ant-…" value="">
+                    <button class="btn-sm neutral" onclick="toggleApiKey()">Show</button>
+                  </div>
+                  <div style="font-size:11px;color:var(--muted);">Key stays in your browser only. Never sent anywhere except Anthropic.</div>
+                </div>
+
+                <div class="upload-zone" id="uploadZone"
+                  onclick="document.getElementById('fileInput').click()"
+                  ondragover="event.preventDefault();this.classList.add('drag')"
+                  ondragleave="this.classList.remove('drag')"
+                  ondrop="handleDrop(event)">
+                  <input type="file" id="fileInput" accept="image/*,.pdf" style="display:none" onchange="handleFileSelect(event)">
+                  <div class="uz-icon" id="uzIcon">📄</div>
+                  <div class="uz-text" id="uzText">Drop PDF or image here</div>
+                  <div class="uz-sub" id="uzSub">or click to browse · JPG, PNG, PDF</div>
+                </div>
+
+                <div class="builder-form field-group">
+                  <label>Additional instructions <span class="opt-label">(optional)</span></label>
+                  <textarea id="aiInstructions" placeholder="e.g. This is a Cambridge A2 Key exam. Extract all MCQ questions with their stimulus texts." style="min-height:56px;"></textarea>
+                </div>
+
+                <button class="btn-sm primary" style="width:100%;padding:10px;" onclick="runAIImport()" id="aiImportBtn">
+                  ✨ Extract Questions with AI
+                </button>
+
+                <div class="ai-log" id="aiLog">
+                  <div class="log-line" style="color:rgba(255,255,255,0.3);">Waiting for upload…</div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Preview -->
+            <div class="section-card" style="margin-top:14px;">
+              <div class="section-card-header">👁 Question Preview</div>
+              <div class="section-card-body" id="previewContainer">
+                <div class="preview-empty">Questions will appear here as you add them.</div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /builder-wrap -->
+      </div><!-- /panel-builder -->
+
+      <!-- ═══ PANEL: RESULTS ═══ -->
+      <div class="panel" id="panel-results">
+        <div class="results-filter">
+          <input type="text" id="rf_name" placeholder="Filter by name…" oninput="renderResults()">
+          <select id="rf_exam" onchange="renderResults()">
+            <option value="">All exams</option>
+          </select>
+          <button class="btn-sm success" onclick="exportResultsCSV()">⬇ Export CSV</button>
+          <button class="btn-sm danger" onclick="clearAllResults()">🗑 Clear All</button>
+        </div>
+        <div class="section-card">
+          <div class="rtable-wrap">
+            <table class="rtable">
+              <thead>
+                <tr>
+                  <th>#</th><th>Name</th><th>Class</th><th>Exam</th>
+                  <th>Subject</th><th>Date</th><th>Time</th>
+                  <th>Score</th><th>%</th><th>Grade</th>
+                </tr>
+              </thead>
+              <tbody id="resultsTbody"></tbody>
+            </table>
+            <div class="preview-empty" id="resultsEmpty" style="display:none;">No results yet.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ PANEL: SETTINGS ═══ -->
+      <div class="panel" id="panel-settings">
+        <div class="section-card">
+          <div class="section-card-header">System Settings</div>
+          <div class="section-card-body builder-form">
+
+            <div class="settings-row">
+              <div class="sr-label">
+                <strong>Admin Password</strong>
+                <span>Change the admin login password</span>
+              </div>
+              <input type="password" id="s_pass" placeholder="New password">
+            </div>
+
+            <div class="settings-row">
+              <div class="sr-label">
+                <strong>Global Google Sheets URL</strong>
+                <span>Used as fallback if not set per-exam</span>
+              </div>
+              <input type="text" id="s_sheets" placeholder="Apps Script URL">
+            </div>
+
+            <div class="settings-row">
+              <div class="sr-label">
+                <strong>Portal Title</strong>
+                <span>Shown on the student portal</span>
+              </div>
+              <input type="text" id="s_portalTitle" placeholder="Cambridge Exam Portal">
+            </div>
+
+            <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="btn-save-setting" onclick="saveSettings()">Save Settings</button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="section-card" style="margin-top:14px;">
+          <div class="section-card-header">Data Management</div>
+          <div class="section-card-body" style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn-sm success" onclick="exportAllData()">⬇ Export All Data (JSON)</button>
+            <button class="btn-sm neutral" onclick="document.getElementById('importFile').click()">⬆ Import Data</button>
+            <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+            <button class="btn-sm danger" onclick="factoryReset()">⚠️ Factory Reset</button>
+          </div>
+          <div style="padding:0 14px 14px;font-size:12px;color:var(--muted);margin-top:6px;">
+            Export saves all exams and results. Import merges data. Factory reset deletes everything.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /admin-content -->
+  </div><!-- /admin-main -->
+</div><!-- /admin-shell -->
+
+<script src="../js/storage.js"></script>
+<script>
+// ═══════════════════════════════════════════════
+// AUTH
+// ═══════════════════════════════════════════════
+const DEFAULT_PASS = 'cambridge2024';
+
+function doLogin() {
+  const val  = document.getElementById('passIn').value;
+  const pass = Storage.getSetting('adminPass') || DEFAULT_PASS;
+  if (val === pass) {
+    document.getElementById('adminLoginWrap').style.display = 'none';
+    document.getElementById('adminShell').style.display = 'flex';
+    document.getElementById('mobileNav').style.display = 'flex';
+    initAdmin();
+  } else {
+    document.getElementById('loginErr').textContent = 'Incorrect password.';
+  }
+}
+
+function logout() {
+  document.getElementById('adminShell').style.display = 'none';
+  document.getElementById('adminLoginWrap').style.display = 'flex';
+  document.getElementById('passIn').value = '';
+}
+
+document.getElementById('passIn').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin();
+});
+
+// ═══════════════════════════════════════════════
+// PANEL NAVIGATION
+// ═══════════════════════════════════════════════
+const panelTitles = {
+  exams: 'All Exams', builder: 'Exam Builder',
+  results: 'Results Log', settings: 'Settings'
+};
+
+const panelActions = {
+  exams: `<button class="btn-sm primary" onclick="newExam()">+ New Exam</button>`,
+  builder: '',
+  results: '',
+  settings: ''
+};
+
+function showPanel(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  document.querySelectorAll('.snav-item').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.getElementById('topbarTitle').textContent  = panelTitles[name] || '';
+  document.getElementById('topbarActions').innerHTML  = panelActions[name] || '';
+
+  if (name === 'exams')    renderExamList();
+  if (name === 'results')  loadResultsPanel();
+  if (name === 'settings') loadSettings();
+}
+
+function initAdmin() {
+  renderExamList();
+  loadApiKey();
+}
+
+// ═══════════════════════════════════════════════
+// EXAM LIST
+// ═══════════════════════════════════════════════
+const SUBJECT_COLORS = {
+  'Reading':'#003865','Writing':'#7b3f00','Listening':'#1a5c3a',
+  'Speaking':'#4a1070','Maths':'#0a3d62','Science':'#0d4f3c','General':'#444'
+};
+
+function renderExamList() {
+  const exams = Storage.getExams();
+  const wrap  = document.getElementById('examListWrap');
+
+  if (!exams.length) {
+    wrap.innerHTML = `<div style="text-align:center;padding:50px 20px;color:var(--muted);">
+      <div style="font-size:40px;margin-bottom:12px;">📭</div>
+      <div style="font-weight:600;margin-bottom:6px;">No exams yet</div>
+      <div style="font-size:13px;">Click <strong>+ New Exam</strong> to create your first exam.</div>
+    </div>`;
+    return;
+  }
+
+  wrap.innerHTML = exams.map(e => {
+    const color = SUBJECT_COLORS[e.subject] || '#444';
+    const qc    = (e.questions||[]).length;
+    return `<div class="exam-list-item">
+      <div class="eli-color" style="background:${color}"></div>
+      <div class="eli-body">
+        <div class="eli-title">${e.title}</div>
+        <div class="eli-meta">
+          ${e.subject || 'General'} · ${e.duration||45} min · ${qc} question${qc!==1?'s':''}
+          &nbsp;<span class="publish-badge ${e.published?'yes':'no'}">${e.published?'Published':'Draft'}</span>
+        </div>
+      </div>
+      <div class="eli-actions">
+        <button class="btn-icon" onclick="editExam('${e.id}')" title="Edit">✏️</button>
+        <button class="btn-icon" onclick="togglePublish('${e.id}')" title="${e.published?'Unpublish':'Publish'}">${e.published?'📴':'🚀'}</button>
+        <button class="btn-icon" onclick="duplicateExam('${e.id}')" title="Duplicate">📋</button>
+        <button class="btn-icon danger" onclick="deleteExam('${e.id}')" title="Delete">🗑</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function newExam() {
+  resetBuilder();
+  showPanel('builder', document.getElementById('snav-builder'));
+}
+
+function editExam(id) {
+  const exam = Storage.getExam(id);
+  if (!exam) return;
+  currentEditId = id;
+  document.getElementById('f_title').value       = exam.title || '';
+  document.getElementById('f_subject').value     = exam.subject || 'Reading';
+  document.getElementById('f_duration').value    = exam.duration || 45;
+  document.getElementById('f_description').value = exam.description || '';
+  document.getElementById('f_sheets').value      = exam.sheetsUrl || '';
+  document.getElementById('editingLabel').textContent = `Editing: ${exam.title}`;
+
+  // Load questions
+  currentQuestions = JSON.parse(JSON.stringify(exam.questions || []));
+  renderQuestionBuilder();
+  renderPreview();
+
+  showPanel('builder', document.getElementById('snav-builder'));
+}
+
+function togglePublish(id) {
+  const exam = Storage.getExam(id);
+  if (!exam) return;
+  exam.published = !exam.published;
+  Storage.saveExam(exam);
+  renderExamList();
+}
+
+function duplicateExam(id) {
+  const exam = Storage.getExam(id);
+  if (!exam) return;
+  const copy = JSON.parse(JSON.stringify(exam));
+  copy.id = Storage.newExamId();
+  copy.title = exam.title + ' (Copy)';
+  copy.published = false;
+  Storage.saveExam(copy);
+  renderExamList();
+}
+
+function deleteExam(id) {
+  const exam = Storage.getExam(id);
+  if (!exam) return;
+  if (!confirm(`Delete "${exam.title}"? This cannot be undone.`)) return;
+  Storage.deleteExam(id);
+  renderExamList();
+}
+
+// ═══════════════════════════════════════════════
+// BUILDER
+// ═══════════════════════════════════════════════
+let currentEditId   = null;
+let currentQuestions = [];
+
+function resetBuilder() {
+  currentEditId    = null;
+  currentQuestions = [];
+  document.getElementById('f_title').value       = '';
+  document.getElementById('f_subject').value     = 'Reading';
+  document.getElementById('f_duration').value    = 45;
+  document.getElementById('f_description').value = '';
+  document.getElementById('f_sheets').value      = '';
+  document.getElementById('editingLabel').textContent = 'New exam';
+  renderQuestionBuilder();
+  renderPreview();
+}
+
+function addQuestion(prefill) {
+  const num = currentQuestions.length + 1;
+  const q = prefill || {
+    number: num,
+    part: 'Part 1',
+    partInstruction: 'For each question, choose the correct answer.',
+    question: '',
+    options: [
+      { letter:'A', text:'' },
+      { letter:'B', text:'' },
+      { letter:'C', text:'' }
+    ],
+    answer: 'A',
+    stimulus: null,
+    tableStyle: false
+  };
+  if (!prefill) q.number = num;
+  currentQuestions.push(q);
+  renderQuestionBuilder();
+  renderPreview();
+}
+
+function removeQuestion(idx) {
+  currentQuestions.splice(idx, 1);
+  // Renumber
+  currentQuestions.forEach((q,i) => q.number = i+1);
+  renderQuestionBuilder();
+  renderPreview();
+}
+
+function renderQuestionBuilder() {
+  const container = document.getElementById('questionsContainer');
+  if (!currentQuestions.length) {
+    container.innerHTML = `<div style="text-align:center;color:var(--muted);font-size:13px;padding:20px 0;">
+      No questions yet. Click <strong>+ Add Question</strong> or use the AI importer →</div>`;
+    return;
+  }
+
+  container.innerHTML = currentQuestions.map((q,i) => `
+    <div class="q-builder-row">
+      <div class="q-row-header">
+        <span class="q-row-num">Q${q.number}</span>
+        <div style="display:flex;gap:6px;">
+          ${i>0?`<button class="btn-sm neutral" onclick="moveQ(${i},-1)" title="Move up">↑</button>`:''}
+          ${i<currentQuestions.length-1?`<button class="btn-sm neutral" onclick="moveQ(${i},1)" title="Move down">↓</button>`:''}
+          <button class="btn-sm danger" onclick="removeQuestion(${i})">✕</button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <div>
+          <label style="font-size:11px;font-weight:600;color:#1a1a2e;display:block;margin-bottom:4px;">Part</label>
+          <input type="text" value="${q.part||'Part 1'}" onchange="updateQ(${i},'part',this.value)"
+            style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'DM Sans',sans-serif;">
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;color:#1a1a2e;display:block;margin-bottom:4px;">Correct Answer</label>
+          <select onchange="updateQ(${i},'answer',this.value)"
+            style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'DM Sans',sans-serif;">
+            ${(q.options||[]).map(o=>`<option value="${o.letter}" ${q.answer===o.letter?'selected':''}>${o.letter}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-bottom:8px;">
+        <label style="font-size:11px;font-weight:600;color:#1a1a2e;display:block;margin-bottom:4px;">Question Text *</label>
+        <input type="text" value="${escHtml(q.question||'')}" onchange="updateQ(${i},'question',this.value)"
+          placeholder="e.g. Where might you see this sign?"
+          style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'DM Sans',sans-serif;">
+      </div>
+
+      <div style="margin-bottom:8px;">
+        <label style="font-size:11px;font-weight:600;color:#1a1a2e;display:block;margin-bottom:4px;">Options</label>
+        ${(q.options||[]).map((o,oi)=>`
+          <div class="option-input-row">
+            <div class="option-letter-tag">${o.letter}</div>
+            <input type="text" value="${escHtml(o.text||'')}" onchange="updateOption(${i},${oi},this.value)"
+              placeholder="Option ${o.letter} text"
+              style="flex:1;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'DM Sans',sans-serif;">
+          </div>`).join('')}
+      </div>
+
+      <div>
+        <label style="font-size:11px;font-weight:600;color:#1a1a2e;display:block;margin-bottom:4px;">
+          Stimulus / Image URL <span style="font-weight:400;color:var(--muted);">(optional)</span>
         </label>
+        <input type="text" value="${q.stimulus?.url||''}" onchange="updateStimulusUrl(${i},this.value)"
+          placeholder="https://… or leave blank"
+          style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'DM Sans',sans-serif;">
+        <div style="font-size:10px;color:var(--muted);margin-top:3px;">For full stimulus types (sign, phone, message etc.) use AI import or edit the JSON directly.</div>
       </div>
     </div>
-  </main>
+  `).join('');
+}
 
-  <script src="js/admin.js"></script>
+function updateQ(idx, field, value) {
+  currentQuestions[idx][field] = value;
+  renderPreview();
+}
+
+function updateOption(qIdx, oIdx, value) {
+  currentQuestions[qIdx].options[oIdx].text = value;
+  renderPreview();
+}
+
+function updateStimulusUrl(idx, url) {
+  if (url) currentQuestions[idx].stimulus = { type:'image', url };
+  else      currentQuestions[idx].stimulus = null;
+  renderPreview();
+}
+
+function moveQ(idx, dir) {
+  const swap = idx + dir;
+  if (swap < 0 || swap >= currentQuestions.length) return;
+  [currentQuestions[idx], currentQuestions[swap]] = [currentQuestions[swap], currentQuestions[idx]];
+  currentQuestions.forEach((q,i) => q.number = i+1);
+  renderQuestionBuilder();
+  renderPreview();
+}
+
+function renderPreview() {
+  const container = document.getElementById('previewContainer');
+  if (!currentQuestions.length) {
+    container.innerHTML = '<div class="preview-empty">Questions will appear here as you add them.</div>';
+    return;
+  }
+  container.innerHTML = currentQuestions.map(q => `
+    <div class="q-preview-card">
+      <span class="qp-num">Q${q.number}</span>
+      <span style="font-size:11px;color:var(--muted);margin-left:6px;">${q.part||''}</span>
+      <div class="qp-text">${q.question || '<em style="color:var(--muted);">No question text</em>'}</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:4px;">
+        ${(q.options||[]).map(o=>`${o.letter}: ${o.text||'—'}`).join(' · ')}
+      </div>
+      <span class="qp-ans">✓ ${q.answer}</span>
+    </div>`).join('');
+}
+
+function saveExam(publish) {
+  const title = document.getElementById('f_title').value.trim();
+  if (!title) { alert('Please enter an exam title.'); return; }
+  if (!currentQuestions.length) { alert('Please add at least one question.'); return; }
+
+  const exam = {
+    id:          currentEditId || Storage.newExamId(),
+    title,
+    subject:     document.getElementById('f_subject').value,
+    duration:    parseInt(document.getElementById('f_duration').value) || 45,
+    description: document.getElementById('f_description').value.trim(),
+    sheetsUrl:   document.getElementById('f_sheets').value.trim(),
+    questions:   currentQuestions,
+    published:   publish,
+    updatedAt:   new Date().toISOString()
+  };
+
+  Storage.saveExam(exam);
+  currentEditId = exam.id;
+  document.getElementById('editingLabel').textContent = `Editing: ${exam.title}`;
+  alert(publish ? '🚀 Exam published!' : '💾 Saved as draft.');
+  showPanel('exams', document.getElementById('snav-exams'));
+}
+
+// ═══════════════════════════════════════════════
+// AI IMPORT
+// ═══════════════════════════════════════════════
+let uploadedFile   = null;
+let uploadedBase64 = null;
+let uploadedMime   = null;
+
+function loadApiKey() {
+  const saved = localStorage.getItem('ai_api_key') || '';
+  document.getElementById('apiKeyInput').value = saved;
+}
+
+function toggleApiKey() {
+  const inp = document.getElementById('apiKeyInput');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('uploadZone').classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if (file) processUpload(file);
+}
+
+function handleFileSelect(e) {
+  const file = e.target.files[0];
+  if (file) processUpload(file);
+}
+
+function processUpload(file) {
+  uploadedFile = file;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const result  = ev.target.result;
+    uploadedBase64 = result.split(',')[1];
+    uploadedMime   = file.type;
+
+    document.getElementById('uzIcon').textContent = file.type.includes('pdf') ? '📑' : '🖼';
+    document.getElementById('uzText').textContent = file.name;
+    document.getElementById('uzSub').textContent  = `${(file.size/1024).toFixed(1)} KB — ready`;
+    aiLog(`File loaded: ${file.name}`, 'ok');
+  };
+  reader.readAsDataURL(file);
+}
+
+function aiLog(msg, type='') {
+  const log = document.getElementById('aiLog');
+  log.innerHTML += `<div class="log-line ${type}">${type==='ok'?'✓ ':type==='err'?'✗ ':'⋯ '}${msg}</div>`;
+  log.scrollTop = log.scrollHeight;
+}
+
+async function runAIImport() {
+  const apiKey = document.getElementById('apiKeyInput').value.trim();
+  if (!apiKey) { alert('Please enter your Anthropic API key.'); return; }
+  if (!uploadedBase64) { alert('Please upload a PDF or image first.'); return; }
+
+  localStorage.setItem('ai_api_key', apiKey);
+
+  const btn = document.getElementById('aiImportBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Extracting…';
+
+  document.getElementById('aiLog').innerHTML = '';
+  aiLog('Sending to Claude AI…');
+
+  const extraInstructions = document.getElementById('aiInstructions').value.trim();
+
+  const systemPrompt = `You are an exam question extractor. Given an image or PDF of an exam paper, extract ALL multiple choice questions.
+
+Return ONLY a valid JSON array. No other text, no markdown fences.
+
+Each object must have:
+{
+  "number": 1,
+  "part": "Part 1",
+  "partInstruction": "For each question, choose the correct answer.",
+  "question": "The question text",
+  "options": [
+    {"letter": "A", "text": "Option A text"},
+    {"letter": "B", "text": "Option B text"},
+    {"letter": "C", "text": "Option C text"}
+  ],
+  "answer": "B",
+  "tableStyle": false,
+  "stimulus": {
+    "type": "sign",
+    "body": "Text content of the sign/notice/message"
+  }
+}
+
+For stimulus type, use: "sign", "notice", "message", "phone", "social", "text", or null if none.
+For tableStyle, set true if questions share a reading passage and are presented in a table (A/B/C columns).
+If questions share a reading passage, add a "passage" field to the FIRST question of that group:
+{
+  "passage": {
+    "title": "Passage title",
+    "people": [
+      {"name": "Person Name", "subtitle": "Hobby or role", "text": "Their paragraph text"}
+    ]
+  }
+}
+
+${extraInstructions}`;
+
+  const userContent = [
+    { type: 'text', text: 'Please extract all exam questions from this paper.' }
+  ];
+
+  // Attach image or PDF
+  if (uploadedMime === 'application/pdf') {
+    userContent.push({
+      type: 'document',
+      source: { type: 'base64', media_type: 'application/pdf', data: uploadedBase64 }
+    });
+  } else {
+    userContent.push({
+      type: 'image',
+      source: { type: 'base64', media_type: uploadedMime, data: uploadedBase64 }
+    });
+  }
+
+  try {
+    aiLog('Calling claude-sonnet-4-20250514…');
+
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 4096,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userContent }]
+      })
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error?.message || `HTTP ${res.status}`);
+    }
+
+    const data = await res.json();
+    aiLog('Response received. Parsing…');
+
+    const raw = data.content[0]?.text || '';
+    // Strip any accidental markdown fences
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const questions = JSON.parse(clean);
+
+    if (!Array.isArray(questions)) throw new Error('AI did not return a question array.');
+
+    aiLog(`Found ${questions.length} question(s).`, 'ok');
+
+    // Merge into current question list
+    const startNum = currentQuestions.length + 1;
+    questions.forEach((q, i) => {
+      q.number = startNum + i;
+      currentQuestions.push(q);
+    });
+
+    renderQuestionBuilder();
+    renderPreview();
+    aiLog(`Added to builder. Review and save when ready.`, 'ok');
+
+  } catch (err) {
+    aiLog(`Error: ${err.message}`, 'err');
+    aiLog('Check your API key and try again.', 'err');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '✨ Extract Questions with AI';
+  }
+}
+
+// ═══════════════════════════════════════════════
+// RESULTS
+// ═══════════════════════════════════════════════
+function loadResultsPanel() {
+  // Populate exam filter
+  const exams = Storage.getExams();
+  const sel   = document.getElementById('rf_exam');
+  sel.innerHTML = '<option value="">All exams</option>' +
+    exams.map(e => `<option value="${e.id}">${e.title}</option>`).join('');
+  renderResults();
+}
+
+function renderResults() {
+  let results = Storage.getResults();
+  const name  = document.getElementById('rf_name').value.toLowerCase();
+  const examF = document.getElementById('rf_exam').value;
+
+  if (name)  results = results.filter(r => (r.studentName||'').toLowerCase().includes(name));
+  if (examF) results = results.filter(r => r.examId === examF);
+
+  const tbody = document.getElementById('resultsTbody');
+  const empty = document.getElementById('resultsEmpty');
+
+  if (!results.length) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  tbody.innerHTML = [...results].reverse().map((r,i) => {
+    const d  = new Date(r.timestamp);
+    const dt = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    return `<tr>
+      <td>${results.length - i}</td>
+      <td><strong>${r.studentName||'—'}</strong></td>
+      <td>${r.studentClass||'—'}</td>
+      <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${r.examTitle||'—'}</td>
+      <td>${r.examSubject||'—'}</td>
+      <td>${dt}</td>
+      <td>${r.timeTaken||'—'}</td>
+      <td><span class="score-pill">${r.correct}/${r.total}</span></td>
+      <td>${r.pct}%</td>
+      <td style="font-size:12px;">${r.grade||'—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+function clearAllResults() {
+  if (!confirm('Delete ALL results? Cannot be undone.')) return;
+  Storage.clearResults();
+  renderResults();
+}
+
+function exportResultsCSV() {
+  const results = Storage.getResults();
+  if (!results.length) { alert('No results to export.'); return; }
+  const hdr  = ['#','Name','Class','Exam','Subject','Date','Time Taken','Score','Total','%','Grade'];
+  const rows = results.map((r,i) => [
+    i+1, `"${r.studentName||''}"`, `"${r.studentClass||''}"`,
+    `"${r.examTitle||''}"`, `"${r.examSubject||''}"`,
+    `"${new Date(r.timestamp).toLocaleString()}"`,
+    `"${r.timeTaken||''}"`, r.correct, r.total, r.pct, `"${r.grade||''}"`
+  ]);
+  const csv  = [hdr.join(','), ...rows.map(r=>r.join(','))].join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a    = document.createElement('a');
+  a.href     = URL.createObjectURL(blob);
+  a.download = `exam_results_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+// ═══════════════════════════════════════════════
+// SETTINGS
+// ═══════════════════════════════════════════════
+function loadSettings() {
+  document.getElementById('s_pass').value        = '';
+  document.getElementById('s_sheets').value      = Storage.getSetting('sheetsUrl');
+  document.getElementById('s_portalTitle').value = Storage.getSetting('portalTitle', 'Cambridge Exam Portal');
+}
+
+function saveSettings() {
+  const newPass = document.getElementById('s_pass').value.trim();
+  if (newPass) Storage.saveSetting('adminPass', newPass);
+  Storage.saveSetting('sheetsUrl',   document.getElementById('s_sheets').value.trim());
+  Storage.saveSetting('portalTitle', document.getElementById('s_portalTitle').value.trim());
+  alert('Settings saved!');
+}
+
+function exportAllData() {
+  const json = Storage.exportAll();
+  const blob = new Blob([json], {type:'application/json'});
+  const a    = document.createElement('a');
+  a.href     = URL.createObjectURL(blob);
+  a.download = `exam_backup_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+}
+
+function importData(e) {
+  const file   = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      Storage.importAll(ev.target.result);
+      alert('Data imported successfully!');
+      renderExamList();
+    } catch {
+      alert('Invalid file. Please export a valid backup first.');
+    }
+  };
+  reader.readAsText(file);
+}
+
+function factoryReset() {
+  if (!confirm('Delete ALL exams, results, and settings? This CANNOT be undone.')) return;
+  if (!confirm('Are you absolutely sure?')) return;
+  localStorage.removeItem('cms_exams');
+  localStorage.removeItem('cms_results');
+  localStorage.removeItem('cms_settings');
+  location.reload();
+}
+
+// ═══════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════
+function escHtml(str) {
+  return (str||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
 </body>
 </html>

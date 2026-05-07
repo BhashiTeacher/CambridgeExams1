@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Builder | Cambridge Exams Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body style="background-color: var(--bg-color);">
+  <aside class="admin-sidebar">
+    <div style="margin-bottom: 2rem;">
+      <h2 style="font-weight: 800; color: var(--primary-color);">ExamAdmin</h2>
+      <p style="font-size: 0.875rem; color: var(--text-muted);">Control Panel</p>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a href="index.html" class="sidebar-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+        Dashboard
+      </a>
+      <a href="builder.html" class="sidebar-link active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        Exam Builder
+      </a>
+      <a href="settings.html" class="sidebar-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        Settings
+      </a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+      <h2>Exam Builder</h2>
+      <div>
+        <button class="btn btn-outline" onclick="window.location.href='index.html'" style="margin-right: 1rem;">Cancel</button>
+        <button class="btn btn-primary" id="btn-save-exam">Save & Publish</button>
+      </div>
+    </div>
+
+    <div class="builder-layout">
+      <!-- Left side: Form -->
+      <div class="form-container">
+        <div class="card" style="margin-bottom: 2rem;">
+          <h3 style="margin-bottom: 1.5rem;">Basic Details</h3>
+          <div class="form-group">
+            <label class="form-label">Exam Title</label>
+            <input type="text" id="exam-title" class="form-control" placeholder="e.g. End of Year Assessment 2024">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Subject Category</label>
+              <select id="exam-subject" class="form-control">
+                <option value="Reading">Reading</option>
+                <option value="Listening">Listening</option>
+                <option value="Grammar">Grammar</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Duration (Minutes)</label>
+              <input type="number" id="exam-duration" class="form-control" value="45" min="5" max="180">
+            </div>
+          </div>
+          <div class="form-group" id="audio-input-group" style="display: none; margin-top: 1rem;">
+            <label class="form-label">Audio File Name (Listening Exams)</label>
+            <input type="text" id="exam-audio" class="form-control" placeholder="e.g. test_audio.mp3">
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.5rem;">Place this file in the <code>audio/</code> folder before deploying to GitHub.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3>Questions</h3>
+            <button class="btn btn-outline" id="btn-add-question" style="padding: 0.5rem 1rem;">+ Add Question</button>
+          </div>
+          
+          <div id="questions-list">
+            <!-- Questions dynamically added here -->
+            <div class="empty-state" id="no-questions">
+              <p>No questions added yet. Add manually or use AI extraction.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side: AI Importer -->
+      <div>
+        <div class="ai-panel">
+          <h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            AI Question Importer
+          </h3>
+          <p>Extract questions automatically from a photo or PDF scan of your exam paper using Anthropic Claude.</p>
+          
+          <div id="ai-key-warning" style="display: none; background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1rem;">
+            <p style="margin: 0; color: #fca5a5;">⚠️ API Key missing. Please set it in <a href="settings.html" style="color: white; text-decoration: underline;">Settings</a>.</p>
+          </div>
+
+          <label class="file-drop-area" id="drop-area" style="display: block;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            <div style="font-weight: 600;">Click or drag file here</div>
+            <div style="font-size: 0.875rem; color: #c7d2fe; margin-top: 0.5rem;">Supports PNG, JPG, PDF</div>
+            <input type="file" id="ai-file-input" accept="image/*,application/pdf" style="display: none;">
+          </label>
+          
+          <div id="ai-status" style="display: none; margin-top: 1.5rem; text-align: center;">
+            <div class="loader" style="margin-bottom: 0.5rem;"></div>
+            <div id="ai-status-text">Analyzing document...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

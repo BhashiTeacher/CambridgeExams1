@@ -1,14 +1,17 @@
-// seed.js — Pre-loads Test 6 so the system has data on first run.
+// FILE: js/seed.js
+// Pre-loads Test 6 so the system has data on first run.
 // This runs once. After that, all data lives in localStorage.
 
 (function seedIfEmpty() {
-  const existing = JSON.parse(localStorage.getItem('cms_exams') || '[]');
+  const existing = JSON.parse(localStorage.getItem('bhashi_exams') || '[]');
   if (existing.find(e => e.id === 'exam_test6_seed')) return; // already seeded
 
   const test6 = {
     id: 'exam_test6_seed',
     title: 'Test 6 – Reading & Writing',
     subject: 'Reading',
+    topic: 'Reading Comprehension',
+    gradeLevel: 'A2 Key',
     duration: 45,
     description: 'Cambridge A2 Key style reading and writing test.',
     sheetsUrl: '',
@@ -95,6 +98,6 @@
   };
 
   existing.push(test6);
-  localStorage.setItem('cms_exams', JSON.stringify(existing));
+  localStorage.setItem('bhashi_exams', JSON.stringify(existing));
   console.log('Seeded Test 6 exam data.');
 })();

@@ -1,3 +1,4 @@
+<!-- FILE: take-exam.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,7 +98,11 @@ function buildExam() {
       html += buildTableQuestions(part.questions);
     } else {
       part.questions.forEach(q => {
-        html += buildMCQCard(q);
+        if (q.questionType === 'short_answer') {
+          html += buildShortAnswerCard(q);
+        } else {
+          html += buildMCQCard(q);
+        }
       });
     }
   });
@@ -169,6 +174,32 @@ function buildMCQCard(q) {
       </div>
     </div>
   </div>`;
+}
+
+function buildShortAnswerCard(q) {
+  const stimulusHtml = buildStimulus(q);
+  return `<div class="q-card">
+    <div class="q-card-inner">
+      <div class="q-stimulus">
+        <div class="q-number-badge">${q.number}</div>
+        ${stimulusHtml}
+      </div>
+      <div class="q-options">
+        <div class="q-question-text">${q.question}</div>
+        <textarea
+          class="short-answer-input"
+          id="sa_${q.number}"
+          placeholder="Write your answer here…"
+          oninput="selectShortAnswer(${q.number}, this.value)"
+        ></textarea>
+      </div>
+    </div>
+  </div>`;
+}
+
+function selectShortAnswer(qNum, value) {
+  userAnswers[qNum] = value;
+  updateProgress();
 }
 
 function buildStimulus(q) {
@@ -291,7 +322,7 @@ function selectTable(qNum, letter, el) {
 
 function updateProgress() {
   const total    = (exam.questions||[]).length;
-  const answered = Object.keys(userAnswers).length;
+  const answered = Object.keys(userAnswers).filter(k => userAnswers[k] !== '').length;
   const pct      = total ? (answered/total)*100 : 0;
   document.getElementById('progressFill').style.width = pct+'%';
   document.getElementById('progressLabel').textContent = `${answered} of ${total} answered`;
@@ -301,7 +332,7 @@ function updateProgress() {
 function submitExam(fromTimer = false) {
   if (submitted) return;
   const total    = (exam.questions||[]).length;
-  const answered = Object.keys(userAnswers).length;
+  const answered = Object.keys(userAnswers).filter(k => userAnswers[k] !== '').length;
 
   if (!fromTimer && answered < total) {
     if (!confirm(`${total - answered} question(s) unanswered. Submit anyway?`)) return;
@@ -311,14 +342,15 @@ function submitExam(fromTimer = false) {
   clearInterval(timerInterval);
   document.getElementById('timeupOverlay').classList.remove('active');
 
-  // Score
+  // Score — short_answer questions count in total but are NOT auto-graded
   let correct = 0;
   const breakdown = {};
   (exam.questions||[]).forEach(q => {
     const part = q.part || 'Part 1';
     if (!breakdown[part]) breakdown[part] = { correct:0, total:0 };
     breakdown[part].total++;
-    if (userAnswers[q.number] === q.answer) {
+    const isShortAnswer = q.questionType === 'short_answer';
+    if (!isShortAnswer && userAnswers[q.number] === q.answer) {
       correct++;
       breakdown[part].correct++;
     }
@@ -334,7 +366,8 @@ function submitExam(fromTimer = false) {
     studentName, studentClass, examStart, timeTaken,
     correct, total, pct, grade,
     breakdown: JSON.stringify(breakdown),
-    answers: JSON.stringify(userAnswers)
+    answers: JSON.stringify(userAnswers),
+    questionsSnapshot: JSON.stringify(exam.questions || [])
   };
 
   Storage.saveResult(result);

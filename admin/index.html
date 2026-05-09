@@ -1,9 +1,10 @@
+<!-- FILE: admin/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin – Exam Manager</title>
+<title>Bhashi Admin — Exam Manager</title>
 <link rel="stylesheet" href="../css/style.css">
 <style>
   /* ── Admin-specific styles ── */
@@ -43,13 +44,6 @@
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 
-  .sidebar-logo .s-badge {
-    background: #003865;
-    font-size:10px; font-weight:700; letter-spacing:1px;
-    padding: 3px 8px; border-radius: 3px; margin-bottom:6px;
-    display:inline-block;
-  }
-
   .sidebar-logo .s-title { font-family:'Source Serif 4',serif; font-size:15px; font-weight:600; }
   .sidebar-logo .s-sub { font-size:11px; opacity:0.5; margin-top:2px; }
 
@@ -64,7 +58,7 @@
     transition: background 0.15s;
     color: rgba(255,255,255,0.75);
     border:none; background:none; width:100%; text-align:left;
-    font-family:'DM Sans',sans-serif;
+    font-family:'Inter',sans-serif;
   }
 
   .snav-item:hover { background:rgba(255,255,255,0.07); color:white; }
@@ -105,19 +99,20 @@
     display:flex;
     align-items:center;
     gap:14px;
+    flex-wrap:wrap;
   }
 
   .eli-color { width:5px; height:48px; border-radius:3px; flex-shrink:0; }
   .eli-body { flex:1; min-width:0; }
   .eli-title { font-weight:700; font-size:14px; color:#1a1a2e; }
   .eli-meta { font-size:12px; color:var(--muted); margin-top:2px; }
-  .eli-actions { display:flex; gap:6px; flex-shrink:0; }
+  .eli-actions { display:flex; gap:6px; flex-shrink:0; flex-wrap:wrap; }
 
   .btn-icon {
     background:none; border:1px solid #dde2ec;
     border-radius:5px; padding:6px 10px; cursor:pointer;
     font-size:13px; transition:all 0.15s;
-    font-family:'DM Sans',sans-serif;
+    font-family:'Inter',sans-serif;
   }
 
   .btn-icon:hover { background:#f0f4ff; border-color:#b0bcd4; }
@@ -137,7 +132,7 @@
   .builder-form label { display:block; font-size:12px; font-weight:600; color:#1a1a2e; margin-bottom:5px; }
   .builder-form input, .builder-form select, .builder-form textarea {
     width:100%; border:1.5px solid #dde2ec; border-radius:5px; padding:8px 11px;
-    font-size:13px; font-family:'DM Sans',sans-serif; background:white;
+    font-size:13px; font-family:'Inter',sans-serif; background:white;
     transition:border-color 0.15s;
   }
   .builder-form input:focus, .builder-form select:focus, .builder-form textarea:focus {
@@ -243,7 +238,7 @@
   .results-filter { display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; align-items:center; }
   .results-filter select, .results-filter input {
     border:1.5px solid #dde2ec; border-radius:5px; padding:7px 10px;
-    font-size:13px; font-family:'DM Sans',sans-serif; background:white;
+    font-size:13px; font-family:'Inter',sans-serif; background:white;
   }
 
   table.rtable { width:100%; border-collapse:collapse; font-size:12px; }
@@ -261,9 +256,9 @@
   .settings-row .sr-label { flex:1; }
   .settings-row .sr-label strong { display:block; font-size:13px; margin-bottom:2px; }
   .settings-row .sr-label span  { font-size:12px; color:var(--muted); }
-  .settings-row input, .settings-row select { width:220px; border:1.5px solid #dde2ec; border-radius:5px; padding:7px 10px; font-size:13px; font-family:'DM Sans',sans-serif; }
+  .settings-row input, .settings-row select { width:220px; border:1.5px solid #dde2ec; border-radius:5px; padding:7px 10px; font-size:13px; font-family:'Inter',sans-serif; }
 
-  .btn-save-setting { background:var(--cambridge-blue); color:white; border:none; border-radius:5px; padding:8px 18px; font-size:13px; font-weight:600; font-family:'DM Sans',sans-serif; cursor:pointer; }
+  .btn-save-setting { background:var(--cambridge-blue); color:white; border:none; border-radius:5px; padding:8px 18px; font-size:13px; font-weight:600; font-family:'Inter',sans-serif; cursor:pointer; }
 
   /* Login */
   #adminLoginWrap { position:fixed; inset:0; background:#1a1a2e; display:flex; align-items:center; justify-content:center; z-index:1000; padding:20px; }
@@ -271,11 +266,22 @@
   .admin-login-card h2 { font-family:'Source Serif 4',serif; color:#1a1a2e; font-size:20px; margin-bottom:6px; }
   .admin-login-card p { color:var(--muted); font-size:13px; margin-bottom:22px; }
 
-  .btn-sm { padding:6px 14px; font-size:12px; border:none; border-radius:4px; cursor:pointer; font-family:'DM Sans',sans-serif; font-weight:600; }
+  .btn-sm { padding:6px 14px; font-size:12px; border:none; border-radius:4px; cursor:pointer; font-family:'Inter',sans-serif; font-weight:600; }
   .btn-sm.primary { background:var(--cambridge-blue); color:white; }
   .btn-sm.success { background:#2e7d32; color:white; }
   .btn-sm.danger  { background:#c62828; color:white; }
   .btn-sm.neutral { background:#e0e6f0; color:#1a1a2e; }
+
+  /* Review table inside result detail modal */
+  .review-table { width:100%; border-collapse:collapse; font-size:13px; margin-bottom:18px; }
+  .review-table th { background:var(--cambridge-blue); color:white; padding:9px 12px; text-align:left; font-size:11px; font-weight:700; letter-spacing:0.4px; }
+  .review-table td { padding:9px 12px; border-bottom:1px solid var(--border); vertical-align:top; }
+  .review-row.correct td { background:#f0faf0; }
+  .review-row.wrong td { background:#fff5f5; }
+  .review-row.pending td { background:#f0f4ff; }
+  .review-row .result-icon { font-size:15px; text-align:center; }
+  .review-row .correct-answer { color:var(--correct); font-weight:600; font-size:12px; }
+  .review-row .wrong-answer { color:var(--wrong); font-size:12px; }
 </style>
 </head>
 <body>
@@ -284,12 +290,12 @@
 <div id="adminLoginWrap">
   <div class="admin-login-card">
     <div style="font-size:36px;margin-bottom:10px;">🎓</div>
-    <h2>Exam Manager</h2>
+    <h2>Bhashi Admin</h2>
     <p>Administrator access only</p>
     <div class="form-group" style="text-align:left;">
       <label style="font-size:13px;font-weight:600;margin-bottom:6px;display:block;">Password</label>
-      <input type="password" id="passIn" placeholder="Enter password" class="form-group"
-             style="width:100%;border:1.5px solid #dde2ec;border-radius:5px;padding:9px 12px;font-size:14px;font-family:'DM Sans',sans-serif;"
+      <input type="password" id="passIn" placeholder="Enter password"
+             style="width:100%;border:1.5px solid #dde2ec;border-radius:5px;padding:9px 12px;font-size:14px;font-family:'Inter',sans-serif;"
              onkeydown="if(event.key==='Enter')doLogin()">
     </div>
     <button class="btn-primary" style="margin-top:8px;" onclick="doLogin()">Enter Admin →</button>
@@ -305,6 +311,7 @@
   <button class="snav-item" style="width:auto;padding:7px 12px;" onclick="showPanel('exams',this)">📋 Exams</button>
   <button class="snav-item" style="width:auto;padding:7px 12px;" onclick="showPanel('builder',this)">✏️ Builder</button>
   <button class="snav-item" style="width:auto;padding:7px 12px;" onclick="showPanel('results',this)">📊 Results</button>
+  <button class="snav-item" style="width:auto;padding:7px 12px;" onclick="showPanel('theory',this)">📚 Theory</button>
   <button class="snav-item" style="width:auto;padding:7px 12px;" onclick="showPanel('settings',this)">⚙️ Settings</button>
 </div>
 
@@ -313,9 +320,9 @@
   <!-- SIDEBAR -->
   <nav class="sidebar">
     <div class="sidebar-logo">
-      <div class="s-badge">CAMBRIDGE</div>
-      <div class="s-title">Exam Manager</div>
-      <div class="s-sub">Administrator</div>
+      <div class="bhashi-admin-badge">BHASHI</div>
+      <div class="s-title">Bhashi Admin</div>
+      <div class="s-sub">Smart Exam Platform</div>
     </div>
     <div class="sidebar-nav">
       <div class="snav-section">MANAGE</div>
@@ -323,6 +330,8 @@
       <button class="snav-item" id="snav-builder" onclick="showPanel('builder',this)"><span class="icon">✏️</span> Exam Builder</button>
       <div class="snav-section">MONITOR</div>
       <button class="snav-item" id="snav-results" onclick="showPanel('results',this)"><span class="icon">📊</span> Results Log</button>
+      <div class="snav-section">CONTENT</div>
+      <button class="snav-item" id="snav-theory" onclick="showPanel('theory',this)"><span class="icon">📚</span> Theory Library</button>
       <div class="snav-section">SYSTEM</div>
       <button class="snav-item" id="snav-settings" onclick="showPanel('settings',this)"><span class="icon">⚙️</span> Settings</button>
     </div>
@@ -345,131 +354,325 @@
 
       <!-- ═══ PANEL: EXAMS ═══ -->
       <div class="panel active" id="panel-exams">
+        <div class="exam-filter-bar">
+          <input type="text" id="ef_search" placeholder="Search exams…" oninput="filterExamList()" style="flex:1;min-width:160px;">
+          <select id="ef_subject" onchange="filterExamList()">
+            <option value="">All Subjects</option>
+          </select>
+          <select id="ef_status" onchange="filterExamList()">
+            <option value="">All Status</option>
+            <option value="published">Published</option>
+            <option value="draft">Draft</option>
+          </select>
+        </div>
         <div id="examListWrap"></div>
       </div>
 
       <!-- ═══ PANEL: BUILDER ═══ -->
       <div class="panel" id="panel-builder">
-        <div class="builder-wrap">
 
-          <!-- Left: form -->
-          <div>
-            <!-- Exam Info -->
-            <div class="section-card builder-form">
-              <div class="section-card-header">
-                <span>📄 Exam Details</span>
-                <span id="editingLabel" style="font-size:11px;color:var(--muted);font-weight:400;">New exam</span>
-              </div>
-              <div class="section-card-body">
-                <div class="field-group">
-                  <label>Exam Title *</label>
-                  <input type="text" id="f_title" placeholder="e.g. Test 6 – Reading & Writing">
+        <!-- Mode tabs -->
+        <div class="builder-mode-tabs">
+          <button class="bmode-btn active" id="bmode-manual" onclick="setBuilderMode('manual')">📝 Manual Build</button>
+          <button class="bmode-btn" id="bmode-import" onclick="setBuilderMode('import')">📄 Import from Image/PDF</button>
+          <button class="bmode-btn" id="bmode-theory" onclick="setBuilderMode('theory')">🧠 Generate from Theory</button>
+        </div>
+
+        <!-- Manual mode -->
+        <div id="builder-manual">
+          <div class="builder-wrap">
+
+            <!-- Left: form -->
+            <div>
+              <!-- Exam Info -->
+              <div class="section-card builder-form">
+                <div class="section-card-header">
+                  <span>📄 Exam Details</span>
+                  <span id="editingLabel" style="font-size:11px;color:var(--muted);font-weight:400;">New exam</span>
                 </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <div class="section-card-body">
                   <div class="field-group">
-                    <label>Subject</label>
-                    <select id="f_subject">
-                      <option>Reading</option>
-                      <option>Writing</option>
-                      <option>Listening</option>
-                      <option>Speaking</option>
-                      <option>Maths</option>
-                      <option>Science</option>
-                      <option>General</option>
+                    <label>Exam Title *</label>
+                    <input type="text" id="f_title" placeholder="e.g. Test 6 – Reading &amp; Writing">
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                    <div class="field-group">
+                      <label>Subject</label>
+                      <select id="f_subject">
+                        <option>Reading</option>
+                        <option>Writing</option>
+                        <option>Listening</option>
+                        <option>Speaking</option>
+                        <option>Maths</option>
+                        <option>Science</option>
+                        <option>General</option>
+                      </select>
+                    </div>
+                    <div class="field-group">
+                      <label>Duration (minutes)</label>
+                      <input type="number" id="f_duration" value="45" min="1" max="240">
+                    </div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                    <div class="field-group">
+                      <label>Topic <span class="opt-label">(optional)</span></label>
+                      <input type="text" id="f_topic" placeholder="e.g. Photosynthesis" list="f_topicList">
+                      <datalist id="f_topicList"></datalist>
+                    </div>
+                    <div class="field-group">
+                      <label>Grade / Level <span class="opt-label">(optional)</span></label>
+                      <input type="text" id="f_grade" placeholder="e.g. Grade 8, A2 Key">
+                    </div>
+                  </div>
+                  <div class="field-group">
+                    <label>Description <span class="opt-label">(optional)</span></label>
+                    <input type="text" id="f_description" placeholder="Short description for students">
+                  </div>
+                  <div class="field-group">
+                    <label>Google Sheets URL <span class="opt-label">(optional)</span></label>
+                    <input type="text" id="f_sheets" placeholder="Paste Apps Script web app URL">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Questions -->
+              <div class="section-card builder-form">
+                <div class="section-card-header">
+                  <span>❓ Questions</span>
+                  <button class="btn-sm primary" onclick="addQuestion()">+ Add Question</button>
+                </div>
+                <div class="section-card-body" id="questionsContainer">
+                  <div style="text-align:center;color:var(--muted);font-size:13px;padding:20px 0;">
+                    No questions yet. Click <strong>+ Add Question</strong> or use the AI importer.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Save buttons -->
+              <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <button class="btn-sm success" onclick="saveExam(false)">💾 Save as Draft</button>
+                <button class="btn-sm primary" onclick="saveExam(true)">🚀 Save &amp; Publish</button>
+                <button class="btn-sm neutral" onclick="resetBuilder()">✕ Clear</button>
+              </div>
+            </div>
+
+            <!-- Right: preview -->
+            <div>
+              <div class="section-card">
+                <div class="section-card-header">👁 Question Preview</div>
+                <div class="section-card-body" id="previewContainer">
+                  <div class="preview-empty">Questions will appear here as you add them.</div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /builder-wrap -->
+        </div><!-- /builder-manual -->
+
+        <!-- Import mode -->
+        <div id="builder-import" style="display:none;">
+          <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">Questions extracted will be added to the Manual Builder — switch to Manual to review them.</p>
+          <div class="ai-import-box">
+            <div class="ai-import-header">
+              <h3>🤖 AI Question Importer</h3>
+              <p>Upload a PDF or image of your exam paper and let AI extract the questions automatically.</p>
+            </div>
+            <div class="ai-import-body">
+
+              <div class="field-group builder-form">
+                <label>Anthropic API Key</label>
+                <div class="api-key-row">
+                  <input type="password" id="apiKeyInput" placeholder="sk-ant-…" value="">
+                  <button class="btn-sm neutral" onclick="toggleApiKey()">Show</button>
+                </div>
+                <div style="font-size:11px;color:var(--muted);">Key stays in your browser only. Never sent anywhere except Anthropic.</div>
+              </div>
+
+              <div class="upload-zone" id="uploadZone"
+                onclick="document.getElementById('fileInput').click()"
+                ondragover="event.preventDefault();this.classList.add('drag')"
+                ondragleave="this.classList.remove('drag')"
+                ondrop="handleDrop(event)">
+                <input type="file" id="fileInput" accept="image/*,.pdf" style="display:none" onchange="handleFileSelect(event)">
+                <div class="uz-icon" id="uzIcon">📄</div>
+                <div class="uz-text" id="uzText">Drop PDF or image here</div>
+                <div class="uz-sub" id="uzSub">or click to browse · JPG, PNG, PDF</div>
+              </div>
+
+              <div class="builder-form field-group">
+                <label>Additional instructions <span class="opt-label">(optional)</span></label>
+                <textarea id="aiInstructions" placeholder="e.g. This is a Cambridge A2 Key exam. Extract all MCQ questions with their stimulus texts." style="min-height:56px;"></textarea>
+              </div>
+
+              <button class="btn-sm primary" style="width:100%;padding:10px;" onclick="runAIImport()" id="aiImportBtn">
+                ✨ Extract Questions with AI
+              </button>
+
+              <div class="ai-log" id="aiLog">
+                <div class="log-line" style="color:rgba(255,255,255,0.3);">Waiting for upload…</div>
+              </div>
+
+            </div>
+          </div>
+        </div><!-- /builder-import -->
+
+        <!-- Theory mode -->
+        <div id="builder-theory" style="display:none;">
+          <div class="builder-wrap">
+            <div>
+              <!-- Theory source -->
+              <div class="section-card builder-form">
+                <div class="section-card-header">📖 Theory Content</div>
+                <div class="section-card-body">
+                  <div class="field-group">
+                    <label>Load from Theory Library <span class="opt-label">(optional)</span></label>
+                    <select id="t_librarySelect" onchange="loadFromLibrary()">
+                      <option value="">— select saved theory —</option>
                     </select>
                   </div>
                   <div class="field-group">
-                    <label>Duration (minutes)</label>
-                    <input type="number" id="f_duration" value="45" min="1" max="240">
+                    <label>Paste or type theory/textbook content</label>
+                    <textarea id="t_theoryText" placeholder="Paste textbook content here, or upload an image/PDF of the page below…" style="min-height:160px;"></textarea>
+                  </div>
+                  <div class="field-group">
+                    <label>OR upload image/PDF of textbook page</label>
+                    <div class="upload-zone" id="theoryUploadZone" onclick="document.getElementById('theoryFileInput').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleTheoryDrop(event)">
+                      <input type="file" id="theoryFileInput" accept="image/*,.pdf" style="display:none" onchange="handleTheoryFile(event)">
+                      <div class="uz-icon" id="tuzIcon">📄</div>
+                      <div class="uz-text" id="tuzText">Drop image or PDF here</div>
+                      <div class="uz-sub">JPG, PNG, PDF</div>
+                    </div>
                   </div>
                 </div>
-                <div class="field-group">
-                  <label>Description <span class="opt-label">(optional)</span></label>
-                  <input type="text" id="f_description" placeholder="Short description for students">
+              </div>
+
+              <!-- Parameters -->
+              <div class="section-card builder-form">
+                <div class="section-card-header">⚙️ Generation Parameters</div>
+                <div class="section-card-body">
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                    <div class="field-group">
+                      <label>Subject</label>
+                      <input type="text" id="t_subject" list="t_subjectList" placeholder="e.g. Science">
+                      <datalist id="t_subjectList"></datalist>
+                    </div>
+                    <div class="field-group">
+                      <label>Topic</label>
+                      <input type="text" id="t_topic" list="t_topicList" placeholder="e.g. Photosynthesis">
+                      <datalist id="t_topicList"></datalist>
+                    </div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                    <div class="field-group">
+                      <label>Grade / Level</label>
+                      <input type="text" id="t_grade" placeholder="e.g. Grade 8, A-Level">
+                    </div>
+                    <div class="field-group">
+                      <label>Duration (minutes)</label>
+                      <input type="number" id="t_duration" value="30" min="5" max="180">
+                    </div>
+                  </div>
+                  <div class="field-group">
+                    <label>Number of Questions</label>
+                    <div style="display:flex;align-items:center;gap:10px;">
+                      <input type="number" id="t_numQ" value="10" min="1" max="50" style="width:80px;">
+                      <label style="display:flex;align-items:center;gap:5px;font-weight:400;">
+                        <input type="checkbox" id="t_autoNum" onchange="document.getElementById('t_numQ').disabled=this.checked">
+                        Let AI decide
+                      </label>
+                    </div>
+                  </div>
+                  <div class="field-group">
+                    <label>Difficulty</label>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                      <label style="font-weight:400;display:flex;align-items:center;gap:4px;"><input type="radio" name="t_diff" value="Easy"> Easy</label>
+                      <label style="font-weight:400;display:flex;align-items:center;gap:4px;"><input type="radio" name="t_diff" value="Medium" checked> Medium</label>
+                      <label style="font-weight:400;display:flex;align-items:center;gap:4px;"><input type="radio" name="t_diff" value="Hard"> Hard</label>
+                      <label style="font-weight:400;display:flex;align-items:center;gap:4px;"><input type="radio" name="t_diff" value="Mixed"> Mixed</label>
+                    </div>
+                  </div>
+                  <div class="field-group">
+                    <label>Question Types</label>
+                    <div style="display:flex;gap:14px;flex-wrap:wrap;">
+                      <label style="font-weight:400;display:flex;align-items:center;gap:4px;"><input type="checkbox" id="qt_mcq" checked> Multiple Choice</label>
+                      <label style="font-weight:400;display:flex;align-items:center;gap:4px;"><input type="checkbox" id="qt_tf"> True / False</label>
+                      <label style="font-weight:400;display:flex;align-items:center;gap:4px;"><input type="checkbox" id="qt_sa"> Short Answer</label>
+                    </div>
+                  </div>
                 </div>
-                <div class="field-group">
-                  <label>Google Sheets URL <span class="opt-label">(optional)</span></label>
-                  <input type="text" id="f_sheets" placeholder="Paste Apps Script web app URL">
+              </div>
+
+              <div style="display:flex;gap:10px;">
+                <button class="btn-sm primary" style="flex:1;padding:12px;" onclick="generateFromTheory()" id="genBtn">🧠 Generate Exam</button>
+              </div>
+              <div class="ai-log" id="genLog" style="margin-top:10px;display:none;"></div>
+            </div>
+
+            <div>
+              <!-- API Key -->
+              <div class="section-card">
+                <div class="section-card-header">🔑 API Key</div>
+                <div class="section-card-body builder-form">
+                  <div class="field-group">
+                    <label>Anthropic API Key</label>
+                    <div class="api-key-row">
+                      <input type="password" id="t_apiKey" placeholder="sk-ant-…">
+                      <button class="btn-sm neutral" onclick="toggleGenApiKey()">Show</button>
+                    </div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:4px;">Same key used for image import. Stays in your browser only.</div>
+                  </div>
+                  <button class="btn-sm primary" onclick="saveGenApiKey()">Save Key</button>
+                </div>
+              </div>
+              <!-- Tips -->
+              <div class="section-card" style="margin-top:12px;">
+                <div class="section-card-header">💡 Tips</div>
+                <div class="section-card-body" style="font-size:12px;color:#555;line-height:1.7;">
+                  <p>• Paste the exact text from the textbook for best results</p>
+                  <p style="margin-top:6px;">• For images/PDFs, ensure text is clear and readable</p>
+                  <p style="margin-top:6px;">• After generation, you can edit every question before saving</p>
+                  <p style="margin-top:6px;">• Short answer questions won't be auto-graded — use them for teacher-reviewed assessments</p>
                 </div>
               </div>
             </div>
+          </div>
+        </div><!-- /builder-theory -->
 
-            <!-- Questions -->
-            <div class="section-card builder-form">
-              <div class="section-card-header">
-                <span>❓ Questions</span>
-                <button class="btn-sm primary" onclick="addQuestion()">+ Add Question</button>
-              </div>
-              <div class="section-card-body" id="questionsContainer">
-                <div style="text-align:center;color:var(--muted);font-size:13px;padding:20px 0;">
-                  No questions yet. Click <strong>+ Add Question</strong> or use the AI importer →
-                </div>
-              </div>
+        <!-- Review screen (shown after generation) -->
+        <div id="builder-review" style="display:none;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+            <div>
+              <h3 style="font-family:'Source Serif 4',serif;font-size:16px;color:#1a1a2e;">Review Generated Questions</h3>
+              <p style="font-size:12px;color:var(--muted);margin-top:2px;">Edit any question before saving. <span id="genQCount"></span></p>
             </div>
+            <button class="btn-sm neutral" onclick="backToTheory()">← Back</button>
+          </div>
 
-            <!-- Save buttons -->
-            <div style="display:flex;gap:10px;flex-wrap:wrap;">
-              <button class="btn-sm success" onclick="saveExam(false)">💾 Save as Draft</button>
-              <button class="btn-sm primary" onclick="saveExam(true)">🚀 Save & Publish</button>
-              <button class="btn-sm neutral" onclick="resetBuilder()">✕ Clear</button>
+          <!-- Exam metadata -->
+          <div class="section-card builder-form" style="margin-bottom:14px;">
+            <div class="section-card-header">📄 Exam Details</div>
+            <div class="section-card-body">
+              <div class="field-group"><label>Exam Title *</label><input type="text" id="r_title" placeholder="Exam title"></div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+                <div class="field-group"><label>Subject</label><input type="text" id="r_subject"></div>
+                <div class="field-group"><label>Topic</label><input type="text" id="r_topic"></div>
+                <div class="field-group"><label>Grade / Level</label><input type="text" id="r_grade"></div>
+                <div class="field-group"><label>Duration (min)</label><input type="number" id="r_duration" value="30"></div>
+              </div>
             </div>
           </div>
 
-          <!-- Right: AI import -->
-          <div>
-            <div class="ai-import-box">
-              <div class="ai-import-header">
-                <h3>🤖 AI Question Importer</h3>
-                <p>Upload a PDF or image of your exam paper and let AI extract the questions automatically.</p>
-              </div>
-              <div class="ai-import-body">
+          <!-- Generated questions list -->
+          <div id="reviewQList"></div>
 
-                <div class="field-group builder-form">
-                  <label>Anthropic API Key</label>
-                  <div class="api-key-row">
-                    <input type="password" id="apiKeyInput" placeholder="sk-ant-…" value="">
-                    <button class="btn-sm neutral" onclick="toggleApiKey()">Show</button>
-                  </div>
-                  <div style="font-size:11px;color:var(--muted);">Key stays in your browser only. Never sent anywhere except Anthropic.</div>
-                </div>
+          <button class="btn-sm primary" onclick="addReviewQuestion()" style="margin-bottom:14px;">+ Add Question Manually</button>
 
-                <div class="upload-zone" id="uploadZone"
-                  onclick="document.getElementById('fileInput').click()"
-                  ondragover="event.preventDefault();this.classList.add('drag')"
-                  ondragleave="this.classList.remove('drag')"
-                  ondrop="handleDrop(event)">
-                  <input type="file" id="fileInput" accept="image/*,.pdf" style="display:none" onchange="handleFileSelect(event)">
-                  <div class="uz-icon" id="uzIcon">📄</div>
-                  <div class="uz-text" id="uzText">Drop PDF or image here</div>
-                  <div class="uz-sub" id="uzSub">or click to browse · JPG, PNG, PDF</div>
-                </div>
-
-                <div class="builder-form field-group">
-                  <label>Additional instructions <span class="opt-label">(optional)</span></label>
-                  <textarea id="aiInstructions" placeholder="e.g. This is a Cambridge A2 Key exam. Extract all MCQ questions with their stimulus texts." style="min-height:56px;"></textarea>
-                </div>
-
-                <button class="btn-sm primary" style="width:100%;padding:10px;" onclick="runAIImport()" id="aiImportBtn">
-                  ✨ Extract Questions with AI
-                </button>
-
-                <div class="ai-log" id="aiLog">
-                  <div class="log-line" style="color:rgba(255,255,255,0.3);">Waiting for upload…</div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Preview -->
-            <div class="section-card" style="margin-top:14px;">
-              <div class="section-card-header">👁 Question Preview</div>
-              <div class="section-card-body" id="previewContainer">
-                <div class="preview-empty">Questions will appear here as you add them.</div>
-              </div>
-            </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn-sm success" onclick="saveReviewExam(false)">💾 Save as Draft</button>
+            <button class="btn-sm primary" onclick="saveReviewExam(true)">🚀 Save &amp; Publish</button>
           </div>
+        </div><!-- /builder-review -->
 
-        </div><!-- /builder-wrap -->
       </div><!-- /panel-builder -->
 
       <!-- ═══ PANEL: RESULTS ═══ -->
@@ -489,7 +692,7 @@
                 <tr>
                   <th>#</th><th>Name</th><th>Class</th><th>Exam</th>
                   <th>Subject</th><th>Date</th><th>Time</th>
-                  <th>Score</th><th>%</th><th>Grade</th>
+                  <th>Score</th><th>%</th><th>Grade</th><th>Actions</th>
                 </tr>
               </thead>
               <tbody id="resultsTbody"></tbody>
@@ -499,8 +702,49 @@
         </div>
       </div>
 
+      <!-- ═══ PANEL: THEORY LIBRARY ═══ -->
+      <div class="panel" id="panel-theory">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <div></div>
+          <button class="btn-sm primary" onclick="showTheoryForm()">+ Add Theory Entry</button>
+        </div>
+
+        <!-- Add form (initially hidden) -->
+        <div class="section-card builder-form" id="theoryForm" style="display:none;margin-bottom:14px;">
+          <div class="section-card-header">New Theory Entry</div>
+          <div class="section-card-body">
+            <div class="field-group"><label>Title *</label><input type="text" id="th_title" placeholder="e.g. Photosynthesis - Grade 7"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div class="field-group"><label>Subject</label><input type="text" id="th_subject" list="th_subjectList"><datalist id="th_subjectList"></datalist></div>
+              <div class="field-group"><label>Topic</label><input type="text" id="th_topic" placeholder="e.g. Photosynthesis"></div>
+            </div>
+            <div class="field-group"><label>Content</label><textarea id="th_content" placeholder="Paste theory content here…" style="min-height:120px;"></textarea></div>
+            <div style="display:flex;gap:8px;margin-top:8px;">
+              <button class="btn-sm primary" onclick="saveTheoryEntry()">Save Entry</button>
+              <button class="btn-sm neutral" onclick="hideTheoryForm()">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="theoryList"></div>
+      </div>
+
       <!-- ═══ PANEL: SETTINGS ═══ -->
       <div class="panel" id="panel-settings">
+
+        <!-- Subjects & Topics -->
+        <div class="section-card" style="margin-bottom:14px;">
+          <div class="section-card-header">📚 Subjects &amp; Topics</div>
+          <div class="section-card-body">
+            <div id="subjectsManager"></div>
+            <div style="display:flex;gap:8px;margin-top:10px;">
+              <input type="text" id="s_newSubject" placeholder="New subject name…" style="flex:1;border:1.5px solid #dde2ec;border-radius:5px;padding:7px 10px;font-size:13px;font-family:'Inter',sans-serif;">
+              <button class="btn-sm primary" onclick="addSubject()">+ Add Subject</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Settings -->
         <div class="section-card">
           <div class="section-card-header">System Settings</div>
           <div class="section-card-body builder-form">
@@ -511,6 +755,14 @@
                 <span>Change the admin login password</span>
               </div>
               <input type="password" id="s_pass" placeholder="New password">
+            </div>
+
+            <div class="settings-row">
+              <div class="sr-label">
+                <strong>Anthropic API Key</strong>
+                <span>For AI import and generation features</span>
+              </div>
+              <input type="password" id="s_apiKey" placeholder="sk-ant-…">
             </div>
 
             <div class="settings-row">
@@ -526,7 +778,7 @@
                 <strong>Portal Title</strong>
                 <span>Shown on the student portal</span>
               </div>
-              <input type="text" id="s_portalTitle" placeholder="Cambridge Exam Portal">
+              <input type="text" id="s_portalTitle" placeholder="Bhashi Exam System">
             </div>
 
             <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
@@ -545,7 +797,7 @@
             <button class="btn-sm danger" onclick="factoryReset()">⚠️ Factory Reset</button>
           </div>
           <div style="padding:0 14px 14px;font-size:12px;color:var(--muted);margin-top:6px;">
-            Export saves all exams and results. Import merges data. Factory reset deletes everything.
+            Export saves all exams, results, subjects and theory. Import merges data. Factory reset deletes everything.
           </div>
         </div>
       </div>
@@ -553,6 +805,24 @@
     </div><!-- /admin-content -->
   </div><!-- /admin-main -->
 </div><!-- /admin-shell -->
+
+<!-- Result Detail Modal -->
+<div id="resultDetailModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:white;border-radius:10px;max-width:780px;width:100%;max-height:85vh;overflow-y:auto;">
+    <div style="background:#1a1a2e;color:white;padding:14px 18px;border-radius:10px 10px 0 0;display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="font-family:'Source Serif 4',serif;font-size:16px;" id="rdm-student">—</div>
+        <div style="font-size:12px;opacity:0.7;" id="rdm-exam">—</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:13px;font-weight:700;" id="rdm-score">—</div>
+        <div style="font-size:11px;opacity:0.7;"><span id="rdm-grade"></span> · <span id="rdm-time"></span></div>
+      </div>
+      <button onclick="document.getElementById('resultDetailModal').style.display='none'" style="background:rgba(255,255,255,0.15);border:none;color:white;border-radius:4px;padding:5px 10px;cursor:pointer;margin-left:14px;">✕</button>
+    </div>
+    <div style="padding:16px;" id="rdm-body"></div>
+  </div>
+</div>
 
 <script src="../js/storage.js"></script>
 <script>
@@ -589,13 +859,14 @@ document.getElementById('passIn').addEventListener('keydown', e => {
 // ═══════════════════════════════════════════════
 const panelTitles = {
   exams: 'All Exams', builder: 'Exam Builder',
-  results: 'Results Log', settings: 'Settings'
+  results: 'Results Log', theory: 'Theory Library', settings: 'Settings'
 };
 
 const panelActions = {
-  exams: `<button class="btn-sm primary" onclick="newExam()">+ New Exam</button>`,
-  builder: '',
-  results: '',
+  exams:    `<button class="btn-sm primary" onclick="newExam()">+ New Exam</button>`,
+  builder:  '',
+  results:  '',
+  theory:   `<button class="btn-sm primary" onclick="showTheoryForm()">+ Add Theory</button>`,
   settings: ''
 };
 
@@ -610,11 +881,15 @@ function showPanel(name, btn) {
   if (name === 'exams')    renderExamList();
   if (name === 'results')  loadResultsPanel();
   if (name === 'settings') loadSettings();
+  if (name === 'theory')   renderTheoryPanel();
 }
 
 function initAdmin() {
   renderExamList();
   loadApiKey();
+  refreshSubjectDatalist('t_subjectList');
+  refreshSubjectDatalist('th_subjectList');
+  populateExamSubjectFilter();
 }
 
 // ═══════════════════════════════════════════════
@@ -625,15 +900,41 @@ const SUBJECT_COLORS = {
   'Speaking':'#4a1070','Maths':'#0a3d62','Science':'#0d4f3c','General':'#444'
 };
 
+function populateExamSubjectFilter() {
+  const sel = document.getElementById('ef_subject');
+  if (!sel) return;
+  const subjects = Object.keys(SUBJECT_COLORS);
+  const stored   = Storage.getSubjects().map(s => s.name);
+  const combined = [...new Set([...subjects, ...stored])];
+  sel.innerHTML = '<option value="">All Subjects</option>' +
+    combined.map(s => `<option value="${escHtml(s)}">${escHtml(s)}</option>`).join('');
+}
+
+function filterExamList() {
+  const q      = (document.getElementById('ef_search').value || '').toLowerCase();
+  const subj   = document.getElementById('ef_subject').value;
+  const status = document.getElementById('ef_status').value;
+  let exams = Storage.getExams();
+  if (q) exams = exams.filter(e => e.title.toLowerCase().includes(q) || (e.subject||'').toLowerCase().includes(q));
+  if (subj) exams = exams.filter(e => e.subject === subj);
+  if (status === 'published') exams = exams.filter(e => e.published);
+  if (status === 'draft')     exams = exams.filter(e => !e.published);
+  renderExamListItems(exams);
+}
+
 function renderExamList() {
-  const exams = Storage.getExams();
-  const wrap  = document.getElementById('examListWrap');
+  populateExamSubjectFilter();
+  filterExamList();
+}
+
+function renderExamListItems(exams) {
+  const wrap = document.getElementById('examListWrap');
 
   if (!exams.length) {
     wrap.innerHTML = `<div style="text-align:center;padding:50px 20px;color:var(--muted);">
       <div style="font-size:40px;margin-bottom:12px;">📭</div>
-      <div style="font-weight:600;margin-bottom:6px;">No exams yet</div>
-      <div style="font-size:13px;">Click <strong>+ New Exam</strong> to create your first exam.</div>
+      <div style="font-weight:600;margin-bottom:6px;">No exams found</div>
+      <div style="font-size:13px;">Try a different filter, or click <strong>+ New Exam</strong> to create one.</div>
     </div>`;
     return;
   }
@@ -641,12 +942,13 @@ function renderExamList() {
   wrap.innerHTML = exams.map(e => {
     const color = SUBJECT_COLORS[e.subject] || '#444';
     const qc    = (e.questions||[]).length;
+    const meta  = [e.subject||'General', e.topic, e.gradeLevel].filter(Boolean).join(' · ');
     return `<div class="exam-list-item">
       <div class="eli-color" style="background:${color}"></div>
       <div class="eli-body">
-        <div class="eli-title">${e.title}</div>
+        <div class="eli-title">${escHtml(e.title)}</div>
         <div class="eli-meta">
-          ${e.subject || 'General'} · ${e.duration||45} min · ${qc} question${qc!==1?'s':''}
+          ${escHtml(meta)} · ${e.duration||45} min · ${qc} question${qc!==1?'s':''}
           &nbsp;<span class="publish-badge ${e.published?'yes':'no'}">${e.published?'Published':'Draft'}</span>
         </div>
       </div>
@@ -654,6 +956,8 @@ function renderExamList() {
         <button class="btn-icon" onclick="editExam('${e.id}')" title="Edit">✏️</button>
         <button class="btn-icon" onclick="togglePublish('${e.id}')" title="${e.published?'Unpublish':'Publish'}">${e.published?'📴':'🚀'}</button>
         <button class="btn-icon" onclick="duplicateExam('${e.id}')" title="Duplicate">📋</button>
+        <button class="btn-pdf" onclick="downloadQPaper('${e.id}')" title="Download Question Paper">📄 Q-Paper</button>
+        <button class="btn-pdf" onclick="downloadAnswerKey('${e.id}')" title="Download Answer Key">📋 AKey</button>
         <button class="btn-icon danger" onclick="deleteExam('${e.id}')" title="Delete">🗑</button>
       </div>
     </div>`;
@@ -662,6 +966,7 @@ function renderExamList() {
 
 function newExam() {
   resetBuilder();
+  setBuilderMode('manual');
   showPanel('builder', document.getElementById('snav-builder'));
 }
 
@@ -672,15 +977,17 @@ function editExam(id) {
   document.getElementById('f_title').value       = exam.title || '';
   document.getElementById('f_subject').value     = exam.subject || 'Reading';
   document.getElementById('f_duration').value    = exam.duration || 45;
+  document.getElementById('f_topic').value       = exam.topic || '';
+  document.getElementById('f_grade').value       = exam.gradeLevel || '';
   document.getElementById('f_description').value = exam.description || '';
   document.getElementById('f_sheets').value      = exam.sheetsUrl || '';
   document.getElementById('editingLabel').textContent = `Editing: ${exam.title}`;
 
-  // Load questions
   currentQuestions = JSON.parse(JSON.stringify(exam.questions || []));
   renderQuestionBuilder();
   renderPreview();
 
+  setBuilderMode('manual');
   showPanel('builder', document.getElementById('snav-builder'));
 }
 
@@ -714,8 +1021,19 @@ function deleteExam(id) {
 // ═══════════════════════════════════════════════
 // BUILDER
 // ═══════════════════════════════════════════════
-let currentEditId   = null;
+let currentEditId    = null;
 let currentQuestions = [];
+
+function setBuilderMode(mode) {
+  ['manual','import','theory','review'].forEach(m => {
+    const el = document.getElementById('builder-'+m);
+    if (el) el.style.display = (m === mode) ? 'block' : 'none';
+  });
+  document.querySelectorAll('.bmode-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('bmode-'+mode);
+  if (btn) btn.classList.add('active');
+  if (mode === 'theory') refreshTheoryLibraryDropdown();
+}
 
 function resetBuilder() {
   currentEditId    = null;
@@ -723,6 +1041,8 @@ function resetBuilder() {
   document.getElementById('f_title').value       = '';
   document.getElementById('f_subject').value     = 'Reading';
   document.getElementById('f_duration').value    = 45;
+  document.getElementById('f_topic').value       = '';
+  document.getElementById('f_grade').value       = '';
   document.getElementById('f_description').value = '';
   document.getElementById('f_sheets').value      = '';
   document.getElementById('editingLabel').textContent = 'New exam';
@@ -754,7 +1074,6 @@ function addQuestion(prefill) {
 
 function removeQuestion(idx) {
   currentQuestions.splice(idx, 1);
-  // Renumber
   currentQuestions.forEach((q,i) => q.number = i+1);
   renderQuestionBuilder();
   renderPreview();
@@ -764,7 +1083,7 @@ function renderQuestionBuilder() {
   const container = document.getElementById('questionsContainer');
   if (!currentQuestions.length) {
     container.innerHTML = `<div style="text-align:center;color:var(--muted);font-size:13px;padding:20px 0;">
-      No questions yet. Click <strong>+ Add Question</strong> or use the AI importer →</div>`;
+      No questions yet. Click <strong>+ Add Question</strong> or use the AI importer.</div>`;
     return;
   }
 
@@ -782,13 +1101,13 @@ function renderQuestionBuilder() {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
         <div>
           <label style="font-size:11px;font-weight:600;color:#1a1a2e;display:block;margin-bottom:4px;">Part</label>
-          <input type="text" value="${q.part||'Part 1'}" onchange="updateQ(${i},'part',this.value)"
-            style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'DM Sans',sans-serif;">
+          <input type="text" value="${escHtml(q.part||'Part 1')}" onchange="updateQ(${i},'part',this.value)"
+            style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'Inter',sans-serif;">
         </div>
         <div>
           <label style="font-size:11px;font-weight:600;color:#1a1a2e;display:block;margin-bottom:4px;">Correct Answer</label>
           <select onchange="updateQ(${i},'answer',this.value)"
-            style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'DM Sans',sans-serif;">
+            style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'Inter',sans-serif;">
             ${(q.options||[]).map(o=>`<option value="${o.letter}" ${q.answer===o.letter?'selected':''}>${o.letter}</option>`).join('')}
           </select>
         </div>
@@ -798,7 +1117,7 @@ function renderQuestionBuilder() {
         <label style="font-size:11px;font-weight:600;color:#1a1a2e;display:block;margin-bottom:4px;">Question Text *</label>
         <input type="text" value="${escHtml(q.question||'')}" onchange="updateQ(${i},'question',this.value)"
           placeholder="e.g. Where might you see this sign?"
-          style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'DM Sans',sans-serif;">
+          style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'Inter',sans-serif;">
       </div>
 
       <div style="margin-bottom:8px;">
@@ -808,7 +1127,7 @@ function renderQuestionBuilder() {
             <div class="option-letter-tag">${o.letter}</div>
             <input type="text" value="${escHtml(o.text||'')}" onchange="updateOption(${i},${oi},this.value)"
               placeholder="Option ${o.letter} text"
-              style="flex:1;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'DM Sans',sans-serif;">
+              style="flex:1;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'Inter',sans-serif;">
           </div>`).join('')}
       </div>
 
@@ -816,9 +1135,9 @@ function renderQuestionBuilder() {
         <label style="font-size:11px;font-weight:600;color:#1a1a2e;display:block;margin-bottom:4px;">
           Stimulus / Image URL <span style="font-weight:400;color:var(--muted);">(optional)</span>
         </label>
-        <input type="text" value="${q.stimulus?.url||''}" onchange="updateStimulusUrl(${i},this.value)"
+        <input type="text" value="${escHtml(q.stimulus?.url||'')}" onchange="updateStimulusUrl(${i},this.value)"
           placeholder="https://… or leave blank"
-          style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'DM Sans',sans-serif;">
+          style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'Inter',sans-serif;">
         <div style="font-size:10px;color:var(--muted);margin-top:3px;">For full stimulus types (sign, phone, message etc.) use AI import or edit the JSON directly.</div>
       </div>
     </div>
@@ -877,6 +1196,8 @@ function saveExam(publish) {
     id:          currentEditId || Storage.newExamId(),
     title,
     subject:     document.getElementById('f_subject').value,
+    topic:       document.getElementById('f_topic').value.trim(),
+    gradeLevel:  document.getElementById('f_grade').value.trim(),
     duration:    parseInt(document.getElementById('f_duration').value) || 45,
     description: document.getElementById('f_description').value.trim(),
     sheetsUrl:   document.getElementById('f_sheets').value.trim(),
@@ -888,7 +1209,7 @@ function saveExam(publish) {
   Storage.saveExam(exam);
   currentEditId = exam.id;
   document.getElementById('editingLabel').textContent = `Editing: ${exam.title}`;
-  alert(publish ? '🚀 Exam published!' : '💾 Saved as draft.');
+  notify(publish ? '🚀 Exam published!' : '💾 Saved as draft.', 'ok');
   showPanel('exams', document.getElementById('snav-exams'));
 }
 
@@ -900,8 +1221,11 @@ let uploadedBase64 = null;
 let uploadedMime   = null;
 
 function loadApiKey() {
-  const saved = localStorage.getItem('ai_api_key') || '';
-  document.getElementById('apiKeyInput').value = saved;
+  const saved = Storage.getApiKey();
+  if (saved) {
+    document.getElementById('apiKeyInput').value = saved;
+    document.getElementById('t_apiKey').value    = saved;
+  }
 }
 
 function toggleApiKey() {
@@ -948,7 +1272,7 @@ async function runAIImport() {
   if (!apiKey) { alert('Please enter your Anthropic API key.'); return; }
   if (!uploadedBase64) { alert('Please upload a PDF or image first.'); return; }
 
-  localStorage.setItem('ai_api_key', apiKey);
+  Storage.saveApiKey(apiKey);
 
   const btn = document.getElementById('aiImportBtn');
   btn.disabled = true;
@@ -984,15 +1308,7 @@ Each object must have:
 
 For stimulus type, use: "sign", "notice", "message", "phone", "social", "text", or null if none.
 For tableStyle, set true if questions share a reading passage and are presented in a table (A/B/C columns).
-If questions share a reading passage, add a "passage" field to the FIRST question of that group:
-{
-  "passage": {
-    "title": "Passage title",
-    "people": [
-      {"name": "Person Name", "subtitle": "Hobby or role", "text": "Their paragraph text"}
-    ]
-  }
-}
+If questions share a reading passage, add a "passage" field to the FIRST question of that group.
 
 ${extraInstructions}`;
 
@@ -1000,7 +1316,6 @@ ${extraInstructions}`;
     { type: 'text', text: 'Please extract all exam questions from this paper.' }
   ];
 
-  // Attach image or PDF
   if (uploadedMime === 'application/pdf') {
     userContent.push({
       type: 'document',
@@ -1041,15 +1356,13 @@ ${extraInstructions}`;
     aiLog('Response received. Parsing…');
 
     const raw = data.content[0]?.text || '';
-    // Strip any accidental markdown fences
-    const clean = raw.replace(/```json|```/g, '').trim();
+    const clean = raw.replace(/```json\n?|\n?```/g, '').trim();
     const questions = JSON.parse(clean);
 
     if (!Array.isArray(questions)) throw new Error('AI did not return a question array.');
 
     aiLog(`Found ${questions.length} question(s).`, 'ok');
 
-    // Merge into current question list
     const startNum = currentQuestions.length + 1;
     questions.forEach((q, i) => {
       q.number = startNum + i;
@@ -1058,7 +1371,8 @@ ${extraInstructions}`;
 
     renderQuestionBuilder();
     renderPreview();
-    aiLog(`Added to builder. Review and save when ready.`, 'ok');
+    aiLog('Added to builder. Switch to Manual to review them.', 'ok');
+    setBuilderMode('manual');
 
   } catch (err) {
     aiLog(`Error: ${err.message}`, 'err');
@@ -1070,14 +1384,432 @@ ${extraInstructions}`;
 }
 
 // ═══════════════════════════════════════════════
+// GENERATE FROM THEORY
+// ═══════════════════════════════════════════════
+let theoryUploadedBase64 = null;
+let theoryUploadedMime   = null;
+let generatedQuestions   = [];
+
+function handleTheoryDrop(e) {
+  e.preventDefault();
+  document.getElementById('theoryUploadZone').classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if (file) processTheoryUpload(file);
+}
+
+function handleTheoryFile(e) {
+  const file = e.target.files[0];
+  if (file) processTheoryUpload(file);
+}
+
+function processTheoryUpload(file) {
+  const reader = new FileReader();
+  reader.onload = ev => {
+    theoryUploadedBase64 = ev.target.result.split(',')[1];
+    theoryUploadedMime   = file.type;
+    document.getElementById('tuzIcon').textContent = file.type.includes('pdf') ? '📑' : '🖼';
+    document.getElementById('tuzText').textContent = file.name;
+  };
+  reader.readAsDataURL(file);
+}
+
+function toggleGenApiKey() {
+  const inp = document.getElementById('t_apiKey');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+function saveGenApiKey() {
+  const k = document.getElementById('t_apiKey').value.trim();
+  if (k) { Storage.saveApiKey(k); notify('API key saved.', 'ok'); }
+}
+
+function genLog(msg, type='') {
+  const log = document.getElementById('genLog');
+  log.style.display = 'block';
+  log.innerHTML += `<div class="log-line ${type}">${type==='ok'?'✓ ':type==='err'?'✗ ':'⋯ '}${msg}</div>`;
+  log.scrollTop = log.scrollHeight;
+}
+
+async function generateFromTheory() {
+  const apiKey = Storage.getApiKey() || document.getElementById('t_apiKey').value.trim();
+  if (!apiKey) { alert('Please enter your Anthropic API key.'); return; }
+
+  const theoryText = (document.getElementById('t_theoryText').value || '').trim();
+  const subject = document.getElementById('t_subject').value.trim() || 'General';
+  const topic   = document.getElementById('t_topic').value.trim() || 'General';
+  const grade   = document.getElementById('t_grade').value.trim() || '';
+  const autoNum = document.getElementById('t_autoNum').checked;
+  const numQ    = autoNum ? 'auto' : (parseInt(document.getElementById('t_numQ').value) || 10);
+  const diff    = document.querySelector('input[name="t_diff"]:checked')?.value || 'Medium';
+  const dur     = parseInt(document.getElementById('t_duration').value) || 30;
+
+  const types = [];
+  if (document.getElementById('qt_mcq').checked) types.push('Multiple Choice (MCQ)');
+  if (document.getElementById('qt_tf').checked)  types.push('True/False');
+  if (document.getElementById('qt_sa').checked)  types.push('Short Answer');
+  if (!types.length) { alert('Select at least one question type.'); return; }
+
+  const btn = document.getElementById('genBtn');
+  btn.disabled = true; btn.textContent = '⏳ Generating…';
+  document.getElementById('genLog').innerHTML = '';
+  genLog('Preparing request…');
+
+  const numQStr = numQ === 'auto'
+    ? 'Choose an appropriate number based on content density (typically 5–20)'
+    : String(numQ);
+
+  const prompt = `You are an expert exam question generator. Based on the ${theoryUploadedBase64 ? 'attached document and/or ' : ''}following theory content, generate exam questions.
+
+${theoryText ? 'Theory Content:\n' + theoryText + '\n\n' : ''}
+Requirements:
+- Subject: ${subject}
+- Topic: ${topic}
+${grade ? '- Grade/Level: ' + grade : ''}
+- Number of questions: ${numQStr}
+- Difficulty: ${diff}
+- Question Types to include: ${types.join(', ')}
+- Duration hint: ${dur} minutes
+
+Return ONLY a valid JSON array (no markdown, no extra text) with this exact structure per question:
+{
+  "number": 1,
+  "part": "Part 1",
+  "partInstruction": "Choose the correct answer.",
+  "question": "Question text",
+  "questionType": "mcq",
+  "options": [{"letter":"A","text":"option"},{"letter":"B","text":"option"},{"letter":"C","text":"option"},{"letter":"D","text":"option"}],
+  "answer": "A",
+  "modelAnswer": "",
+  "tableStyle": false,
+  "stimulus": null
+}
+For true_false: questionType="true_false", options=[{"letter":"A","text":"True"},{"letter":"B","text":"False"}], answer="A" or "B", modelAnswer=""
+For short_answer: questionType="short_answer", options=[], answer="", modelAnswer="model answer text here"
+Group related questions into parts (Part 1, Part 2…) with descriptive partInstruction.`;
+
+  const content = [];
+  if (theoryUploadedBase64) {
+    if (theoryUploadedMime === 'application/pdf') {
+      content.push({ type:'document', source:{ type:'base64', media_type:'application/pdf', data:theoryUploadedBase64 }});
+    } else {
+      content.push({ type:'image', source:{ type:'base64', media_type:theoryUploadedMime, data:theoryUploadedBase64 }});
+    }
+  }
+  content.push({ type:'text', text: prompt });
+
+  try {
+    genLog('Calling claude-sonnet-4-20250514…');
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:4096,
+        messages:[{ role:'user', content }]
+      })
+    });
+    if (!res.ok) { const e=await res.json(); throw new Error(e.error?.message||`HTTP ${res.status}`); }
+    const data = await res.json();
+    genLog('Response received. Parsing…');
+    const raw = data.content[0]?.text || '';
+    const clean = raw.replace(/```json\n?|\n?```/g,'').trim();
+    const questions = JSON.parse(clean);
+    if (!Array.isArray(questions)) throw new Error('AI did not return a question array.');
+    genLog(`Generated ${questions.length} question(s).`, 'ok');
+
+    generatedQuestions = questions.map((q,i) => ({...q, number: i+1}));
+
+    document.getElementById('r_title').value    = `${subject} — ${topic} (${grade||'General'})`;
+    document.getElementById('r_subject').value  = subject;
+    document.getElementById('r_topic').value    = topic;
+    document.getElementById('r_grade').value    = grade;
+    document.getElementById('r_duration').value = dur;
+
+    showReviewScreen();
+  } catch(err) {
+    genLog('Error: ' + err.message, 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = '🧠 Generate Exam';
+  }
+}
+
+function showReviewScreen() {
+  ['manual','import','theory'].forEach(m => {
+    const el = document.getElementById('builder-'+m);
+    if (el) el.style.display = 'none';
+  });
+  document.querySelectorAll('.bmode-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('builder-review').style.display = 'block';
+  document.getElementById('genQCount').textContent = generatedQuestions.length + ' questions';
+  renderReviewList();
+}
+
+function backToTheory() {
+  document.getElementById('builder-review').style.display = 'none';
+  setBuilderMode('theory');
+}
+
+function renderReviewList() {
+  document.getElementById('genQCount').textContent = generatedQuestions.length + ' question(s)';
+  const container = document.getElementById('reviewQList');
+  container.innerHTML = generatedQuestions.map((q,i) => {
+    const typeLabel = q.questionType === 'true_false' ? 'True/False' : q.questionType === 'short_answer' ? 'Short Answer' : 'MCQ';
+    const typeCls   = q.questionType || 'mcq';
+    let optionsHtml = '';
+    if (q.questionType === 'short_answer') {
+      optionsHtml = `<div class="field-group" style="margin-top:8px;">
+        <label style="font-size:11px;">Model Answer (for teacher reference)</label>
+        <textarea onchange="updateGenQ(${i},'modelAnswer',this.value)" style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:6px;font-size:12px;min-height:60px;">${escHtml(q.modelAnswer||'')}</textarea>
+      </div>`;
+    } else if (q.questionType === 'true_false') {
+      optionsHtml = `<div style="margin-top:8px;font-size:12px;">
+        Correct: <label style="font-weight:400;margin-right:10px;"><input type="radio" name="gq_ans_${i}" value="A" ${q.answer==='A'?'checked':''} onchange="updateGenQ(${i},'answer','A')"> True</label>
+        <label style="font-weight:400;"><input type="radio" name="gq_ans_${i}" value="B" ${q.answer==='B'?'checked':''} onchange="updateGenQ(${i},'answer','B')"> False</label>
+      </div>`;
+    } else {
+      optionsHtml = `<div style="margin-top:8px;">
+        ${(q.options||[]).map((o,oi) => `<div class="option-input-row">
+          <div class="option-letter-tag">${o.letter}</div>
+          <input type="text" value="${escHtml(o.text||'')}" onchange="updateGenOpt(${i},${oi},this.value)"
+            style="flex:1;border:1.5px solid #dde2ec;border-radius:4px;padding:5px 8px;font-size:12px;font-family:'Inter',sans-serif;">
+          <input type="radio" name="gq_ans_${i}" value="${o.letter}" ${q.answer===o.letter?'checked':''} onchange="updateGenQ(${i},'answer','${o.letter}')" title="Correct answer">
+        </div>`).join('')}
+      </div>`;
+    }
+    return `<div class="gen-q-card" id="gq_${i}">
+      <div class="gen-q-header">
+        <span style="font-weight:700;font-size:12px;color:var(--cambridge-blue);">Q${q.number}</span>
+        <span class="gen-q-type-badge ${typeCls}">${typeLabel}</span>
+        <div class="gen-q-actions">
+          ${i>0?`<button class="btn-sm neutral" onclick="moveGenQ(${i},-1)">↑</button>`:''}
+          ${i<generatedQuestions.length-1?`<button class="btn-sm neutral" onclick="moveGenQ(${i},1)">↓</button>`:''}
+          <button class="btn-sm danger" onclick="deleteGenQ(${i})">✕</button>
+        </div>
+      </div>
+      <div class="field-group builder-form">
+        <label style="font-size:11px;">Question Text *</label>
+        <input type="text" value="${escHtml(q.question||'')}" onchange="updateGenQ(${i},'question',this.value)"
+          style="width:100%;border:1.5px solid #dde2ec;border-radius:4px;padding:6px 8px;font-size:12px;font-family:'Inter',sans-serif;">
+      </div>
+      ${optionsHtml}
+    </div>`;
+  }).join('');
+}
+
+function updateGenQ(i, field, value) {
+  if (generatedQuestions[i]) { generatedQuestions[i][field] = value; }
+}
+
+function updateGenOpt(qi, oi, value) {
+  if (generatedQuestions[qi]?.options?.[oi]) generatedQuestions[qi].options[oi].text = value;
+}
+
+function moveGenQ(i, dir) {
+  const j = i + dir;
+  if (j < 0 || j >= generatedQuestions.length) return;
+  [generatedQuestions[i], generatedQuestions[j]] = [generatedQuestions[j], generatedQuestions[i]];
+  generatedQuestions.forEach((q,k) => q.number = k+1);
+  renderReviewList();
+}
+
+function deleteGenQ(i) {
+  generatedQuestions.splice(i, 1);
+  generatedQuestions.forEach((q,k) => q.number = k+1);
+  renderReviewList();
+}
+
+function addReviewQuestion() {
+  const num = generatedQuestions.length + 1;
+  generatedQuestions.push({ number:num, part:'Part 1', partInstruction:'Choose the correct answer.', question:'', questionType:'mcq', options:[{letter:'A',text:''},{letter:'B',text:''},{letter:'C',text:''}], answer:'A', modelAnswer:'', tableStyle:false, stimulus:null });
+  renderReviewList();
+}
+
+function saveReviewExam(publish) {
+  const title = document.getElementById('r_title').value.trim();
+  if (!title) { alert('Please enter an exam title.'); return; }
+  if (!generatedQuestions.length) { alert('No questions to save.'); return; }
+  const exam = {
+    id:         Storage.newExamId(),
+    title,
+    subject:    document.getElementById('r_subject').value.trim(),
+    topic:      document.getElementById('r_topic').value.trim(),
+    gradeLevel: document.getElementById('r_grade').value.trim(),
+    duration:   parseInt(document.getElementById('r_duration').value) || 30,
+    description: '',
+    sheetsUrl:  '',
+    questions:  generatedQuestions,
+    published:  publish,
+    updatedAt:  new Date().toISOString()
+  };
+  Storage.saveExam(exam);
+  notify(publish ? '🚀 Exam published!' : '💾 Saved as draft.', 'ok');
+  generatedQuestions = [];
+  document.getElementById('builder-review').style.display = 'none';
+  showPanel('exams', document.getElementById('snav-exams'));
+}
+
+// ═══════════════════════════════════════════════
+// THEORY LIBRARY
+// ═══════════════════════════════════════════════
+function renderTheoryPanel() {
+  const list = Storage.getTheory();
+  const container = document.getElementById('theoryList');
+  if (!list.length) {
+    container.innerHTML = `<div style="text-align:center;padding:40px 20px;color:var(--muted);">
+      <div style="font-size:36px;margin-bottom:10px;">📚</div>
+      <div style="font-weight:600;">No theory entries yet</div>
+      <div style="font-size:12px;margin-top:4px;">Click <strong>+ Add Theory Entry</strong> to save content for reuse in AI generation.</div>
+    </div>`;
+    return;
+  }
+  container.innerHTML = list.map(t => `
+    <div class="theory-card">
+      <div style="font-size:28px;">📖</div>
+      <div class="theory-card-body">
+        <div class="theory-card-title">${escHtml(t.title)}</div>
+        <div class="theory-card-meta">${escHtml(t.subject||'')}${t.topic?' · '+escHtml(t.topic):''} · ${new Date(t.createdAt).toLocaleDateString()}</div>
+        <div class="theory-card-preview">${escHtml((t.content||'').substring(0,200))}${(t.content||'').length>200?'…':''}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0;">
+        <button class="btn-sm primary" onclick="useTheoryInGenerator('${t.id}')">Use in AI</button>
+        <button class="btn-sm danger" onclick="deleteTheoryEntry('${t.id}')">Delete</button>
+      </div>
+    </div>`).join('');
+}
+
+function showTheoryForm() {
+  document.getElementById('theoryForm').style.display = 'block';
+  refreshSubjectDatalist('th_subjectList');
+}
+
+function hideTheoryForm() { document.getElementById('theoryForm').style.display = 'none'; }
+
+function saveTheoryEntry() {
+  const title = document.getElementById('th_title').value.trim();
+  if (!title) { alert('Please enter a title.'); return; }
+  const entry = {
+    id: 'th_' + Date.now(),
+    title,
+    subject: document.getElementById('th_subject').value.trim(),
+    topic:   document.getElementById('th_topic').value.trim(),
+    content: document.getElementById('th_content').value.trim(),
+    createdAt: new Date().toISOString()
+  };
+  Storage.saveTheoryEntry(entry);
+  document.getElementById('th_title').value   = '';
+  document.getElementById('th_content').value = '';
+  hideTheoryForm();
+  renderTheoryPanel();
+  notify('Theory entry saved.', 'ok');
+}
+
+function deleteTheoryEntry(id) {
+  if (!confirm('Delete this theory entry?')) return;
+  Storage.deleteTheoryEntry(id);
+  renderTheoryPanel();
+}
+
+function useTheoryInGenerator(id) {
+  const entry = Storage.getTheory().find(t => t.id === id);
+  if (!entry) return;
+  setBuilderMode('theory');
+  showPanel('builder', document.getElementById('snav-builder'));
+  document.getElementById('t_theoryText').value = entry.content || '';
+  document.getElementById('t_subject').value    = entry.subject || '';
+  document.getElementById('t_topic').value      = entry.topic || '';
+}
+
+function refreshTheoryLibraryDropdown() {
+  const sel = document.getElementById('t_librarySelect');
+  if (!sel) return;
+  const list = Storage.getTheory();
+  sel.innerHTML = '<option value="">— select saved theory —</option>' +
+    list.map(t => `<option value="${t.id}">${escHtml(t.title)}</option>`).join('');
+}
+
+function loadFromLibrary() {
+  const id = document.getElementById('t_librarySelect').value;
+  if (!id) return;
+  const entry = Storage.getTheory().find(t => t.id === id);
+  if (entry) {
+    document.getElementById('t_theoryText').value = entry.content || '';
+    if (!document.getElementById('t_subject').value) document.getElementById('t_subject').value = entry.subject || '';
+    if (!document.getElementById('t_topic').value)   document.getElementById('t_topic').value   = entry.topic || '';
+  }
+}
+
+// ═══════════════════════════════════════════════
+// SUBJECTS / TOPICS SETTINGS
+// ═══════════════════════════════════════════════
+function renderSubjectsManager() {
+  const subjects  = Storage.getSubjects();
+  const container = document.getElementById('subjectsManager');
+  if (!subjects.length) {
+    container.innerHTML = `<div style="color:var(--muted);font-size:12px;padding:8px 0;">No subjects yet. Add one below.</div>`;
+    return;
+  }
+  container.innerHTML = subjects.map(s => `
+    <div class="subject-row">
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="subject-name">${escHtml(s.name)}</span>
+          <button class="btn-sm danger" style="padding:2px 8px;font-size:11px;" onclick="deleteSubjectSetting('${escHtml(s.name)}')">Remove</button>
+        </div>
+        <div class="topic-chips" style="margin-top:5px;">
+          ${(s.topics||[]).map(t => `<span class="topic-chip">${escHtml(t)} <button onclick="deleteTopicSetting('${escHtml(s.name)}','${escHtml(t)}')">×</button></span>`).join('')}
+          <button class="btn-sm neutral" style="padding:2px 8px;font-size:11px;" onclick="promptAddTopic('${escHtml(s.name)}')">+ Topic</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function addSubject() {
+  const name = document.getElementById('s_newSubject').value.trim();
+  if (!name) return;
+  Storage.addSubject(name);
+  document.getElementById('s_newSubject').value = '';
+  renderSubjectsManager();
+  notify('Subject added.', 'ok');
+}
+
+function deleteSubjectSetting(name) {
+  if (!confirm(`Remove subject "${name}" and all its topics?`)) return;
+  Storage.deleteSubject(name);
+  renderSubjectsManager();
+}
+
+function promptAddTopic(subjectName) {
+  const topic = prompt(`Add topic to "${subjectName}":`);
+  if (topic?.trim()) {
+    Storage.addTopic(subjectName, topic.trim());
+    renderSubjectsManager();
+  }
+}
+
+function deleteTopicSetting(subjectName, topic) {
+  Storage.deleteTopic(subjectName, topic);
+  renderSubjectsManager();
+}
+
+function refreshSubjectDatalist(listId) {
+  const dl = document.getElementById(listId);
+  if (!dl) return;
+  dl.innerHTML = Storage.getSubjects().map(s => `<option value="${escHtml(s.name)}">`).join('');
+}
+
+// ═══════════════════════════════════════════════
 // RESULTS
 // ═══════════════════════════════════════════════
 function loadResultsPanel() {
-  // Populate exam filter
   const exams = Storage.getExams();
   const sel   = document.getElementById('rf_exam');
   sel.innerHTML = '<option value="">All exams</option>' +
-    exams.map(e => `<option value="${e.id}">${e.title}</option>`).join('');
+    exams.map(e => `<option value="${e.id}">${escHtml(e.title)}</option>`).join('');
   renderResults();
 }
 
@@ -1102,17 +1834,19 @@ function renderResults() {
   tbody.innerHTML = [...results].reverse().map((r,i) => {
     const d  = new Date(r.timestamp);
     const dt = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    const rJson = escHtml(JSON.stringify(r));
     return `<tr>
       <td>${results.length - i}</td>
-      <td><strong>${r.studentName||'—'}</strong></td>
-      <td>${r.studentClass||'—'}</td>
-      <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${r.examTitle||'—'}</td>
-      <td>${r.examSubject||'—'}</td>
+      <td><strong>${escHtml(r.studentName||'—')}</strong></td>
+      <td>${escHtml(r.studentClass||'—')}</td>
+      <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escHtml(r.examTitle||'—')}</td>
+      <td>${escHtml(r.examSubject||'—')}</td>
       <td>${dt}</td>
-      <td>${r.timeTaken||'—'}</td>
+      <td>${escHtml(r.timeTaken||'—')}</td>
       <td><span class="score-pill">${r.correct}/${r.total}</span></td>
       <td>${r.pct}%</td>
-      <td style="font-size:12px;">${r.grade||'—'}</td>
+      <td style="font-size:12px;">${escHtml(r.grade||'—')}</td>
+      <td><button class="btn-sm primary" onclick='showResultDetail(${JSON.stringify(r)})' style="white-space:nowrap;">View</button></td>
     </tr>`;
   }).join('');
 }
@@ -1142,20 +1876,68 @@ function exportResultsCSV() {
 }
 
 // ═══════════════════════════════════════════════
+// RESULT DETAIL MODAL
+// ═══════════════════════════════════════════════
+function showResultDetail(r) {
+  const questions = JSON.parse(r.questionsSnapshot || '[]');
+  const answers   = JSON.parse(r.answers || '{}');
+
+  let rows = '';
+  if (questions.length) {
+    rows = questions.map(q => {
+      const studentAns = answers[q.number];
+      const isShortAns = q.questionType === 'short_answer';
+      const isCorrect  = !isShortAns && studentAns === q.answer;
+      let studentText = studentAns || '(no answer)';
+      let correctText = q.answer || '—';
+      if (!isShortAns && q.options?.length) {
+        const sOpt = q.options.find(o => o.letter === studentAns);
+        const cOpt = q.options.find(o => o.letter === q.answer);
+        if (sOpt) studentText = `${studentAns}: ${sOpt.text}`;
+        if (cOpt) correctText = `${q.answer}: ${cOpt.text}`;
+      }
+      const rowCls = isShortAns ? 'pending' : (isCorrect ? 'correct' : 'wrong');
+      const icon   = isShortAns ? '📝' : (isCorrect ? '✓' : '✗');
+      return `<tr class="review-row ${rowCls}">
+        <td>${q.number}</td>
+        <td style="font-size:12px;">${escHtml(q.question)}</td>
+        <td class="${isCorrect?'':'wrong-answer'}">${escHtml(studentText)}</td>
+        <td class="correct-answer">${isCorrect||isShortAns?'—':escHtml(correctText)}</td>
+        <td class="result-icon">${icon}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  document.getElementById('rdm-student').textContent = `${r.studentName||'?'} (${r.studentClass||'—'})`;
+  document.getElementById('rdm-exam').textContent    = r.examTitle || '—';
+  document.getElementById('rdm-score').textContent   = `${r.correct}/${r.total} (${r.pct}%)`;
+  document.getElementById('rdm-grade').textContent   = r.grade || '—';
+  document.getElementById('rdm-time').textContent    = r.timeTaken || '—';
+  document.getElementById('rdm-body').innerHTML = rows
+    ? `<div style="overflow-x:auto;"><table class="review-table"><thead><tr><th>#</th><th>Question</th><th>Student Answer</th><th>Correct Answer</th><th style="text-align:center;">✓/✗</th></tr></thead><tbody>${rows}</tbody></table></div>`
+    : '<p style="color:var(--muted);font-size:13px;">No question snapshot available for this result.</p>';
+  document.getElementById('resultDetailModal').style.display = 'flex';
+}
+
+// ═══════════════════════════════════════════════
 // SETTINGS
 // ═══════════════════════════════════════════════
 function loadSettings() {
   document.getElementById('s_pass').value        = '';
+  document.getElementById('s_apiKey').value      = Storage.getApiKey();
   document.getElementById('s_sheets').value      = Storage.getSetting('sheetsUrl');
-  document.getElementById('s_portalTitle').value = Storage.getSetting('portalTitle', 'Cambridge Exam Portal');
+  document.getElementById('s_portalTitle').value = Storage.getSetting('portalTitle', 'Bhashi Exam System');
+  renderSubjectsManager();
 }
 
 function saveSettings() {
   const newPass = document.getElementById('s_pass').value.trim();
   if (newPass) Storage.saveSetting('adminPass', newPass);
+  const apiKey = document.getElementById('s_apiKey').value.trim();
+  if (apiKey) Storage.saveApiKey(apiKey);
   Storage.saveSetting('sheetsUrl',   document.getElementById('s_sheets').value.trim());
   Storage.saveSetting('portalTitle', document.getElementById('s_portalTitle').value.trim());
-  alert('Settings saved!');
+  notify('Settings saved!', 'ok');
 }
 
 function exportAllData() {
@@ -1163,7 +1945,7 @@ function exportAllData() {
   const blob = new Blob([json], {type:'application/json'});
   const a    = document.createElement('a');
   a.href     = URL.createObjectURL(blob);
-  a.download = `exam_backup_${new Date().toISOString().slice(0,10)}.json`;
+  a.download = `bhashi_backup_${new Date().toISOString().slice(0,10)}.json`;
   a.click();
 }
 
@@ -1174,7 +1956,7 @@ function importData(e) {
   reader.onload = ev => {
     try {
       Storage.importAll(ev.target.result);
-      alert('Data imported successfully!');
+      notify('Data imported successfully!', 'ok');
       renderExamList();
     } catch {
       alert('Invalid file. Please export a valid backup first.');
@@ -1184,12 +1966,165 @@ function importData(e) {
 }
 
 function factoryReset() {
-  if (!confirm('Delete ALL exams, results, and settings? This CANNOT be undone.')) return;
-  if (!confirm('Are you absolutely sure?')) return;
-  localStorage.removeItem('cms_exams');
-  localStorage.removeItem('cms_results');
-  localStorage.removeItem('cms_settings');
+  if (!confirm('Delete ALL exams, results, and settings? Cannot be undone.')) return;
+  if (!confirm('Absolutely sure?')) return;
+  Storage.factoryReset ? Storage.factoryReset() : ['bhashi_exams','bhashi_results','bhashi_settings','bhashi_subjects','bhashi_theory','bhashi_api_key'].forEach(k=>localStorage.removeItem(k));
   location.reload();
+}
+
+// ═══════════════════════════════════════════════
+// PDF GENERATION
+// ═══════════════════════════════════════════════
+let jsPDFLoaded = false;
+
+async function ensureJsPDF() {
+  if (jsPDFLoaded) return;
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    s.onload = () => { jsPDFLoaded = true; resolve(); };
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+async function downloadQPaper(id) {
+  await ensureJsPDF();
+  const exam = Storage.getExam(id);
+  if (!exam) return;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit:'mm', format:'a4' });
+  const W = 210, M = 18, CW = W - M*2;
+  let y = M;
+
+  const chk = (need=20) => { if (y+need > 277) { doc.addPage(); y=M; } };
+
+  doc.setFillColor(0,56,101);
+  doc.rect(0,0,W,22,'F');
+  doc.setTextColor(255,255,255);
+  doc.setFont('helvetica','bold'); doc.setFontSize(14);
+  doc.text('BHASHI EXAM SYSTEM', W/2, 9, {align:'center'});
+  doc.setFont('helvetica','normal'); doc.setFontSize(9);
+  doc.text('Smart Exam Platform', W/2, 16, {align:'center'});
+  doc.setTextColor(0,0,0);
+  y = 30;
+
+  doc.setFont('helvetica','bold'); doc.setFontSize(13);
+  doc.text(exam.title, W/2, y, {align:'center'}); y += 7;
+  doc.setFont('helvetica','normal'); doc.setFontSize(9);
+  const meta = [exam.subject, exam.topic, exam.gradeLevel, exam.duration ? exam.duration+' min' : ''].filter(Boolean).join('  |  ');
+  doc.text(meta, W/2, y, {align:'center'}); y += 5;
+  doc.setDrawColor(200,200,200); doc.line(M,y,W-M,y); y += 6;
+  doc.setFontSize(10);
+  doc.text('Name: ________________________________   Class: _____________   Date: _____________', M, y); y += 4;
+  doc.line(M,y,W-M,y); y += 8;
+
+  let curPart = '';
+  (exam.questions||[]).forEach((q,i) => {
+    chk(30);
+    if (q.part && q.part !== curPart) {
+      curPart = q.part;
+      doc.setFillColor(235,242,252); doc.rect(M,y-3,CW,8,'F');
+      doc.setFont('helvetica','bold'); doc.setFontSize(9);
+      doc.text(`${q.part}${q.partInstruction?' — '+q.partInstruction:''}`, M+2, y+2);
+      doc.setFont('helvetica','normal'); y += 10;
+    }
+    chk(20);
+    const qType = q.questionType || 'mcq';
+    const qLines = doc.splitTextToSize(`${q.number||i+1}. ${q.question}`, CW-6);
+    doc.setFont('helvetica','bold'); doc.setFontSize(10);
+    doc.text(qLines, M+4, y); doc.setFont('helvetica','normal');
+    y += qLines.length*5 + 2;
+    if (qType === 'true_false') {
+      chk(8); doc.setFontSize(10); doc.text('□  True          □  False', M+10, y); y += 8;
+    } else if (qType === 'short_answer') {
+      for (let l=0;l<3;l++) { chk(7); doc.setDrawColor(180,180,180); doc.line(M+10,y,W-M,y); y+=7; }
+    } else {
+      (q.options||[]).forEach(o => {
+        chk(7);
+        const ol = doc.splitTextToSize(`○  ${o.letter}.  ${o.text}`, CW-14);
+        doc.setFontSize(10); doc.text(ol, M+10, y); y += ol.length*5+1;
+      });
+    }
+    y += 5;
+  });
+  const tp = doc.getNumberOfPages();
+  for (let p=1;p<=tp;p++) { doc.setPage(p); doc.setFontSize(8); doc.setTextColor(150,150,150); doc.text(`Page ${p} of ${tp}`,W/2,292,{align:'center'}); doc.setTextColor(0,0,0); }
+  doc.save(`${exam.title} - Question Paper.pdf`);
+}
+
+async function downloadAnswerKey(id) {
+  await ensureJsPDF();
+  const exam = Storage.getExam(id);
+  if (!exam) return;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit:'mm', format:'a4' });
+  const W = 210, M = 18, CW = W - M*2;
+  let y = M;
+  const chk = (need=15) => { if (y+need > 277) { doc.addPage(); y=M; } };
+
+  doc.setFillColor(0,56,101); doc.rect(0,0,W,22,'F');
+  doc.setTextColor(255,255,255);
+  doc.setFont('helvetica','bold'); doc.setFontSize(14);
+  doc.text('BHASHI EXAM SYSTEM', W/2, 9, {align:'center'});
+  doc.setFont('helvetica','normal'); doc.setFontSize(9);
+  doc.text('Smart Exam Platform', W/2, 16, {align:'center'});
+  doc.setTextColor(0,0,0); y = 30;
+
+  doc.setFont('helvetica','bold'); doc.setFontSize(13);
+  doc.text(exam.title, W/2, y, {align:'center'}); y += 7;
+  doc.setFillColor(198,40,40); doc.rect(M,y-4,CW,8,'F');
+  doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(10);
+  doc.text('ANSWER KEY — FOR TEACHER USE ONLY', W/2, y+1, {align:'center'});
+  doc.setTextColor(0,0,0); y += 10;
+  doc.setFont('helvetica','normal'); doc.setFontSize(9);
+  const meta = [exam.subject, exam.topic, exam.gradeLevel].filter(Boolean).join('  |  ');
+  if (meta) { doc.text(meta, W/2, y, {align:'center'}); y += 8; }
+
+  let curPart = '';
+  (exam.questions||[]).forEach((q,i) => {
+    chk(20);
+    if (q.part && q.part !== curPart) {
+      curPart = q.part;
+      doc.setFillColor(235,242,252); doc.rect(M,y-3,CW,7,'F');
+      doc.setFont('helvetica','bold'); doc.setFontSize(9);
+      doc.text(q.part, M+2, y+1); doc.setFont('helvetica','normal'); y += 8;
+    }
+    const qType = q.questionType || 'mcq';
+    const qLines = doc.splitTextToSize(`${q.number||i+1}. ${q.question}`, CW-45);
+    doc.setFont('helvetica','normal'); doc.setFontSize(9);
+    doc.text(qLines, M+4, y);
+    let ansDisplay = '';
+    if (qType==='true_false') { ansDisplay = (q.answer==='A'||q.answer?.toLowerCase()==='true') ? '✓ TRUE' : '✓ FALSE'; }
+    else if (qType==='short_answer') { ansDisplay = '→ See model answer below'; }
+    else { const co=(q.options||[]).find(o=>o.letter===q.answer); ansDisplay = `✓ ${q.answer}${co?': '+co.text.substring(0,30):''}` ; }
+    if (qType !== 'short_answer') {
+      doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(0,120,0);
+      doc.text(ansDisplay.substring(0,45), W-M-3, y, {align:'right'});
+      doc.setTextColor(0,0,0); doc.setFont('helvetica','normal');
+      y += Math.max(qLines.length*4,6)+4;
+    } else {
+      y += qLines.length*4+2; chk(10);
+      const ml = doc.splitTextToSize('Model: '+(q.modelAnswer||q.answer||'—'), CW-10);
+      doc.setFont('helvetica','italic'); doc.setFontSize(8); doc.setTextColor(80,80,80);
+      doc.text(ml, M+8, y); doc.setTextColor(0,0,0); doc.setFont('helvetica','normal');
+      y += ml.length*4+4;
+    }
+  });
+  const tp = doc.getNumberOfPages();
+  for (let p=1;p<=tp;p++) { doc.setPage(p); doc.setFontSize(8); doc.setTextColor(150,150,150); doc.text(`Page ${p} of ${tp}`,W/2,292,{align:'center'}); doc.setTextColor(0,0,0); }
+  doc.save(`${exam.title} - Answer Key.pdf`);
+}
+
+// ═══════════════════════════════════════════════
+// NOTIFY TOAST
+// ═══════════════════════════════════════════════
+function notify(msg, type='') {
+  const toast = document.createElement('div');
+  toast.style.cssText = `position:fixed;bottom:20px;right:20px;background:${type==='ok'?'#2e7d32':'#1a1a2e'};color:white;padding:10px 18px;border-radius:8px;font-size:13px;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.3);`;
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
 }
 
 // ═══════════════════════════════════════════════

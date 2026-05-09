@@ -1,28 +1,112 @@
+<!-- FILE: results.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Results</title>
+<title>Your Results — Bhashi Exam System</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+  .results-card-wide { max-width: 700px; }
+  .results-header-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .results-score-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .results-meta-col {
+    flex: 1;
+    min-width: 180px;
+  }
+  .grade-badge {
+    display: inline-block;
+    background: var(--cambridge-blue);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .results-meta-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+  }
+  .results-meta-row:last-child { border-bottom: none; }
+  .results-meta-row .label { color: var(--muted); }
+  .results-meta-row .val { font-weight: 600; color: var(--cambridge-blue); }
+
+  /* Review table */
+  .review-table { width:100%; border-collapse:collapse; font-size:13px; margin-bottom:18px; }
+  .review-table th { background:var(--cambridge-blue); color:white; padding:9px 12px; text-align:left; font-size:11px; font-weight:700; letter-spacing:0.4px; }
+  .review-table td { padding:9px 12px; border-bottom:1px solid var(--border); vertical-align:top; }
+  .review-row.correct td { background:#f0faf0; }
+  .review-row.wrong td { background:#fff5f5; }
+  .review-row.pending td { background:#f0f4ff; }
+  .review-row .result-icon { font-size:15px; text-align:center; }
+  .review-row .correct-answer { color:var(--correct); font-weight:600; font-size:12px; }
+  .review-row .wrong-answer { color:var(--wrong); font-size:12px; }
+  .review-section-title { font-family:'Source Serif 4',serif; font-size:16px; font-weight:600; color:var(--cambridge-blue); margin:20px 0 10px; }
+
+  .results-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; }
+  .btn-try-again { background:var(--accent); color:white; border:none; border-radius:var(--radius); padding:12px 24px; font-size:14px; font-weight:700; font-family:'Inter',sans-serif; cursor:pointer; transition:all 0.2s; }
+  .btn-try-again:hover { opacity:0.88; transform:translateY(-1px); }
+  .btn-back { background:var(--cambridge-blue); color:white; border:none; border-radius:var(--radius); padding:12px 24px; font-size:14px; font-weight:600; font-family:'Inter',sans-serif; cursor:pointer; transition:all 0.2s; }
+  .btn-back:hover { background:var(--cambridge-light); }
+
+  @media (max-width: 480px) {
+    .results-header-row { flex-direction: column; align-items: center; }
+    .results-meta-col { width: 100%; }
+    .review-table { font-size: 11px; }
+    .review-table th, .review-table td { padding: 6px 8px; }
+  }
+</style>
 </head>
 <body class="results-page">
 
-<div class="results-card">
-  <div class="cambridge-logo">CAMBRIDGE</div>
+<div class="results-card results-card-wide">
+  <div class="cambridge-logo">BHASHI</div>
   <h2>Exam Complete</h2>
   <div class="student-greeting" id="greeting">Loading…</div>
 
-  <div class="score-circle">
-    <div class="score-number" id="scoreNum">—</div>
-    <div class="score-total" id="scoreTotal">out of —</div>
+  <!-- Score summary row -->
+  <div class="results-header-row">
+    <div class="results-score-col">
+      <div class="score-circle">
+        <div class="score-number" id="scoreNum">—</div>
+        <div class="score-total" id="scoreTotal">out of —</div>
+      </div>
+    </div>
+    <div class="results-meta-col">
+      <div id="gradeBadge"></div>
+      <div id="metaRows"></div>
+    </div>
   </div>
 
+  <!-- Part breakdown -->
   <div class="score-breakdown" id="breakdown"></div>
 
+  <!-- Sheets message -->
   <div id="sheetsMsg" class="submit-notice" style="display:none;"></div>
 
-  <button class="btn-retry" onclick="window.location.href='index.html'">← Back to Exams</button>
+  <!-- Question-by-question review -->
+  <div id="reviewSection"></div>
+
+  <!-- Action buttons -->
+  <div class="results-actions">
+    <button class="btn-try-again" onclick="tryAgain()">Try Again</button>
+    <button class="btn-back" onclick="window.location.href='index.html'">← Back to Exams</button>
+  </div>
 </div>
 
 <script src="js/storage.js"></script>
@@ -32,10 +116,23 @@
   if (!raw) { window.location.href = 'index.html'; }
 
   const r = JSON.parse(raw);
+
   document.getElementById('greeting').textContent   = `Well done, ${r.studentName}!`;
   document.getElementById('scoreNum').textContent   = r.correct;
   document.getElementById('scoreTotal').textContent = `out of ${r.total}`;
 
+  // Grade badge
+  document.getElementById('gradeBadge').innerHTML =
+    `<div class="grade-badge">${r.grade || '—'}</div>`;
+
+  // Meta rows (percentage, time)
+  document.getElementById('metaRows').innerHTML = `
+    <div class="results-meta-row"><span class="label">Percentage</span><span class="val">${r.pct}%</span></div>
+    <div class="results-meta-row"><span class="label">Time Taken</span><span class="val">${r.timeTaken}</span></div>
+    <div class="results-meta-row"><span class="label">Exam</span><span class="val" style="font-size:12px;max-width:160px;text-align:right;">${r.examTitle || '—'}</span></div>
+  `;
+
+  // Part breakdown
   let bdHtml = '';
   try {
     const bd = JSON.parse(r.breakdown || '{}');
@@ -52,13 +149,86 @@
     <div class="breakdown-row"><span class="label">Total Score</span><span class="val">${r.correct} / ${r.total}</span></div>
     <div class="breakdown-row"><span class="label">Percentage</span><span class="val">${r.pct}%</span></div>
     <div class="breakdown-row"><span class="label">Time Taken</span><span class="val">${r.timeTaken}</span></div>
-    <div class="breakdown-row"><span class="label">Grade</span><span class="val">${r.grade}</span></div>
   `;
 
+  // Sheets message
   if (Storage.getSetting('sheetsUrl')) {
     const el = document.getElementById('sheetsMsg');
     el.style.display = 'block';
     el.textContent = '✅ Your result has been sent to your teacher.';
+  }
+
+  // Question-by-question review
+  if (r.questionsSnapshot) {
+    try {
+      const questions = JSON.parse(r.questionsSnapshot);
+      const answers   = JSON.parse(r.answers || '{}');
+
+      if (questions.length) {
+        const rows = questions.map(q => {
+          const studentAns = answers[q.number];
+          const isShortAns = q.questionType === 'short_answer';
+          const isCorrect  = !isShortAns && studentAns === q.answer;
+
+          let studentText = studentAns || '(no answer)';
+          let correctText = q.answer || '—';
+
+          if (!isShortAns && q.options && q.options.length) {
+            const sOpt = q.options.find(o => o.letter === studentAns);
+            const cOpt = q.options.find(o => o.letter === q.answer);
+            if (sOpt) studentText = `${studentAns}: ${sOpt.text}`;
+            if (cOpt) correctText = `${q.answer}: ${cOpt.text}`;
+          }
+
+          const rowCls = isShortAns ? 'pending' : (isCorrect ? 'correct' : 'wrong');
+          const icon   = isShortAns ? '📝' : (isCorrect ? '✓' : '✗');
+          const answerTdCls = isCorrect ? '' : (isShortAns ? '' : 'wrong-answer');
+          const correctTdContent = isShortAns
+            ? '<em style="color:var(--muted);font-size:11px;">Manual review</em>'
+            : (isCorrect ? '—' : `<span class="correct-answer">${escHtml(correctText)}</span>`);
+
+          return `<tr class="review-row ${rowCls}">
+            <td style="font-weight:700;color:var(--cambridge-blue);">${q.number}</td>
+            <td style="font-size:12px;">${escHtml(q.question)}</td>
+            <td class="${answerTdCls}">${escHtml(studentText)}</td>
+            <td>${correctTdContent}</td>
+            <td class="result-icon">${icon}</td>
+          </tr>`;
+        }).join('');
+
+        document.getElementById('reviewSection').innerHTML = `
+          <div class="review-section-title">Question Review</div>
+          <div style="overflow-x:auto;">
+            <table class="review-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Question</th>
+                  <th>Your Answer</th>
+                  <th>Correct Answer</th>
+                  <th style="text-align:center;">✓/✗</th>
+                </tr>
+              </thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>`;
+      }
+    } catch(e) {
+      // If parsing fails, silently skip review section
+    }
+  }
+
+  function escHtml(str) {
+    return (str||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function tryAgain() {
+    const result = JSON.parse(sessionStorage.getItem('lastResult') || '{}');
+    if (!result.examId) { window.location.href = 'index.html'; return; }
+    sessionStorage.setItem('examId', result.examId);
+    sessionStorage.setItem('examStart', new Date().toISOString());
+    // studentName and studentClass remain in sessionStorage from the original exam start
+    window.location.href = 'take-exam.html';
   }
 </script>
 </body>

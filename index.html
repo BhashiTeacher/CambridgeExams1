@@ -1,9 +1,10 @@
+<!-- FILE: index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cambridge Exam Portal</title>
+<title>Bhashi Exam System</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="portal-page">
@@ -11,8 +12,8 @@
 <div class="portal-header">
   <div class="portal-header-inner">
     <div class="portal-logo">
-      <span class="logo-badge">CAMBRIDGE</span>
-      <span class="logo-title">Exam Portal</span>
+      <span class="logo-badge">BHASHI</span>
+      <span class="logo-title">Bhashi Exam System</span>
     </div>
     <a href="admin/index.html" class="portal-admin-link">Admin ›</a>
   </div>
@@ -21,7 +22,7 @@
 <div class="portal-body">
 
   <div class="portal-hero">
-    <h1>Welcome to the Exam Portal</h1>
+    <h1>Welcome to Bhashi Exam System</h1>
     <p>Choose an exam below to begin. Enter your name when prompted — your timer starts immediately.</p>
   </div>
 
@@ -29,7 +30,7 @@
   <div class="login-modal" id="loginModal" style="display:none;">
     <div class="login-modal-card">
       <button class="modal-close" onclick="closeLogin()">✕</button>
-      <div class="cambridge-logo">CAMBRIDGE</div>
+      <div class="cambridge-logo">BHASHI</div>
       <h2 id="modalExamTitle">—</h2>
       <p class="modal-meta" id="modalExamMeta">—</p>
       <div class="form-group">
@@ -44,7 +45,7 @@
       <button class="btn-primary" onclick="beginExam()">Begin Exam →</button>
     </div>
   </div>
-  <div class="modal-backdrop" id="modalBackdrop" onclick="closeLogin()"></div>
+  <div class="modal-backdrop" id="modalBackdrop" style="display:none;" onclick="closeLogin()"></div>
 
   <!-- Subject filter tabs -->
   <div class="subject-tabs" id="subjectTabs">
@@ -72,11 +73,14 @@
     allExams = Storage.getExams();
     const published = allExams.filter(e => e.published);
 
-    // Build subject tabs
-    const subjects = [...new Set(published.map(e => e.subject).filter(Boolean))];
+    // Build subject tabs — combine from exams and from Storage.getSubjects()
+    const examSubjects = published.map(e => e.subject).filter(Boolean);
+    const storedSubjects = Storage.getSubjects().map(s => s.name);
+    const combined = [...new Set([...examSubjects, ...storedSubjects])];
+
     const tabsEl = document.getElementById('subjectTabs');
     tabsEl.innerHTML = '<button class="stab active" data-subject="all" onclick="filterSubject(\'all\',this)">All Exams</button>';
-    subjects.forEach(s => {
+    combined.forEach(s => {
       tabsEl.innerHTML += `<button class="stab" data-subject="${s}" onclick="filterSubject('${s}',this)">${s}</button>`;
     });
 

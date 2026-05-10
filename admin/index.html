@@ -1329,18 +1329,23 @@ ${extraInstructions}`;
   }
 
   try {
-    aiLog('Calling claude-sonnet-4-20250514…');
+    aiLog('Calling claude-sonnet-4-5…');
+
+    const importHeaders = {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    };
+    if (uploadedMime === 'application/pdf') {
+      importHeaders['anthropic-beta'] = 'pdfs-2024-09-25';
+    }
 
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
+      headers: importHeaders,
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-5',
         max_tokens: 4096,
         system: systemPrompt,
         messages: [{ role: 'user', content: userContent }]
@@ -1498,17 +1503,21 @@ Group related questions into parts (Part 1, Part 2…) with descriptive partInst
   content.push({ type:'text', text: prompt });
 
   try {
-    genLog('Calling claude-sonnet-4-20250514…');
+    genLog('Calling claude-sonnet-4-5…');
+    const genHeaders = {
+      'Content-Type':'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version':'2023-06-01',
+      'anthropic-dangerous-direct-browser-access':'true'
+    };
+    if (theoryUploadedMime === 'application/pdf') {
+      genHeaders['anthropic-beta'] = 'pdfs-2024-09-25';
+    }
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version':'2023-06-01',
-        'anthropic-dangerous-direct-browser-access':'true'
-      },
+      headers: genHeaders,
       body: JSON.stringify({
-        model:'claude-sonnet-4-20250514',
+        model:'claude-sonnet-4-5',
         max_tokens:4096,
         messages:[{ role:'user', content }]
       })

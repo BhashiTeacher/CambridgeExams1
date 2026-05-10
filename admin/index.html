@@ -1246,6 +1246,9 @@ function handleFileSelect(e) {
 }
 
 function processUpload(file) {
+  if (file.type === 'application/pdf' && file.size > 20 * 1024 * 1024) {
+    aiLog(`Warning: PDF is ${(file.size/1024/1024).toFixed(1)} MB. Files over 20 MB may fail — try splitting into fewer pages first.`, 'err');
+  }
   uploadedFile = file;
   const reader = new FileReader();
   reader.onload = ev => {
@@ -1331,19 +1334,14 @@ ${extraInstructions}`;
   try {
     aiLog('Calling claude-sonnet-4-5…');
 
-    const importHeaders = {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true'
-    };
-    if (uploadedMime === 'application/pdf') {
-      importHeaders['anthropic-beta'] = 'pdfs-2024-09-25';
-    }
-
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: importHeaders,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
       body: JSON.stringify({
         model: 'claude-sonnet-4-5',
         max_tokens: 4096,
@@ -1504,18 +1502,14 @@ Group related questions into parts (Part 1, Part 2…) with descriptive partInst
 
   try {
     genLog('Calling claude-sonnet-4-5…');
-    const genHeaders = {
-      'Content-Type':'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version':'2023-06-01',
-      'anthropic-dangerous-direct-browser-access':'true'
-    };
-    if (theoryUploadedMime === 'application/pdf') {
-      genHeaders['anthropic-beta'] = 'pdfs-2024-09-25';
-    }
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method:'POST',
-      headers: genHeaders,
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
       body: JSON.stringify({
         model:'claude-sonnet-4-5',
         max_tokens:4096,

@@ -767,6 +767,14 @@
 
             <div class="settings-row">
               <div class="sr-label">
+                <strong>GitHub Personal Access Token</strong>
+                <span>Required for "Publish to Site" — needs <em>Contents: Read &amp; Write</em> permission on this repo</span>
+              </div>
+              <input type="password" id="s_ghToken" placeholder="github_pat_…">
+            </div>
+
+            <div class="settings-row">
+              <div class="sr-label">
                 <strong>Global Google Sheets URL</strong>
                 <span>Used as fallback if not set per-exam</span>
               </div>
@@ -863,7 +871,7 @@ const panelTitles = {
 };
 
 const panelActions = {
-  exams:    `<button class="btn-sm primary" onclick="newExam()">+ New Exam</button>`,
+  exams:    `<button class="btn-sm success" onclick="publishToSite()" style="margin-right:6px;">🌐 Publish to Site</button><button class="btn-sm primary" onclick="newExam()">+ New Exam</button>`,
   builder:  '',
   results:  '',
   theory:   `<button class="btn-sm primary" onclick="showTheoryForm()">+ Add Theory</button>`,
@@ -1928,6 +1936,7 @@ function showResultDetail(r) {
 function loadSettings() {
   document.getElementById('s_pass').value        = '';
   document.getElementById('s_apiKey').value      = Storage.getApiKey();
+  document.getElementById('s_ghToken').value     = Storage.getSetting('githubToken');
   document.getElementById('s_sheets').value      = Storage.getSetting('sheetsUrl');
   document.getElementById('s_portalTitle').value = Storage.getSetting('portalTitle', 'Bhashi Exam System');
   renderSubjectsManager();
@@ -1938,9 +1947,64 @@ function saveSettings() {
   if (newPass) Storage.saveSetting('adminPass', newPass);
   const apiKey = document.getElementById('s_apiKey').value.trim();
   if (apiKey) Storage.saveApiKey(apiKey);
+  const ghToken = document.getElementById('s_ghToken').value.trim();
+  if (ghToken) Storage.saveSetting('githubToken', ghToken);
   Storage.saveSetting('sheetsUrl',   document.getElementById('s_sheets').value.trim());
   Storage.saveSetting('portalTitle', document.getElementById('s_portalTitle').value.trim());
   notify('Settings saved!', 'ok');
+}
+
+async function publishToSite() {
+  const token = Storage.getSetting('githubToken');
+  if (!token) {
+    notify('Add your GitHub Personal Access Token in Settings first.', 'err');
+    showPanel('settings', document.getElementById('snav-settings'));
+    return;
+  }
+
+  const published = Storage.getExams().filter(e => e.published);
+  if (!published.length) {
+    notify('No published exams to sync. Publish at least one exam first.', 'err');
+    return;
+  }
+
+  notify('Syncing to GitHub…', '');
+
+  const REPO = 'BhashiTeacher/CambridgeExams1';
+  const PATH = 'data/exams.json';
+  const jsonStr = JSON.stringify(published, null, 2);
+  // Safe base64 encoding for Unicode characters in exam content
+  const b64 = btoa(unescape(encodeURIComponent(jsonStr)));
+
+  try {
+    // Get current file SHA (required by GitHub API for updates)
+    const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${PATH}`, {
+      headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    const sha = getRes.ok ? (await getRes.json()).sha : undefined;
+
+    const body = { message: `Publish ${published.length} exam(s) via admin panel`, content: b64 };
+    if (sha) body.sha = sha;
+
+    const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${PATH}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (putRes.ok) {
+      notify(`✅ Published ${published.length} exam(s) to site. Live in ~30 seconds.`, 'ok');
+    } else {
+      const err = await putRes.json();
+      notify('GitHub error: ' + (err.message || 'Unknown error'), 'err');
+    }
+  } catch (e) {
+    notify('Error: ' + e.message, 'err');
+  }
 }
 
 function exportAllData() {

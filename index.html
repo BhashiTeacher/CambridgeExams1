@@ -64,16 +64,27 @@
 </div>
 
 <script src="js/storage.js"></script>
-<script src="js/seed.js"></script>
 <script>
   let allExams = [];
   let selectedExamId = null;
 
-  function loadExams() {
-    allExams = Storage.getExams();
+  async function loadExams() {
+    // Primary source: shared data/exams.json (same for every browser/device)
+    // Fallback: localStorage (for local testing only)
+    try {
+      const res = await fetch('data/exams.json?t=' + Date.now());
+      if (res.ok) {
+        const data = await res.json();
+        allExams = Array.isArray(data) ? data : [];
+      } else {
+        allExams = Storage.getExams();
+      }
+    } catch {
+      allExams = Storage.getExams();
+    }
+
     const published = allExams.filter(e => e.published);
 
-    // Build subject tabs — combine from exams and from Storage.getSubjects()
     const examSubjects = published.map(e => e.subject).filter(Boolean);
     const storedSubjects = Storage.getSubjects().map(s => s.name);
     const combined = [...new Set([...examSubjects, ...storedSubjects])];
@@ -157,9 +168,11 @@
       document.getElementById('nameErr').textContent = 'Please enter your full name.';
       return;
     }
+    const exam = allExams.find(e => e.id === selectedExamId);
     sessionStorage.setItem('studentName', name);
     sessionStorage.setItem('studentClass', document.getElementById('studentClassInput').value.trim() || '—');
     sessionStorage.setItem('examId', selectedExamId);
+    sessionStorage.setItem('examData', JSON.stringify(exam));
     sessionStorage.setItem('examStart', new Date().toISOString());
     window.location.href = 'take-exam.html';
   }

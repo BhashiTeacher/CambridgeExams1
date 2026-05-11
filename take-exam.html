@@ -53,7 +53,11 @@ const examStart    = sessionStorage.getItem('examStart') || new Date().toISOStri
 
 if (!studentName || !examId) { window.location.href = 'index.html'; }
 
-const exam = Storage.getExam(examId);
+// Prefer exam data passed via sessionStorage (loaded from shared data/exams.json)
+// so the exam works on any device, not just the one where it was created locally.
+let exam = null;
+try { exam = JSON.parse(sessionStorage.getItem('examData') || 'null'); } catch {}
+if (!exam) exam = Storage.getExam(examId);
 if (!exam) { window.location.href = 'index.html'; }
 
 // ── State ────────────────────────────────────────────────────

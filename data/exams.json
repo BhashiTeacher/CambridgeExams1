@@ -1,16 +1,172 @@
 [
   {
-    "id": "exam_1778420775580_xqxi7",
-    "title": "Test 2 Cambridge- 2026-05-10",
+    "id": "exam_1778514076761_k2ma8",
+    "title": "KET- Reading and Writing part 1--",
     "subject": "Reading",
-    "topic": "",
+    "topic": "part 1- sample questions",
     "gradeLevel": "",
-    "duration": 30,
-    "description": "",
+    "duration": 20,
+    "description": "Choose the best answer A B C",
     "sheetsUrl": "",
     "questions": [
       {
         "number": 1,
+        "part": "Part 1",
+        "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Take a friend to the class and they will pay less than you."
+          },
+          {
+            "letter": "B",
+            "text": "You can save money if you come to the class with someone else."
+          },
+          {
+            "letter": "C",
+            "text": "Students only need to go to a lesson once a week."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "Join our French course. Every Sunday and Thursday. Only £10 a lesson, or bring a friend and pay £8 each!"
+        }
+      },
+      {
+        "number": 2,
+        "part": "Part 1",
+        "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
+        "question": "Why did Karen send this email?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "to see if Jessica wants to take part in an event"
+          },
+          {
+            "letter": "B",
+            "text": "to find out what Jessica will make"
+          },
+          {
+            "letter": "C",
+            "text": "to check that Jessica hasn't forgotten about the cake sale"
+          }
+        ],
+        "answer": "A",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "message",
+          "body": "From: Karen\nTo: Jessica\n\nHi Jessica,\nGuess what! My sailing club is having a cake sale this Friday. Would you like to bake some biscuits?\nKaren"
+        }
+      },
+      {
+        "number": 3,
+        "part": "Part 1",
+        "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Students can wear whatever they want on Friday."
+          },
+          {
+            "letter": "B",
+            "text": "Students taking part should let the school know by Friday."
+          },
+          {
+            "letter": "C",
+            "text": "Students are still allowed to wear their uniform on Friday."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "No Uniform Day is this Friday. Students who decide to take part should not come wearing jewellery."
+        }
+      },
+      {
+        "number": 4,
+        "part": "Part 1",
+        "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
+        "question": "",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Only a few students were interested in the skiing trip this year."
+          },
+          {
+            "letter": "B",
+            "text": "There are not many places left on the skiing trip."
+          },
+          {
+            "letter": "C",
+            "text": "You should ask the secretary for the details if you want to go skiing."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "message",
+          "body": "From: School secretary\nTo: Pupils\n\nOnly a few places are still available on this winter's skiing trip. Email Mr Rogers for more information."
+        }
+      },
+      {
+        "number": 5,
+        "part": "Part 1",
+        "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
+        "question": "What is Tommy telling Fred?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Tommy plans to wait for the 5 o'clock train."
+          },
+          {
+            "letter": "B",
+            "text": "Tommy won't be able to get a train before 3 o'clock."
+          },
+          {
+            "letter": "C",
+            "text": "Tommy has missed the 3 o'clock train."
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "text",
+          "body": "Fred!\nI got to the station just as the train was leaving. The next one isn't till 3 o'clock. I'll be there no later than 5!\nTommy"
+        }
+      },
+      {
+        "number": 6,
+        "part": "Part 1",
+        "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
+        "question": "Where might you see this text?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "in a hotel"
+          },
+          {
+            "letter": "B",
+            "text": "in a block of flats"
+          },
+          {
+            "letter": "C",
+            "text": "in a department store"
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "We are terribly sorry but the lift is broken. We would be glad to help you with your luggage. Thank you for your understanding."
+        }
+      },
+      {
+        "number": 7,
         "part": "Part 1",
         "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
         "question": "You should call Dr Jenkins if",
@@ -36,10 +192,10 @@
         }
       },
       {
-        "number": 2,
+        "number": 8,
         "part": "Part 1",
         "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
-        "question": "",
+        "question": "-",
         "options": [
           {
             "letter": "A",
@@ -58,14 +214,14 @@
         "tableStyle": false,
         "stimulus": {
           "type": "notice",
-          "body": "Summer Sale\nAll children's clothes half-price when you shop from our website. Offer ends midnight."
+          "body": "Summer Sale\n\nAll children's clothes half-price when you shop from our website. Offer ends midnight."
         }
       },
       {
-        "number": 3,
+        "number": 9,
         "part": "Part 1",
         "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
-        "question": "Why did Jenna send this email?",
+        "question": "-",
         "options": [
           {
             "letter": "A",
@@ -80,7 +236,7 @@
             "text": "to say sorry to Olivia for not returning her book."
           }
         ],
-        "answer": "A",
+        "answer": "C",
         "tableStyle": false,
         "stimulus": {
           "type": "message",
@@ -88,10 +244,10 @@
         }
       },
       {
-        "number": 4,
+        "number": 10,
         "part": "Part 1",
         "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
-        "question": "",
+        "question": "--",
         "options": [
           {
             "letter": "A",
@@ -114,10 +270,10 @@
         }
       },
       {
-        "number": 5,
+        "number": 11,
         "part": "Part 1",
         "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
-        "question": "",
+        "question": "-",
         "options": [
           {
             "letter": "A",
@@ -132,18 +288,18 @@
             "text": "To take part, you must be at least sixteen."
           }
         ],
-        "answer": "B",
+        "answer": "A",
         "tableStyle": false,
         "stimulus": {
           "type": "message",
-          "body": "From: Mr Simpson\nTo: Students\n\nThis year's spelling competition is for 11-16 year olds. First prize: money to spend on books! Enter by 4th April."
+          "body": "From: Mr Simpson\nTo: Students\n\nThis year's spelling competition is for 11-16-year olds. First prize: money to spend on books! Enter by 4th April."
         }
       },
       {
-        "number": 6,
+        "number": 12,
         "part": "Part 1",
         "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
-        "question": "",
+        "question": "-",
         "options": [
           {
             "letter": "A",
@@ -166,302 +322,163 @@
         }
       },
       {
-        "number": 7,
-        "part": "Part 2",
-        "partInstruction": "For each question (7-13), choose the best answer (A, B or C).",
-        "question": "Who says her sport helps her keep fit?",
+        "number": 13,
+        "part": "Part 1",
+        "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
+        "question": "-",
         "options": [
           {
             "letter": "A",
-            "text": "Meghan"
+            "text": "Some players are worried they are not good enough."
           },
           {
             "letter": "B",
-            "text": "Alicia"
+            "text": "Players have to go to hockey practice twice next month."
           },
           {
             "letter": "C",
-            "text": "Coraline"
-          }
-        ],
-        "answer": "B",
-        "tableStyle": true
-      },
-      {
-        "number": 8,
-        "part": "Part 2",
-        "partInstruction": "For each question (7-13), choose the best answer (A, B or C).",
-        "question": "Who has changed sports?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Meghan"
-          },
-          {
-            "letter": "B",
-            "text": "Alicia"
-          },
-          {
-            "letter": "C",
-            "text": "Coraline"
-          }
-        ],
-        "answer": "A",
-        "tableStyle": true
-      },
-      {
-        "number": 9,
-        "part": "Part 2",
-        "partInstruction": "For each question (7-13), choose the best answer (A, B or C).",
-        "question": "Who teaches her sport to others?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Meghan"
-          },
-          {
-            "letter": "B",
-            "text": "Alicia"
-          },
-          {
-            "letter": "C",
-            "text": "Coraline"
+            "text": "The coach is offering extra hockey practice to players."
           }
         ],
         "answer": "C",
-        "tableStyle": true
-      },
-      {
-        "number": 10,
-        "part": "Part 2",
-        "partInstruction": "For each question (7-13), choose the best answer (A, B or C).",
-        "question": "Who has hurt herself while doing her sport?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Meghan"
-          },
-          {
-            "letter": "B",
-            "text": "Alicia"
-          },
-          {
-            "letter": "C",
-            "text": "Coraline"
-          }
-        ],
-        "answer": "B",
-        "tableStyle": true
-      },
-      {
-        "number": 11,
-        "part": "Part 2",
-        "partInstruction": "For each question (7-13), choose the best answer (A, B or C).",
-        "question": "Who has made money from competitions?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Meghan"
-          },
-          {
-            "letter": "B",
-            "text": "Alicia"
-          },
-          {
-            "letter": "C",
-            "text": "Coraline"
-          }
-        ],
-        "answer": "B",
-        "tableStyle": true
-      },
-      {
-        "number": 12,
-        "part": "Part 2",
-        "partInstruction": "For each question (7-13), choose the best answer (A, B or C).",
-        "question": "Who does her sport as part of a team?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Meghan"
-          },
-          {
-            "letter": "B",
-            "text": "Alicia"
-          },
-          {
-            "letter": "C",
-            "text": "Coraline"
-          }
-        ],
-        "answer": "B",
-        "tableStyle": true
-      },
-      {
-        "number": 13,
-        "part": "Part 2",
-        "partInstruction": "For each question (7-13), choose the best answer (A, B or C).",
-        "question": "Who has improved a lot at her sport?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Meghan"
-          },
-          {
-            "letter": "B",
-            "text": "Alicia"
-          },
-          {
-            "letter": "C",
-            "text": "Coraline"
-          }
-        ],
-        "answer": "A",
-        "tableStyle": true
+        "tableStyle": false,
+        "stimulus": {
+          "type": "message",
+          "body": "From: Mr Brown, school hockey coach\nTo: Players\n\nOur first hockey game is next month. Until then, how about meeting for practice twice a week instead of just once? We need to improve!"
+        }
       },
       {
         "number": 14,
-        "part": "Part 3",
-        "partInstruction": "For each question (14-18), choose the best answer (A, B or C).",
-        "question": "What do we learn about Miranda in the first paragraph?",
+        "part": "Part 1",
+        "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
+        "question": "Who is this notice for?",
         "options": [
           {
             "letter": "A",
-            "text": "She wants to move away from the city."
+            "text": "members of the club"
           },
           {
             "letter": "B",
-            "text": "She grew up in the countryside."
+            "text": "pupils who are interested in acting"
           },
           {
             "letter": "C",
-            "text": "She learnt about gardening at the City Farm."
-          }
-        ],
-        "answer": "C",
-        "tableStyle": false,
-        "stimulus": null
-      },
-      {
-        "number": 15,
-        "part": "Part 3",
-        "partInstruction": "For each question (14-18), choose the best answer (A, B or C).",
-        "question": "Where can you find Carlton City Farm?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "on the roof of a tall building"
-          },
-          {
-            "letter": "B",
-            "text": "in the middle of a city park"
-          },
-          {
-            "letter": "C",
-            "text": "inside the Centre Point building"
-          }
-        ],
-        "answer": "C",
-        "tableStyle": false,
-        "stimulus": null
-      },
-      {
-        "number": 16,
-        "part": "Part 3",
-        "partInstruction": "For each question (14-18), choose the best answer (A, B or C).",
-        "question": "Why are bees the only animals on the farm?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "They are very popular with children."
-          },
-          {
-            "letter": "B",
-            "text": "Most other animals are expensive to keep."
-          },
-          {
-            "letter": "C",
-            "text": "The location isn't right for other animals."
-          }
-        ],
-        "answer": "C",
-        "tableStyle": false,
-        "stimulus": null
-      },
-      {
-        "number": 17,
-        "part": "Part 3",
-        "partInstruction": "For each question (14-18), choose the best answer (A, B or C).",
-        "question": "Miranda believes that",
-        "options": [
-          {
-            "letter": "A",
-            "text": "the farm will start making a lot of money."
-          },
-          {
-            "letter": "B",
-            "text": "there will be more green spaces in the future."
-          },
-          {
-            "letter": "C",
-            "text": "people are eating more vegetables than in the past."
-          }
-        ],
-        "answer": "B",
-        "tableStyle": false,
-        "stimulus": null
-      },
-      {
-        "number": 18,
-        "part": "Part 3",
-        "partInstruction": "For each question (14-18), choose the best answer (A, B or C).",
-        "question": "Why has Miranda written this text?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "to explain why she started her city farm"
-          },
-          {
-            "letter": "B",
-            "text": "to ask people for help with her farm"
-          },
-          {
-            "letter": "C",
-            "text": "to tell people what they can do at her farm"
-          }
-        ],
-        "answer": "C",
-        "tableStyle": false,
-        "stimulus": null
-      },
-      {
-        "number": 19,
-        "part": "Part 4",
-        "partInstruction": "For each question (19-24), choose the best answer (A, B or C).",
-        "question": "",
-        "options": [
-          {
-            "letter": "A",
-            "text": "at"
-          },
-          {
-            "letter": "B",
-            "text": "for"
-          },
-          {
-            "letter": "C",
-            "text": "with"
+            "text": "people who can teach acting"
           }
         ],
         "answer": "B",
         "tableStyle": false,
         "stimulus": {
-          "type": "image",
-          "url": "C:\\Users\\S\\Downloads\\41.jpg"
+          "type": "notice",
+          "body": "The Theatre Club is looking for new members!\n\nDo you like the theatre but are not sure about joining? Then come to our first class and decide!"
+        }
+      },
+      {
+        "number": 15,
+        "part": "Part 1",
+        "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "It isn't free to use one of the bikes at the park."
+          },
+          {
+            "letter": "B",
+            "text": "All visitors must show identification to enter the park area."
+          },
+          {
+            "letter": "C",
+            "text": "To go cycling, you don't need to bring your own bike."
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "sign",
+          "body": "Bellview Park\n\nYou may take a bike if you give us your ID card. We'll return it when you return the bike."
+        }
+      },
+      {
+        "number": 16,
+        "part": "Part 1",
+        "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "to tell Peter about a change of plan"
+          },
+          {
+            "letter": "B",
+            "text": "to make plans for football practice"
+          },
+          {
+            "letter": "C",
+            "text": "to explain why he can't meet Peter"
+          }
+        ],
+        "answer": "A",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "text",
+          "body": "Peter,\nI just found out football practice finishes at six o'clock! So, I won't get to your place until 7 now!\nMark"
+        }
+      },
+      {
+        "number": 17,
+        "part": "Part 1",
+        "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Contact Anna if you have lost this cat."
+          },
+          {
+            "letter": "B",
+            "text": "If you have seen Milly, call this number."
+          },
+          {
+            "letter": "C",
+            "text": "Anyone who finds Milly should return her by Sunday."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "LOST\n\nMilly\nMissing since Sunday.\nPlease call Anna on 555 909 0657 with any information."
+        }
+      },
+      {
+        "number": 18,
+        "part": "Part 1",
+        "partInstruction": "For each question (1-6), choose the best answer (A, B or C).",
+        "question": "What should Max do?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "tell Keira how many tickets he wants"
+          },
+          {
+            "letter": "B",
+            "text": "give Keira the money for a ticket"
+          },
+          {
+            "letter": "C",
+            "text": "contact Keira by the end of the day"
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "message",
+          "body": "From: Keira\nTo: Max\n\nHi Max,\nMy school's summer barbecue is on Saturday. If you want to come, I'll buy you a ticket. Let me know before tomorrow.\nKeira"
         }
       }
     ],
     "published": true,
-    "updatedAt": "2026-05-11T16:37:04.228Z"
+    "updatedAt": "2026-05-11T16:26:35.388Z"
   }
 ]

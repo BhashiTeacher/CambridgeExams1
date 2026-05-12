@@ -480,5 +480,487 @@
     ],
     "published": true,
     "updatedAt": "2026-05-11T16:26:35.388Z"
+  },
+  {
+    "id": "exam_1778600211586_wp7y5",
+    "title": "KET-Reading and Writing part 1",
+    "subject": "Reading",
+    "topic": "",
+    "gradeLevel": "A2 Key for schools",
+    "duration": 20,
+    "description": "",
+    "sheetsUrl": "",
+    "questions": [
+      {
+        "number": 1,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "There is no football class today."
+          },
+          {
+            "letter": "B",
+            "text": "Mr Hall can't come to the football class tomorrow."
+          },
+          {
+            "letter": "C",
+            "text": "You can choose to go to the football class today or tomorrow."
+          }
+        ],
+        "answer": "A",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "Please note: this afternoon's football class will be tomorrow instead, as Mr Hall is away today."
+        }
+      },
+      {
+        "number": 2,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Louise is offering to lend Jane a book."
+          },
+          {
+            "letter": "B",
+            "text": "Louise wants her book back from Jane."
+          },
+          {
+            "letter": "C",
+            "text": "Louise's brother has borrowed a book from Jane."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "text",
+          "body": "Hi Jane, Have you finished with that book I lent you? It's just that my brother needs it for a school project. Thanks, Louise"
+        }
+      },
+      {
+        "number": 3,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "You can buy food somewhere else in the park."
+          },
+          {
+            "letter": "B",
+            "text": "Please don't eat while you are playing sport here."
+          },
+          {
+            "letter": "C",
+            "text": "This is a place for eating and you can't play football here."
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "sign",
+          "body": "Picnic area - No ball games here - please use the other side of the park."
+        }
+      },
+      {
+        "number": 4,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Adults can take children to the museum in the morning."
+          },
+          {
+            "letter": "B",
+            "text": "Adults with children over 12 will enjoy the museum."
+          },
+          {
+            "letter": "C",
+            "text": "Children can visit the museum if they are with an adult."
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "sign",
+          "body": "Museum open from 12. Children must be with an adult."
+        }
+      },
+      {
+        "number": 5,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "Why has Mrs Monmouth written this message?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "to ask pupils to walk to school"
+          },
+          {
+            "letter": "B",
+            "text": "to tell pupils to get to school on time"
+          },
+          {
+            "letter": "C",
+            "text": "to explain about a health problem at school"
+          }
+        ],
+        "answer": "A",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "message",
+          "body": "From: Mrs Monmouth, Head Teacher\nTo: All Pupils and Parents\n\nHello,\nThis week, please don't use the car to get to school. Coming on foot is healthy and doesn't take much time.\nThanks,\nMrs Monmouth"
+        }
+      },
+      {
+        "number": 6,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "What does the sign tell you about Pedro's Pizza Bar?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Pedro's Pizza Bar isn't open at weekends."
+          },
+          {
+            "letter": "B",
+            "text": "The third time you visit, you get a free pizza."
+          },
+          {
+            "letter": "C",
+            "text": "Three pizzas cost the same as two."
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "sign",
+          "body": "Pedro's Pizza Bar\nBuy two pizzas at the same time, and we'll give you a third one for free! This offer is Mon—Fri only."
+        }
+      },
+      {
+        "number": 7,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "What does the sign say?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "The pool is closed on October 1st."
+          },
+          {
+            "letter": "B",
+            "text": "You need to wash before you swim."
+          },
+          {
+            "letter": "C",
+            "text": "There will be a new shower at the pool."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "sign",
+          "body": "From 1 October, please do not enter the pool before you have used the shower."
+        }
+      },
+      {
+        "number": 8,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "Amanda wants her grandmother to",
+        "options": [
+          {
+            "letter": "A",
+            "text": "let her have a picture."
+          },
+          {
+            "letter": "B",
+            "text": "lend her some clothes."
+          },
+          {
+            "letter": "C",
+            "text": "describe her old uniform."
+          }
+        ],
+        "answer": "A",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "message",
+          "body": "From: Amanda\nTo: Gran\nSubject: Help with a school project\n\nHi Gran,\nDo you have any old photos showing you in your uniform when you were at school? If you do, can you send me one for school?\nThanks,\nAmanda"
+        }
+      },
+      {
+        "number": 9,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "Where might you see this text?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "in a computer shop"
+          },
+          {
+            "letter": "B",
+            "text": "on the screen of a computer"
+          },
+          {
+            "letter": "C",
+            "text": "on the wall in the computer classroom"
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "message",
+          "body": "Warning\nMemory full\nPlease delete files or click here to buy more memory.\nOK"
+        }
+      },
+      {
+        "number": 10,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "What time do pupils need to get to school tomorrow?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "about 8:30"
+          },
+          {
+            "letter": "B",
+            "text": "by 8:40"
+          },
+          {
+            "letter": "C",
+            "text": "at 8:50"
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "TOMORROW'S TRIP\n\nTime coach leaves school: 8.50.\nPlease arrive no later than 8.40.\nThe school gates will open at about 8.30.\nThank you."
+        }
+      },
+      {
+        "number": 11,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Get the lift if you are in a hurry."
+          },
+          {
+            "letter": "B",
+            "text": "Use the stairs if the lift is broken."
+          },
+          {
+            "letter": "C",
+            "text": "Walking up and down stairs is better for you."
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "PLEASE NOTE EVERYBODY\nThere's a lift if you need it, BUT use the stairs if you can.\nIt's a great way to stay fit."
+        }
+      },
+      {
+        "number": 12,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "You can watch up to four films for free."
+          },
+          {
+            "letter": "B",
+            "text": "The fifth film you see during the daytime is free."
+          },
+          {
+            "letter": "C",
+            "text": "Cheap tickets are available for groups of four in the evenings."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "Hounslow Cinema: Special Offer\nBuy tickets to four films and you don't need to pay for the next one!\nEvery day until 5:30 p.m."
+        }
+      },
+      {
+        "number": 13,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "Why has Adam written this message?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "to ask if John wants to play football"
+          },
+          {
+            "letter": "B",
+            "text": "to tell John that Adam can't play football"
+          },
+          {
+            "letter": "C",
+            "text": "to let John know about a change of plan"
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "message",
+          "body": "John, You know I said our football practice will be on Wednesday... Well it isn't - it's on Thursday. Sorry! See you there. Cheers, Adam"
+        }
+      },
+      {
+        "number": 14,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "Pupils can",
+        "options": [
+          {
+            "letter": "A",
+            "text": "buy books."
+          },
+          {
+            "letter": "B",
+            "text": "read about explorers."
+          },
+          {
+            "letter": "C",
+            "text": "come and listen to a writer."
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "SCHOOL FESTIVAL OF BOOKS\n\nMeet Ralph Sparks.\n\nHear how he got ideas for his books, including History of Exploring the New World.\n\nThurs 9 a.m. Room D31."
+        }
+      },
+      {
+        "number": 15,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "You can now buy tickets for the museum trip."
+          },
+          {
+            "letter": "B",
+            "text": "Tell Mr Goss how you want to travel to the museum."
+          },
+          {
+            "letter": "C",
+            "text": "Mr Goss will tell you if you need a ticket to the museum."
+          }
+        ],
+        "answer": "A",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "Science Museum trip next Friday\n\nTickets are available for $4 (for coach transport to the museum, and for museum entry).\n\nIf you're interested, see Mr Goss."
+        }
+      },
+      {
+        "number": 16,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "Why has Lizzie written this?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "to invite Jenny to a party"
+          },
+          {
+            "letter": "B",
+            "text": "to tell Jenny about a shopping trip"
+          },
+          {
+            "letter": "C",
+            "text": "to ask about something that she's lost"
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "message",
+          "body": "From: Lizzie\nTo: Jenny\n\nJenny,\nI think I left my scarf in your flat after the party. Have you seen it? Otherwise I'll buy another one.\nLizzie"
+        }
+      },
+      {
+        "number": 17,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "Mike wants to",
+        "options": [
+          {
+            "letter": "A",
+            "text": "play tennis with Dave."
+          },
+          {
+            "letter": "B",
+            "text": "borrow something from Dave."
+          },
+          {
+            "letter": "C",
+            "text": "get help from Dave with the homework."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "text",
+          "body": "Hi Dave,\nI broke my tennis racket. Can I use yours? I'll give it back in maths tomorrow. By the way, wasn't the homework difficult?\nMike"
+        }
+      },
+      {
+        "number": 18,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "There isn't a geography lesson tomorrow."
+          },
+          {
+            "letter": "B",
+            "text": "Class 4's lesson is happening at a different time today."
+          },
+          {
+            "letter": "C",
+            "text": "There will be more people in Room 7C than usual today."
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "Mr Gregson is away today. Class 3, at 9 a.m., please go and join Class 4 in Room 7C for geography. Mr Gregson will be back tomorrow."
+        }
+      }
+    ],
+    "published": true,
+    "updatedAt": "2026-05-12T15:59:03.369Z"
   }
 ]

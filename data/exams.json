@@ -1,484 +1,1011 @@
 [
   {
-    "id": "exam_1778600211586_wp7y5",
-    "title": "KET-Reading and Writing part 1",
+    "id": "exam_test6_seed",
+    "title": "Test 6 – Reading & Writing",
     "subject": "Reading",
-    "topic": "",
-    "gradeLevel": "A2 Key for schools",
-    "duration": 20,
-    "description": "",
+    "topic": "Reading Comprehension",
+    "gradeLevel": "A2 Key",
+    "duration": 45,
+    "description": "Cambridge A2 Key style reading and writing test.",
     "sheetsUrl": "",
+    "published": true,
+    "updatedAt": "2026-05-09T16:36:46.887Z",
     "questions": [
       {
         "number": 1,
         "part": "Part 1",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "-",
+        "question": "Where might you see this?",
         "options": [
           {
             "letter": "A",
-            "text": "There is no football class today."
+            "text": "in a café"
           },
           {
             "letter": "B",
-            "text": "Mr Hall can't come to the football class tomorrow."
+            "text": "in a library"
           },
           {
             "letter": "C",
-            "text": "You can choose to go to the football class today or tomorrow."
+            "text": "in a picnic area"
           }
         ],
-        "answer": "A",
+        "answer": "B",
         "tableStyle": false,
         "stimulus": {
-          "type": "notice",
-          "body": "Please note: this afternoon's football class will be tomorrow instead, as Mr Hall is away today."
+          "type": "sign",
+          "icon": "🚫🍦",
+          "body": "Please don't eat ice creams here. They aren't good for our books! Please finish them outside before you come in. Thanks."
         }
       },
       {
         "number": 2,
         "part": "Part 1",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "-",
+        "question": "Speak to Mrs Thompson if",
         "options": [
           {
             "letter": "A",
-            "text": "Louise is offering to lend Jane a book."
+            "text": "you've got an extra key."
           },
           {
             "letter": "B",
-            "text": "Louise wants her book back from Jane."
+            "text": "you have lost something."
           },
           {
             "letter": "C",
-            "text": "Louise's brother has borrowed a book from Jane."
+            "text": "you know where the bag is."
           }
         ],
         "answer": "B",
         "tableStyle": false,
         "stimulus": {
-          "type": "text",
-          "body": "Hi Jane, Have you finished with that book I lent you? It's just that my brother needs it for a school project. Thanks, Louise"
+          "type": "notice",
+          "title": "FOUND",
+          "body": "One school bag<br>Inside: one key and a phone<br><br><strong>Contact Mrs Thompson</strong><br>if you think it might be yours."
         }
       },
       {
         "number": 3,
         "part": "Part 1",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "-",
+        "question": "Zeta has written to",
         "options": [
           {
             "letter": "A",
-            "text": "You can buy food somewhere else in the park."
+            "text": "invite Linda to go and see a film."
           },
           {
             "letter": "B",
-            "text": "Please don't eat while you are playing sport here."
+            "text": "ask Linda what films she's interested in."
           },
           {
             "letter": "C",
-            "text": "This is a place for eating and you can't play football here."
+            "text": "tell Linda where to meet Jim tomorrow."
           }
         ],
-        "answer": "C",
+        "answer": "A",
         "tableStyle": false,
         "stimulus": {
-          "type": "sign",
-          "body": "Picnic area - No ball games here - please use the other side of the park."
+          "type": "phone",
+          "body": "Hi Linda, I have bought two tickets for the cinema tomorrow afternoon for me and Jim. But he can't come. Are you interested? <strong>Zeta</strong>"
         }
       },
       {
         "number": 4,
         "part": "Part 1",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "-",
+        "question": "What has Tony just done?",
         "options": [
           {
             "letter": "A",
-            "text": "Adults can take children to the museum in the morning."
+            "text": "met Flora"
           },
           {
             "letter": "B",
-            "text": "Adults with children over 12 will enjoy the museum."
+            "text": "had a birthday"
           },
           {
             "letter": "C",
-            "text": "Children can visit the museum if they are with an adult."
+            "text": "done well in an exam"
           }
         ],
         "answer": "C",
         "tableStyle": false,
         "stimulus": {
-          "type": "sign",
-          "body": "Museum open from 12. Children must be with an adult."
+          "type": "message",
+          "from": "Flora",
+          "to": "Tony",
+          "body": "Congratulations, Tony! I heard that you passed maths!<br>Have a great birthday.<br>And next time I write to you, you'll be 15!<br><em>Best wishes, Flora</em>"
         }
       },
       {
         "number": 5,
         "part": "Part 1",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "Why has Mrs Monmouth written this message?",
+        "question": "What does the sign mean?",
         "options": [
           {
             "letter": "A",
-            "text": "to ask pupils to walk to school"
+            "text": "Please go to the science room now."
           },
           {
             "letter": "B",
-            "text": "to tell pupils to get to school on time"
+            "text": "You can't go out through this door."
           },
           {
             "letter": "C",
-            "text": "to explain about a health problem at school"
+            "text": "The science laboratory is being used by other people today."
           }
         ],
-        "answer": "A",
+        "answer": "B",
         "tableStyle": false,
         "stimulus": {
-          "type": "message",
-          "body": "From: Mrs Monmouth, Head Teacher\nTo: All Pupils and Parents\n\nHello,\nThis week, please don't use the car to get to school. Coming on foot is healthy and doesn't take much time.\nThanks,\nMrs Monmouth"
+          "type": "sign",
+          "title": "NO EXIT",
+          "body": "The door isn't working correctly.<br>Use door opposite to get to the science room."
         }
       },
       {
         "number": 6,
         "part": "Part 1",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "-",
+        "question": "Tom is writing about",
         "options": [
           {
             "letter": "A",
-            "text": "Pedro's Pizza Bar isn't open at weekends."
+            "text": "a party that he had."
           },
           {
             "letter": "B",
-            "text": "The third time you visit, you get a free pizza."
+            "text": "a picture that he saw."
           },
           {
             "letter": "C",
-            "text": "Three pizzas cost the same as two."
+            "text": "some people that he has just met."
           }
         ],
-        "answer": "C",
+        "answer": "A",
         "tableStyle": false,
         "stimulus": {
-          "type": "sign",
-          "body": "Pedro's Pizza Bar\nBuy two pizzas at the same time, and we'll give you a third one for free! This offer is Mon—Fri only."
+          "type": "social",
+          "author": "Tom",
+          "body": "Thanks to all my guests! It's brilliant you could come. Hope you've made new friends. I'll add the pictures I took soon!"
         }
       },
       {
         "number": 7,
-        "part": "Part 1",
+        "part": "Part 2",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "What does the sign say?",
+        "question": "Which person has made new friends because of her hobby?",
         "options": [
           {
             "letter": "A",
-            "text": "The pool is closed on October 1st."
+            "text": "Melissa"
           },
           {
             "letter": "B",
-            "text": "You need to wash before you swim."
+            "text": "Sharon"
           },
           {
             "letter": "C",
-            "text": "There will be a new shower at the pool."
+            "text": "Latifa"
           }
         ],
-        "answer": "B",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "sign",
-          "body": "From 1 October, please do not enter the pool before you have used the shower."
+        "answer": "A",
+        "tableStyle": true,
+        "passage": {
+          "title": "Three teenagers describe their hobbies",
+          "people": [
+            {
+              "name": "Melissa",
+              "subtitle": "Runner 🏃‍♀️",
+              "text": "I started running about a year ago. At first, I just ran 1 or 2 kilometres, but I now do about 10. My speed is improving too. I've joined a running club in the town centre. I didn't know any of the members before, but now most of them are my mates. My dad was a keen runner when he was younger – he was really fit, but he stopped when he hurt his leg. Actually, I need to order some new running shoes – just a simple pair. I don't think the expensive ones make you run faster!"
+            },
+            {
+              "name": "Sharon",
+              "subtitle": "Skateboarder 🛹",
+              "text": "I go skateboarding most evenings in the park. I suppose that's quite a lot, but the park is only a minute or two from our apartment, and I only stay there half an hour or so. Although I stay longer when my friends are there. Sometimes my cousin's there too. He's a beginner, and I'm teaching him a few moves. He's starting to get really good!"
+            },
+            {
+              "name": "Latifa",
+              "subtitle": "Rock Climber 🧗‍♀️",
+              "text": "Two of my best friends suggested I should start rock climbing, so now the three of us do it together. The mother of one of them takes us once or twice a month, but I'd like to do it every week. When I started, I didn't know you need to get so much stuff – and it isn't exactly cheap! I really love it. I don't think I'll ever get bored of climbing!"
+            }
+          ]
         }
       },
       {
         "number": 8,
-        "part": "Part 1",
+        "part": "Part 2",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "Amanda wants her grandmother to",
+        "question": "Which person does her hobby near her home?",
         "options": [
           {
             "letter": "A",
-            "text": "let her have a picture."
+            "text": "Melissa"
           },
           {
             "letter": "B",
-            "text": "lend her some clothes."
+            "text": "Sharon"
           },
           {
             "letter": "C",
-            "text": "describe her old uniform."
+            "text": "Latifa"
           }
         ],
-        "answer": "A",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "message",
-          "body": "From: Amanda\nTo: Gran\nSubject: Help with a school project\n\nHi Gran,\nDo you have any old photos showing you in your uniform when you were at school? If you do, can you send me one for school?\nThanks,\nAmanda"
-        }
+        "answer": "B",
+        "tableStyle": true
       },
       {
         "number": 9,
-        "part": "Part 1",
+        "part": "Part 2",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "Where might you see this text?",
+        "question": "Which person says she is getting better at her hobby?",
         "options": [
           {
             "letter": "A",
-            "text": "in a computer shop"
+            "text": "Melissa"
           },
           {
             "letter": "B",
-            "text": "on the screen of a computer"
+            "text": "Sharon"
           },
           {
             "letter": "C",
-            "text": "on the wall in the computer classroom"
-          }
-        ],
-        "answer": "B",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "message",
-          "body": "Warning\nMemory full\nPlease delete files or click here to buy more memory.\nOK"
-        }
-      },
-      {
-        "number": 10,
-        "part": "Part 1",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "What time do pupils need to get to school tomorrow?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "about 8:30"
-          },
-          {
-            "letter": "B",
-            "text": "by 8:40"
-          },
-          {
-            "letter": "C",
-            "text": "at 8:50"
-          }
-        ],
-        "answer": "B",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "notice",
-          "body": "TOMORROW'S TRIP\n\nTime coach leaves school: 8.50.\nPlease arrive no later than 8.40.\nThe school gates will open at about 8.30.\nThank you."
-        }
-      },
-      {
-        "number": 11,
-        "part": "Part 1",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "-",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Get the lift if you are in a hurry."
-          },
-          {
-            "letter": "B",
-            "text": "Use the stairs if the lift is broken."
-          },
-          {
-            "letter": "C",
-            "text": "Walking up and down stairs is better for you."
-          }
-        ],
-        "answer": "C",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "notice",
-          "body": "PLEASE NOTE EVERYBODY\nThere's a lift if you need it, BUT use the stairs if you can.\nIt's a great way to stay fit."
-        }
-      },
-      {
-        "number": 12,
-        "part": "Part 1",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "-",
-        "options": [
-          {
-            "letter": "A",
-            "text": "You can watch up to four films for free."
-          },
-          {
-            "letter": "B",
-            "text": "The fifth film you see during the daytime is free."
-          },
-          {
-            "letter": "C",
-            "text": "Cheap tickets are available for groups of four in the evenings."
-          }
-        ],
-        "answer": "B",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "notice",
-          "body": "Hounslow Cinema: Special Offer\nBuy tickets to four films and you don't need to pay for the next one!\nEvery day until 5:30 p.m."
-        }
-      },
-      {
-        "number": 13,
-        "part": "Part 1",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "Why has Adam written this message?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "to ask if John wants to play football"
-          },
-          {
-            "letter": "B",
-            "text": "to tell John that Adam can't play football"
-          },
-          {
-            "letter": "C",
-            "text": "to let John know about a change of plan"
-          }
-        ],
-        "answer": "C",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "message",
-          "body": "John, You know I said our football practice will be on Wednesday... Well it isn't - it's on Thursday. Sorry! See you there. Cheers, Adam"
-        }
-      },
-      {
-        "number": 14,
-        "part": "Part 1",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "Pupils can",
-        "options": [
-          {
-            "letter": "A",
-            "text": "buy books."
-          },
-          {
-            "letter": "B",
-            "text": "read about explorers."
-          },
-          {
-            "letter": "C",
-            "text": "come and listen to a writer."
-          }
-        ],
-        "answer": "C",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "notice",
-          "body": "SCHOOL FESTIVAL OF BOOKS\n\nMeet Ralph Sparks.\n\nHear how he got ideas for his books, including History of Exploring the New World.\n\nThurs 9 a.m. Room D31."
-        }
-      },
-      {
-        "number": 15,
-        "part": "Part 1",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "-",
-        "options": [
-          {
-            "letter": "A",
-            "text": "You can now buy tickets for the museum trip."
-          },
-          {
-            "letter": "B",
-            "text": "Tell Mr Goss how you want to travel to the museum."
-          },
-          {
-            "letter": "C",
-            "text": "Mr Goss will tell you if you need a ticket to the museum."
+            "text": "Latifa"
           }
         ],
         "answer": "A",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "notice",
-          "body": "Science Museum trip next Friday\n\nTickets are available for $4 (for coach transport to the museum, and for museum entry).\n\nIf you're interested, see Mr Goss."
-        }
+        "tableStyle": true
       },
       {
-        "number": 16,
-        "part": "Part 1",
+        "number": 10,
+        "part": "Part 2",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "Why has Lizzie written this?",
+        "question": "Which person does her hobby with a family member?",
         "options": [
           {
             "letter": "A",
-            "text": "to invite Jenny to a party"
+            "text": "Melissa"
           },
           {
             "letter": "B",
-            "text": "to tell Jenny about a shopping trip"
+            "text": "Sharon"
           },
           {
             "letter": "C",
-            "text": "to ask about something that she's lost"
-          }
-        ],
-        "answer": "C",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "message",
-          "body": "From: Lizzie\nTo: Jenny\n\nJenny,\nI think I left my scarf in your flat after the party. Have you seen it? Otherwise I'll buy another one.\nLizzie"
-        }
-      },
-      {
-        "number": 17,
-        "part": "Part 1",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "Mike wants to",
-        "options": [
-          {
-            "letter": "A",
-            "text": "play tennis with Dave."
-          },
-          {
-            "letter": "B",
-            "text": "borrow something from Dave."
-          },
-          {
-            "letter": "C",
-            "text": "get help from Dave with the homework."
+            "text": "Latifa"
           }
         ],
         "answer": "B",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "text",
-          "body": "Hi Dave,\nI broke my tennis racket. Can I use yours? I'll give it back in maths tomorrow. By the way, wasn't the homework difficult?\nMike"
-        }
+        "tableStyle": true
       },
       {
-        "number": 18,
-        "part": "Part 1",
+        "number": 11,
+        "part": "Part 2",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "-",
+        "question": "Which person wants to do her hobby more often?",
         "options": [
           {
             "letter": "A",
-            "text": "There isn't a geography lesson tomorrow."
+            "text": "Melissa"
           },
           {
             "letter": "B",
-            "text": "Class 4's lesson is happening at a different time today."
+            "text": "Sharon"
           },
           {
             "letter": "C",
-            "text": "There will be more people in Room 7C than usual today."
+            "text": "Latifa"
           }
         ],
         "answer": "C",
+        "tableStyle": true
+      },
+      {
+        "number": 12,
+        "part": "Part 2",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "Which person needs to buy something for her hobby?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Melissa"
+          },
+          {
+            "letter": "B",
+            "text": "Sharon"
+          },
+          {
+            "letter": "C",
+            "text": "Latifa"
+          }
+        ],
+        "answer": "A",
+        "tableStyle": true
+      },
+      {
+        "number": 13,
+        "part": "Part 2",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "Which person says her hobby was more expensive than she thought?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Melissa"
+          },
+          {
+            "letter": "B",
+            "text": "Sharon"
+          },
+          {
+            "letter": "C",
+            "text": "Latifa"
+          }
+        ],
+        "answer": "C",
+        "tableStyle": true
+      }
+    ]
+  },
+  {
+    "id": "exam_1778849081110_vcmtz",
+    "title": "Science — Electricity_6_MCQ25 (General)",
+    "subject": "Science",
+    "topic": "Electricity_6_MCQ25",
+    "gradeLevel": "",
+    "duration": 30,
+    "description": "",
+    "sheetsUrl": "",
+    "questions": [
+      {
+        "number": 1,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question about electrical circuit symbols.",
+        "question": "What is the correct symbol for a single cell?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "A long line next to a short line"
+          },
+          {
+            "letter": "B",
+            "text": "Two long lines parallel to each other"
+          },
+          {
+            "letter": "C",
+            "text": "A circle with an X inside"
+          },
+          {
+            "letter": "D",
+            "text": "A straight horizontal line"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
         "tableStyle": false,
-        "stimulus": {
-          "type": "notice",
-          "body": "Mr Gregson is away today. Class 3, at 9 a.m., please go and join Class 4 in Room 7C for geography. Mr Gregson will be back tomorrow."
-        }
+        "stimulus": null
+      },
+      {
+        "number": 2,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question about electrical circuit symbols.",
+        "question": "Which component is represented by a circle with an X inside?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Motor"
+          },
+          {
+            "letter": "B",
+            "text": "Buzzer"
+          },
+          {
+            "letter": "C",
+            "text": "Bulb"
+          },
+          {
+            "letter": "D",
+            "text": "Switch"
+          }
+        ],
+        "answer": "C",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 3,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question about electrical circuit symbols.",
+        "question": "What does the symbol with a circle containing the letter M represent?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Battery"
+          },
+          {
+            "letter": "B",
+            "text": "Motor"
+          },
+          {
+            "letter": "C",
+            "text": "Buzzer"
+          },
+          {
+            "letter": "D",
+            "text": "Switch"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 4,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question about electrical circuit symbols.",
+        "question": "The symbol for a battery consists of:",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "One long line and one short line"
+          },
+          {
+            "letter": "B",
+            "text": "Two sets of long and short lines"
+          },
+          {
+            "letter": "C",
+            "text": "A single horizontal line"
+          },
+          {
+            "letter": "D",
+            "text": "A circle with lines inside"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 5,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question about electrical circuit symbols.",
+        "question": "Which symbol represents an open switch?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "A line with a gap and a diagonal line not touching both ends"
+          },
+          {
+            "letter": "B",
+            "text": "A continuous straight line"
+          },
+          {
+            "letter": "C",
+            "text": "Two lines touching at a point"
+          },
+          {
+            "letter": "D",
+            "text": "A circle with two lines"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 6,
+        "part": "Part 2",
+        "partInstruction": "Answer True or False for each statement about electrical circuits.",
+        "question": "Scientists use the same set of symbols for circuit components so everyone can recognize them, whatever language they speak.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 7,
+        "part": "Part 2",
+        "partInstruction": "Answer True or False for each statement about electrical circuits.",
+        "question": "A symbol is a shape that represents something else.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 8,
+        "part": "Part 2",
+        "partInstruction": "Answer True or False for each statement about electrical circuits.",
+        "question": "When making a circuit, the switch is usually closed, so you will use the closed switch symbol most often.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 9,
+        "part": "Part 2",
+        "partInstruction": "Answer True or False for each statement about electrical circuits.",
+        "question": "A wire in a circuit diagram is represented by a straight line.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 10,
+        "part": "Part 2",
+        "partInstruction": "Answer True or False for each statement about electrical circuits.",
+        "question": "In a cell symbol, the horizontal line must touch the vertical line on each side.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 11,
+        "part": "Part 3",
+        "partInstruction": "Choose the correct answer for each question about how components function.",
+        "question": "What is the function of a cell in a circuit?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "It provides light"
+          },
+          {
+            "letter": "B",
+            "text": "It is the power source"
+          },
+          {
+            "letter": "C",
+            "text": "It makes a noise"
+          },
+          {
+            "letter": "D",
+            "text": "It turns components on or off"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 12,
+        "part": "Part 3",
+        "partInstruction": "Choose the correct answer for each question about how components function.",
+        "question": "A buzzer in a circuit:",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Produces light when electricity flows through it"
+          },
+          {
+            "letter": "B",
+            "text": "Makes a noise when electricity flows through it"
+          },
+          {
+            "letter": "C",
+            "text": "Turns when electricity flows through it"
+          },
+          {
+            "letter": "D",
+            "text": "Stops electricity from flowing"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 13,
+        "part": "Part 3",
+        "partInstruction": "Choose the correct answer for each question about how components function.",
+        "question": "What is the purpose of a switch in an electrical circuit?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "To provide power to the circuit"
+          },
+          {
+            "letter": "B",
+            "text": "To turn other components on or off"
+          },
+          {
+            "letter": "C",
+            "text": "To produce light"
+          },
+          {
+            "letter": "D",
+            "text": "To make a sound"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 14,
+        "part": "Part 3",
+        "partInstruction": "Choose the correct answer for each question about how components function.",
+        "question": "What happens to a bulb when electricity flows through it?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "It makes a noise"
+          },
+          {
+            "letter": "B",
+            "text": "It turns"
+          },
+          {
+            "letter": "C",
+            "text": "It produces light"
+          },
+          {
+            "letter": "D",
+            "text": "It stops working"
+          }
+        ],
+        "answer": "C",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 15,
+        "part": "Part 3",
+        "partInstruction": "Choose the correct answer for each question about how components function.",
+        "question": "Wires in a circuit have metal inside because:",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Metals are insulators"
+          },
+          {
+            "letter": "B",
+            "text": "Metals are good conductors and electricity flows through them easily"
+          },
+          {
+            "letter": "C",
+            "text": "Metals make the wires colorful"
+          },
+          {
+            "letter": "D",
+            "text": "Metals prevent electricity from flowing"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 16,
+        "part": "Part 4",
+        "partInstruction": "Answer True or False for each statement about circuit function and components.",
+        "question": "Components need electricity from the cell to work.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 17,
+        "part": "Part 4",
+        "partInstruction": "Answer True or False for each statement about circuit function and components.",
+        "question": "Electricity flows through components as easily as it does through wires.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 18,
+        "part": "Part 4",
+        "partInstruction": "Answer True or False for each statement about circuit function and components.",
+        "question": "The more components in a circuit, the smaller the share of electricity each component receives.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 19,
+        "part": "Part 4",
+        "partInstruction": "Answer True or False for each statement about circuit function and components.",
+        "question": "Closing a switch completes the circuit so electricity can flow around it.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 20,
+        "part": "Part 4",
+        "partInstruction": "Answer True or False for each statement about circuit function and components.",
+        "question": "The plastic on the outside of wires is a conductor.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 21,
+        "part": "Part 5",
+        "partInstruction": "Choose the correct answer for each question about circuit diagrams and design.",
+        "question": "A battery is defined as:",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "A single cell"
+          },
+          {
+            "letter": "B",
+            "text": "Two or more cells joined together"
+          },
+          {
+            "letter": "C",
+            "text": "A component that produces light"
+          },
+          {
+            "letter": "D",
+            "text": "A type of switch"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 22,
+        "part": "Part 5",
+        "partInstruction": "Choose the correct answer for each question about circuit diagrams and design.",
+        "question": "In a battery symbol, the lines represent:",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "The wires connecting to other components"
+          },
+          {
+            "letter": "B",
+            "text": "The + and - ends of each cell"
+          },
+          {
+            "letter": "C",
+            "text": "The metal inside the battery"
+          },
+          {
+            "letter": "D",
+            "text": "The case of the battery"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 23,
+        "part": "Part 5",
+        "partInstruction": "Choose the correct answer for each question about circuit diagrams and design.",
+        "question": "What happens when more bulbs are added to a simple circuit with one cell?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "The bulbs get brighter"
+          },
+          {
+            "letter": "B",
+            "text": "The bulbs stay the same brightness"
+          },
+          {
+            "letter": "C",
+            "text": "The bulbs get dimmer"
+          },
+          {
+            "letter": "D",
+            "text": "The circuit stops working"
+          }
+        ],
+        "answer": "C",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 24,
+        "part": "Part 5",
+        "partInstruction": "Choose the correct answer for each question about circuit diagrams and design.",
+        "question": "Using universal circuit symbols allows scientists to:",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Make circuits work faster"
+          },
+          {
+            "letter": "B",
+            "text": "Communicate quickly in a way everyone understands"
+          },
+          {
+            "letter": "C",
+            "text": "Use less electricity"
+          },
+          {
+            "letter": "D",
+            "text": "Build more complicated circuits"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 25,
+        "part": "Part 5",
+        "partInstruction": "Choose the correct answer for each question about circuit diagrams and design.",
+        "question": "Drawing circuit diagrams using symbols is important because:",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "It makes the circuits look more colorful"
+          },
+          {
+            "letter": "B",
+            "text": "Pictures of actual components are too difficult to draw"
+          },
+          {
+            "letter": "C",
+            "text": "It provides a clear, standard way to represent circuits that everyone can understand"
+          },
+          {
+            "letter": "D",
+            "text": "Symbols use less paper than pictures"
+          }
+        ],
+        "answer": "C",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
       }
     ],
     "published": true,
-    "updatedAt": "2026-05-12T16:28:37.086Z"
+    "updatedAt": "2026-05-15T12:44:41.110Z"
   }
 ]

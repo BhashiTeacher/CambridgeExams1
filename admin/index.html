@@ -1219,6 +1219,48 @@ function saveExam(publish) {
 }
 
 // ═══════════════════════════════════════════════
+// JSON SALVAGE — handles truncated AI responses
+// ═══════════════════════════════════════════════
+function salvageJSON(raw) {
+  // Strip markdown code fences if present
+  let text = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/,'').trim();
+
+  // Try straight parse first
+  try { return JSON.parse(text); } catch {}
+
+  // Response was likely cut off mid-object — find the last fully-closed question object
+  // by scanning for '}' followed by either ',' or the end, keeping only complete entries.
+  const start = text.indexOf('[');
+  if (start === -1) throw new Error('AI did not return a JSON array. Try again.');
+  text = text.slice(start); // strip anything before the opening [
+
+  // Walk through and collect complete objects by tracking brace depth
+  const objects = [];
+  let depth = 0, objStart = -1, inString = false, escape = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (escape)          { escape = false; continue; }
+    if (ch === '\\')     { escape = true;  continue; }
+    if (ch === '"')      { inString = !inString; continue; }
+    if (inString)        continue;
+    if (ch === '{')      { if (depth === 1) objStart = i; depth++; }
+    else if (ch === '}') {
+      depth--;
+      if (depth === 1 && objStart !== -1) {
+        try {
+          objects.push(JSON.parse(text.slice(objStart, i + 1)));
+        } catch {}
+        objStart = -1;
+      }
+    } else if (ch === '[') depth++;
+    else if (ch === ']') depth--;
+  }
+
+  if (!objects.length) throw new Error('Could not parse any questions from AI response. Try again.');
+  return objects;
+}
+
+// ═══════════════════════════════════════════════
 // AI IMPORT
 // ═══════════════════════════════════════════════
 let uploadedFile   = null;
@@ -1349,7 +1391,7 @@ ${extraInstructions}`;
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-5',
-        max_tokens: 4096,
+        max_tokens: 8192,
         system: systemPrompt,
         messages: [{ role: 'user', content: userContent }]
       })
@@ -1364,8 +1406,8 @@ ${extraInstructions}`;
     aiLog('Response received. Parsing…');
 
     const raw = data.content[0]?.text || '';
-    const clean = raw.replace(/```json\n?|\n?```/g, '').trim();
-    const questions = JSON.parse(clean);
+    const questions = salvageJSON(raw);
+    if (data.stop_reason === 'max_tokens') aiLog('Note: response was trimmed — some questions may be missing.', '');
 
     if (!Array.isArray(questions)) throw new Error('AI did not return a question array.');
 
@@ -1517,7 +1559,7 @@ Group related questions into parts (Part 1, Part 2…) with descriptive partInst
       },
       body: JSON.stringify({
         model:'claude-sonnet-4-5',
-        max_tokens:4096,
+        max_tokens:8192,
         messages:[{ role:'user', content }]
       })
     });
@@ -1525,8 +1567,8 @@ Group related questions into parts (Part 1, Part 2…) with descriptive partInst
     const data = await res.json();
     genLog('Response received. Parsing…');
     const raw = data.content[0]?.text || '';
-    const clean = raw.replace(/```json\n?|\n?```/g,'').trim();
-    const questions = JSON.parse(clean);
+    const questions = salvageJSON(raw);
+    if (data.stop_reason === 'max_tokens') genLog('Note: response was trimmed — reduce question count if some are missing.', '');
     if (!Array.isArray(questions)) throw new Error('AI did not return a question array.');
     genLog(`Generated ${questions.length} question(s).`, 'ok');
 

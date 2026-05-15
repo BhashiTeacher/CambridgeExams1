@@ -1949,7 +1949,7 @@ function loadViaJsonp(url) {
 
     script.onerror = function() {
       cleanup();
-      reject(new Error('Could not reach Sheets — check the URL in Settings.'));
+      reject(new Error('Apps Script unreachable or not yet redeployed with doGet. Go to Settings → copy the Apps Script code → paste it in your project → Deploy → Manage deployments → edit → New version → Deploy.'));
     };
 
     script.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cbName;

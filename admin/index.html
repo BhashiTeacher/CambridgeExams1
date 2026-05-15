@@ -920,7 +920,7 @@ const panelTitles = {
 };
 
 const panelActions = {
-  exams:    `<button class="btn-sm success" onclick="publishToSite()" style="margin-right:6px;">🌐 Publish to Site</button><button class="btn-sm primary" onclick="newExam()">+ New Exam</button>`,
+  exams:    `<button class="btn-sm neutral" onclick="loadFromSite()" style="margin-right:6px;" title="Import published exams from site into this browser">⬇ Load from Site</button><button class="btn-sm success" onclick="publishToSite()" style="margin-right:6px;">🌐 Publish to Site</button><button class="btn-sm primary" onclick="newExam()">+ New Exam</button>`,
   builder:  '',
   results:  '',
   theory:   `<button class="btn-sm primary" onclick="showTheoryForm()">+ Add Theory</button>`,
@@ -2121,6 +2121,34 @@ function saveSettings() {
   Storage.saveSetting('sheetsUrl',   document.getElementById('s_sheets').value.trim());
   Storage.saveSetting('portalTitle', document.getElementById('s_portalTitle').value.trim());
   notify('Settings saved!', 'ok');
+}
+
+async function loadFromSite() {
+  try {
+    notify('Loading exams from published site…');
+    const res = await fetch('data/exams.json?t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const remote = await res.json();
+    if (!Array.isArray(remote) || !remote.length) {
+      notify('No published exams found on site.', 'err');
+      return;
+    }
+    const local    = Storage.getExams();
+    const localIds = new Set(local.map(e => e.id));
+    let added = 0, updated = 0;
+    remote.forEach(e => {
+      if (!localIds.has(e.id)) { local.push(e); added++; }
+      else {
+        const idx = local.findIndex(x => x.id === e.id);
+        if (idx >= 0) { local[idx] = e; updated++; }
+      }
+    });
+    Storage.saveExams(local);
+    renderExamList();
+    notify(`Loaded ${remote.length} exam(s) from site (${added} new, ${updated} updated).`, 'ok');
+  } catch (err) {
+    notify('Load failed: ' + err.message, 'err');
+  }
 }
 
 async function publishToSite() {

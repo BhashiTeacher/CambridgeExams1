@@ -2137,8 +2137,10 @@ async function downloadQPaper(id) {
     }
     chk(20);
     const qType = q.questionType || 'mcq';
-    const qLines = doc.splitTextToSize(`${q.number||i+1}. ${q.question}`, CW-6);
+    // Set font BEFORE splitTextToSize — bold is wider than normal, splitting
+    // with the wrong metrics causes long lines to overflow the right margin.
     doc.setFont('helvetica','bold'); doc.setFontSize(10);
+    const qLines = doc.splitTextToSize(`${q.number||i+1}. ${q.question}`, CW-8);
     doc.text(qLines, M+4, y); doc.setFont('helvetica','normal');
     y += qLines.length*5 + 2;
     if (qType === 'true_false') {
@@ -2209,8 +2211,8 @@ async function downloadAnswerKey(id) {
       doc.text(q.part, M+2, y+1); doc.setFont('helvetica','normal'); y += 8;
     }
     const qType = q.questionType || 'mcq';
-    const qLines = doc.splitTextToSize(`${q.number||i+1}. ${q.question}`, CW-45);
     doc.setFont('helvetica','normal'); doc.setFontSize(9);
+    const qLines = doc.splitTextToSize(`${q.number||i+1}. ${q.question}`, CW-45);
     doc.text(qLines, M+4, y);
     let ansDisplay = '';
     if (qType==='true_false') { ansDisplay = (q.answer==='A'||q.answer?.toLowerCase()==='true') ? 'Ans: TRUE' : 'Ans: FALSE'; }

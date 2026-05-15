@@ -2142,14 +2142,26 @@ async function downloadQPaper(id) {
     doc.text(qLines, M+4, y); doc.setFont('helvetica','normal');
     y += qLines.length*5 + 2;
     if (qType === 'true_false') {
-      chk(8); doc.setFontSize(10); doc.text('□  True          □  False', M+10, y); y += 8;
+      chk(8);
+      doc.setDrawColor(80,80,80);
+      doc.rect(M+10, y-3.5, 4, 4, 'S');
+      doc.setFont('helvetica','normal'); doc.setFontSize(10);
+      doc.text('True', M+16, y);
+      doc.rect(M+40, y-3.5, 4, 4, 'S');
+      doc.text('False', M+46, y);
+      y += 9;
     } else if (qType === 'short_answer') {
       for (let l=0;l<3;l++) { chk(7); doc.setDrawColor(180,180,180); doc.line(M+10,y,W-M,y); y+=7; }
     } else {
       (q.options||[]).forEach(o => {
         chk(7);
-        const ol = doc.splitTextToSize(`○  ${o.letter}.  ${o.text}`, CW-14);
-        doc.setFontSize(10); doc.text(ol, M+10, y); y += ol.length*5+1;
+        // Draw a proper circle (no Unicode) then letter and text
+        doc.setDrawColor(80,80,80);
+        doc.circle(M+12, y-1.5, 2.2, 'S');
+        const ol = doc.splitTextToSize(`${o.letter}.  ${o.text}`, CW-18);
+        doc.setFont('helvetica','normal'); doc.setFontSize(10);
+        doc.text(ol, M+16, y);
+        y += ol.length*5+1;
       });
     }
     y += 5;
@@ -2201,9 +2213,9 @@ async function downloadAnswerKey(id) {
     doc.setFont('helvetica','normal'); doc.setFontSize(9);
     doc.text(qLines, M+4, y);
     let ansDisplay = '';
-    if (qType==='true_false') { ansDisplay = (q.answer==='A'||q.answer?.toLowerCase()==='true') ? '✓ TRUE' : '✓ FALSE'; }
-    else if (qType==='short_answer') { ansDisplay = '→ See model answer below'; }
-    else { const co=(q.options||[]).find(o=>o.letter===q.answer); ansDisplay = `✓ ${q.answer}${co?': '+co.text.substring(0,30):''}` ; }
+    if (qType==='true_false') { ansDisplay = (q.answer==='A'||q.answer?.toLowerCase()==='true') ? 'Ans: TRUE' : 'Ans: FALSE'; }
+    else if (qType==='short_answer') { ansDisplay = '>> See model answer below'; }
+    else { const co=(q.options||[]).find(o=>o.letter===q.answer); ansDisplay = `Ans: ${q.answer}${co?'  '+co.text.substring(0,35):''}` ; }
     if (qType !== 'short_answer') {
       doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(0,120,0);
       doc.text(ansDisplay.substring(0,45), W-M-3, y, {align:'right'});
@@ -2211,7 +2223,7 @@ async function downloadAnswerKey(id) {
       y += Math.max(qLines.length*4,6)+4;
     } else {
       y += qLines.length*4+2; chk(10);
-      const ml = doc.splitTextToSize('Model: '+(q.modelAnswer||q.answer||'—'), CW-10);
+      const ml = doc.splitTextToSize('Model: '+(q.modelAnswer||q.answer||'-'), CW-10);
       doc.setFont('helvetica','italic'); doc.setFontSize(8); doc.setTextColor(80,80,80);
       doc.text(ml, M+8, y); doc.setTextColor(0,0,0); doc.setFont('helvetica','normal');
       y += ml.length*4+4;

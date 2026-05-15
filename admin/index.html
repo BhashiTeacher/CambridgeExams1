@@ -817,7 +817,13 @@ function doGet(e) {
     if (!rows[i][10]) continue;
     try { results.push(JSON.parse(rows[i][10])); } catch(err) {}
   }
-  return ContentService.createTextOutput(JSON.stringify(results))
+  var json = JSON.stringify(results);
+  var cb = e.parameter && e.parameter.callback;
+  if (cb) {
+    return ContentService.createTextOutput(cb + '(' + json + ')')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return ContentService.createTextOutput(json)
     .setMimeType(ContentService.MimeType.JSON);
 }</pre>
                 </div>
@@ -1921,6 +1927,36 @@ async function loadResultsPanel() {
   }
 }
 
+function loadViaJsonp(url) {
+  return new Promise((resolve, reject) => {
+    const cbName = '_bhashi_cb_' + Date.now();
+    const script  = document.createElement('script');
+    const timer   = setTimeout(() => {
+      cleanup();
+      reject(new Error('Request timed out — check the URL in Settings.'));
+    }, 15000);
+
+    function cleanup() {
+      clearTimeout(timer);
+      delete window[cbName];
+      if (script.parentNode) script.parentNode.removeChild(script);
+    }
+
+    window[cbName] = function(data) {
+      cleanup();
+      resolve(Array.isArray(data) ? data : []);
+    };
+
+    script.onerror = function() {
+      cleanup();
+      reject(new Error('Could not reach Sheets — check the URL in Settings.'));
+    };
+
+    script.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cbName;
+    document.head.appendChild(script);
+  });
+}
+
 async function syncResultsFromSheets(showNotify = true) {
   const sheetsUrl = Storage.getSetting('sheetsUrl');
   if (!sheetsUrl) {
@@ -1931,10 +1967,7 @@ async function syncResultsFromSheets(showNotify = true) {
   if (showNotify) notify('Fetching results from Sheets…');
 
   try {
-    const resp = await fetch(sheetsUrl, { method: 'GET' });
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-    const remote = await resp.json();
-    if (!Array.isArray(remote)) throw new Error('Unexpected response format');
+    const remote = await loadViaJsonp(sheetsUrl);
 
     const local    = Storage.getResults();
     const localIds = new Set(local.map(r => r.id).filter(Boolean));

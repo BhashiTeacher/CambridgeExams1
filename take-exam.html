@@ -366,6 +366,8 @@ function submitExam(fromTimer = false) {
   const grade    = pct>=80?'Excellent 🌟':pct>=60?'Good 👍':pct>=40?'Keep Practising 📚':'Try Again 💪';
 
   const result = {
+    id: 'r_' + Date.now() + '_' + Math.random().toString(36).slice(2,6),
+    timestamp: new Date().toISOString(),
     examId, examTitle: exam.title, examSubject: exam.subject,
     studentName, studentClass, examStart, timeTaken,
     correct, total, pct, grade,

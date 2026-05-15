@@ -679,8 +679,12 @@
           <select id="rf_exam" onchange="renderResults()">
             <option value="">All exams</option>
           </select>
+          <button class="btn-sm primary" id="rf_syncBtn" onclick="syncResultsFromSheets()" style="display:none;">↻ Sync from Sheets</button>
           <button class="btn-sm success" onclick="exportResultsCSV()">⬇ Export CSV</button>
           <button class="btn-sm danger" onclick="clearAllResults()">🗑 Clear All</button>
+        </div>
+        <div id="rf_noSync" style="display:none;font-size:12px;color:#888;margin-bottom:10px;padding:8px 10px;background:#f5f5f5;border-radius:6px;border-left:3px solid #ccc;">
+          Results are saved to this device only. To sync across devices, configure a <strong>Google Sheets URL</strong> in Settings and use the Apps Script provided there.
         </div>
         <div class="section-card">
           <div class="rtable-wrap">
@@ -773,9 +777,51 @@
             <div class="settings-row">
               <div class="sr-label">
                 <strong>Global Google Sheets URL</strong>
-                <span>Used as fallback if not set per-exam</span>
+                <span>Student results are POSTed here and the Results Log syncs from here. See Apps Script code below.</span>
               </div>
               <input type="text" id="s_sheets" placeholder="Apps Script URL">
+            </div>
+            <div class="settings-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
+              <div class="sr-label" style="margin-bottom:0;">
+                <strong>Google Apps Script Setup</strong>
+                <span>Create a new Apps Script project linked to a Google Sheet, paste the code below, then deploy as a Web App (Execute as: Me · Who has access: Anyone).</span>
+              </div>
+              <details style="width:100%;">
+                <summary style="cursor:pointer;font-size:12px;color:var(--cambridge-blue);font-weight:600;user-select:none;">Show Apps Script code ▸</summary>
+                <div style="position:relative;margin-top:8px;">
+                  <button class="btn-sm neutral" style="position:absolute;top:6px;right:6px;font-size:11px;" onclick="copyAppsScript()">Copy</button>
+                  <pre id="appsScriptCode" style="background:#1a1a2e;color:#e8eaf6;font-size:11px;line-height:1.6;padding:14px;border-radius:6px;overflow:auto;white-space:pre;margin:0;">function doPost(e) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('Results') || ss.getActiveSheet();
+  try {
+    var d = JSON.parse(e.postData.contents);
+    sheet.appendRow([
+      d.id || '', d.timestamp || new Date().toISOString(),
+      d.studentName || '', d.studentClass || '',
+      d.examTitle || '', d.examSubject || '',
+      d.timeTaken || '',
+      (d.correct || 0) + '/' + (d.total || 0),
+      (d.pct || 0) + '%', d.grade || '',
+      e.postData.contents
+    ]);
+  } catch(err) {}
+  return ContentService.createTextOutput('OK');
+}
+
+function doGet(e) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('Results') || ss.getActiveSheet();
+  var rows = sheet.getDataRange().getValues();
+  var results = [];
+  for (var i = 1; i &lt; rows.length; i++) {
+    if (!rows[i][10]) continue;
+    try { results.push(JSON.parse(rows[i][10])); } catch(err) {}
+  }
+  return ContentService.createTextOutput(JSON.stringify(results))
+    .setMimeType(ContentService.MimeType.JSON);
+}</pre>
+                </div>
+              </details>
             </div>
 
             <div class="settings-row">
@@ -1855,11 +1901,62 @@ function refreshSubjectDatalist(listId) {
 // ═══════════════════════════════════════════════
 // RESULTS
 // ═══════════════════════════════════════════════
-function loadResultsPanel() {
+async function loadResultsPanel() {
   const exams = Storage.getExams();
   const sel   = document.getElementById('rf_exam');
   sel.innerHTML = '<option value="">All exams</option>' +
     exams.map(e => `<option value="${e.id}">${escHtml(e.title)}</option>`).join('');
+
+  const sheetsUrl = Storage.getSetting('sheetsUrl');
+  const syncBtn   = document.getElementById('rf_syncBtn');
+  const noSync    = document.getElementById('rf_noSync');
+  if (sheetsUrl) {
+    if (syncBtn) syncBtn.style.display = '';
+    if (noSync)  noSync.style.display  = 'none';
+    await syncResultsFromSheets(false);
+  } else {
+    if (syncBtn) syncBtn.style.display = 'none';
+    if (noSync)  noSync.style.display  = '';
+    renderResults();
+  }
+}
+
+async function syncResultsFromSheets(showNotify = true) {
+  const sheetsUrl = Storage.getSetting('sheetsUrl');
+  if (!sheetsUrl) {
+    if (showNotify) notify('No Google Sheets URL configured in Settings.', 'err');
+    return;
+  }
+
+  if (showNotify) notify('Fetching results from Sheets…');
+
+  try {
+    const resp = await fetch(sheetsUrl, { method: 'GET' });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const remote = await resp.json();
+    if (!Array.isArray(remote)) throw new Error('Unexpected response format');
+
+    const local    = Storage.getResults();
+    const localIds = new Set(local.map(r => r.id).filter(Boolean));
+    let added = 0;
+    remote.forEach(r => {
+      if (r && r.id && !localIds.has(r.id)) {
+        local.push(r);
+        added++;
+      }
+    });
+
+    if (added > 0) {
+      local.sort((a, b) => new Date(a.timestamp||0) - new Date(b.timestamp||0));
+      localStorage.setItem('bhashi_results', JSON.stringify(local));
+      if (showNotify) notify(`Synced ${added} new result(s) from Sheets.`, 'ok');
+    } else {
+      if (showNotify) notify('Results are up to date.', 'ok');
+    }
+  } catch (err) {
+    if (showNotify) notify('Sheets sync failed: ' + err.message, 'err');
+  }
+
   renderResults();
 }
 
@@ -2253,6 +2350,15 @@ function notify(msg, type='') {
 // ═══════════════════════════════════════════════
 function escHtml(str) {
   return (str||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function copyAppsScript() {
+  const pre = document.getElementById('appsScriptCode');
+  const text = pre.textContent.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
+  navigator.clipboard.writeText(text).then(
+    () => notify('Apps Script code copied!', 'ok'),
+    () => notify('Copy failed — select the text manually.', 'err')
+  );
 }
 </script>
 </body>

@@ -1,352 +1,484 @@
 [
   {
-    "id": "exam_test6_seed",
-    "title": "Test 6 – Reading & Writing",
+    "id": "exam_1778927600547_e30ys",
+    "title": "KET- Reading and Writing part 1  TEST-2",
     "subject": "Reading",
-    "topic": "Reading Comprehension",
-    "gradeLevel": "A2 Key",
-    "duration": 45,
-    "description": "Cambridge A2 Key style reading and writing test.",
+    "topic": "KET part one",
+    "gradeLevel": "A2 KEY",
+    "duration": 20,
+    "description": "",
     "sheetsUrl": "",
-    "published": true,
-    "updatedAt": "2026-05-09T16:36:46.887Z",
     "questions": [
       {
         "number": 1,
         "part": "Part 1",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "Where might you see this?",
+        "question": "Jane wants to",
         "options": [
           {
             "letter": "A",
-            "text": "in a café"
+            "text": "invite Shirley to join her."
           },
           {
             "letter": "B",
-            "text": "in a library"
+            "text": "meet Shirley in the evening."
           },
           {
             "letter": "C",
-            "text": "in a picnic area"
+            "text": "walk to the bookshop with Shirley."
           }
         ],
-        "answer": "B",
+        "answer": "A",
         "tableStyle": false,
         "stimulus": {
-          "type": "sign",
-          "icon": "🚫🍦",
-          "body": "Please don't eat ice creams here. They aren't good for our books! Please finish them outside before you come in. Thanks."
+          "type": "message",
+          "body": "New Message\nFrom: Jane\nTo: Shirley\n\nHi Shirley\nWould you like to go to the bookshop with me? We can meet at the bus stop at 11 am.\nJane"
         }
       },
       {
         "number": 2,
         "part": "Part 1",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "Speak to Mrs Thompson if",
+        "question": "-",
         "options": [
           {
             "letter": "A",
-            "text": "you've got an extra key."
+            "text": "Everyone can enter this competition."
           },
           {
             "letter": "B",
-            "text": "you have lost something."
+            "text": "This competition is for people who can run over 100 metres."
           },
           {
             "letter": "C",
-            "text": "you know where the bag is."
-          }
-        ],
-        "answer": "B",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "notice",
-          "title": "FOUND",
-          "body": "One school bag<br>Inside: one key and a phone<br><br><strong>Contact Mrs Thompson</strong><br>if you think it might be yours."
-        }
-      },
-      {
-        "number": 3,
-        "part": "Part 1",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "Zeta has written to",
-        "options": [
-          {
-            "letter": "A",
-            "text": "invite Linda to go and see a film."
-          },
-          {
-            "letter": "B",
-            "text": "ask Linda what films she's interested in."
-          },
-          {
-            "letter": "C",
-            "text": "tell Linda where to meet Jim tomorrow."
-          }
-        ],
-        "answer": "A",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "phone",
-          "body": "Hi Linda, I have bought two tickets for the cinema tomorrow afternoon for me and Jim. But he can't come. Are you interested? <strong>Zeta</strong>"
-        }
-      },
-      {
-        "number": 4,
-        "part": "Part 1",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "What has Tony just done?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "met Flora"
-          },
-          {
-            "letter": "B",
-            "text": "had a birthday"
-          },
-          {
-            "letter": "C",
-            "text": "done well in an exam"
-          }
-        ],
-        "answer": "C",
-        "tableStyle": false,
-        "stimulus": {
-          "type": "message",
-          "from": "Flora",
-          "to": "Tony",
-          "body": "Congratulations, Tony! I heard that you passed maths!<br>Have a great birthday.<br>And next time I write to you, you'll be 15!<br><em>Best wishes, Flora</em>"
-        }
-      },
-      {
-        "number": 5,
-        "part": "Part 1",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "What does the sign mean?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Please go to the science room now."
-          },
-          {
-            "letter": "B",
-            "text": "You can't go out through this door."
-          },
-          {
-            "letter": "C",
-            "text": "The science laboratory is being used by other people today."
+            "text": "The races in the competition will be no more than 100 metres long."
           }
         ],
         "answer": "B",
         "tableStyle": false,
         "stimulus": {
           "type": "sign",
-          "title": "NO EXIT",
-          "body": "The door isn't working correctly.<br>Use door opposite to get to the science room."
+          "body": "Running Competition\nTo enter these races, you must be able to run more than 100 metres."
+        }
+      },
+      {
+        "number": 3,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Jill can't finish his geography homework."
+          },
+          {
+            "letter": "B",
+            "text": "John needs help with his school work."
+          },
+          {
+            "letter": "C",
+            "text": "John wants to help Jill with his homework."
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "text",
+          "body": "Hi Jill,\nAre you free to come and help me with my geography homework?\nI can't find my map!\nJohn"
+        }
+      },
+      {
+        "number": 4,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "- ",
+        "options": [
+          {
+            "letter": "A",
+            "text": "People not travelling by train can't use this room."
+          },
+          {
+            "letter": "B",
+            "text": "The door must be kept closed all the time."
+          },
+          {
+            "letter": "C",
+            "text": "Everyone can enter the waiting room when it is cold."
+          }
+        ],
+        "answer": "A",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "Waiting Room\nThe waiting room is only for train passengers.\nPlease keep the door closed when it is cold."
+        }
+      },
+      {
+        "number": 5,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "Where might you see this?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "in a bank"
+          },
+          {
+            "letter": "B",
+            "text": "on a laptop screen"
+          },
+          {
+            "letter": "C",
+            "text": "at a school's gym"
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "sign",
+          "body": "Football match tickets\nMembers of the school team can get free tickets to this Sunday's match."
         }
       },
       {
         "number": 6,
         "part": "Part 1",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "Tom is writing about",
+        "question": "-",
         "options": [
           {
             "letter": "A",
-            "text": "a party that he had."
+            "text": "This building is very high."
           },
           {
             "letter": "B",
-            "text": "a picture that he saw."
+            "text": "It's easy to hit your head if you're tall."
           },
           {
             "letter": "C",
-            "text": "some people that he has just met."
+            "text": "Old children may have an accident."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "sign",
+          "body": "Mind Your Head\nThe ceilings in this old building are very low. Very tall children must be careful."
+        }
+      },
+      {
+        "number": 7,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "The show isn't good for children."
+          },
+          {
+            "letter": "B",
+            "text": "The show is on two days of the week."
+          },
+          {
+            "letter": "C",
+            "text": "Right now, parents' tickets are half price."
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "sign",
+          "body": "Circus in Town\nCome and see our animals and funny clowns in an amazing show for the whole family.\nBuy tickets now!\nHalf-price tickets for children!\nShow Time: Saturday and Sunday 7pm"
+        }
+      },
+      {
+        "number": 8,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "The school is going to the museum by train."
+          },
+          {
+            "letter": "B",
+            "text": "Jane and her friend are going on a school trip."
+          },
+          {
+            "letter": "C",
+            "text": "The trip to the museum is after next week."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "text",
+          "body": "Hi Jane,\nWe're going to the local museum next week. I'm not sure yet if we're going by train or by coach. Maybe do you want to go together?\nElsa"
+        }
+      },
+      {
+        "number": 9,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "City zoo is open six days a week."
+          },
+          {
+            "letter": "B",
+            "text": "Children can go to the zoo on their own."
+          },
+          {
+            "letter": "C",
+            "text": "Only adults can visit the city zoo."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "sign",
+          "body": "City Zoo\nThe City Zoo is open every day from 9am to 5pm. All children over 12 adults on each Members closed all day"
+        }
+      },
+      {
+        "number": 10,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "Students using this bus",
+        "options": [
+          {
+            "letter": "A",
+            "text": "will arrive at their school 20 minutes later."
+          },
+          {
+            "letter": "B",
+            "text": "will arrive at school by 11.05."
+          },
+          {
+            "letter": "C",
+            "text": "will be at their school in 20 minutes."
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "TL05 - Bus to the local school\nWe are sorry to tell you that there will be a delay of twenty minutes on this bus today."
+        }
+      },
+      {
+        "number": 11,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "Why has Paul written this?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "to tell Alice about his new bicycle"
+          },
+          {
+            "letter": "B",
+            "text": "to suggest meeting Alice next Monday"
+          },
+          {
+            "letter": "C",
+            "text": "to ask Alice if he can ride her new bicycle"
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "message",
+          "body": "New Message\nFrom: Paul\nTo: Alice\n\nHello\nWhen are you buying your new bicycle? This Monday at the mart? Can I ride your new bike when you get it?"
+        }
+      },
+      {
+        "number": 12,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "--",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Children can get a free meal."
+          },
+          {
+            "letter": "B",
+            "text": "There is special food for children."
+          },
+          {
+            "letter": "C",
+            "text": "The waiter can have a free dessert."
           }
         ],
         "answer": "A",
         "tableStyle": false,
         "stimulus": {
-          "type": "social",
-          "author": "Tom",
-          "body": "Thanks to all my guests! It's brilliant you could come. Hope you've made new friends. I'll add the pictures I took soon!"
+          "type": "sign",
+          "body": "Beach Restaurant\nPlease ask your waiter for the children's menu.\nEvery child gets a free dessert with their meal."
         }
-      },
-      {
-        "number": 7,
-        "part": "Part 2",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "Which person has made new friends because of her hobby?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Melissa"
-          },
-          {
-            "letter": "B",
-            "text": "Sharon"
-          },
-          {
-            "letter": "C",
-            "text": "Latifa"
-          }
-        ],
-        "answer": "A",
-        "tableStyle": true,
-        "passage": {
-          "title": "Three teenagers describe their hobbies",
-          "people": [
-            {
-              "name": "Melissa",
-              "subtitle": "Runner 🏃‍♀️",
-              "text": "I started running about a year ago. At first, I just ran 1 or 2 kilometres, but I now do about 10. My speed is improving too. I've joined a running club in the town centre. I didn't know any of the members before, but now most of them are my mates. My dad was a keen runner when he was younger – he was really fit, but he stopped when he hurt his leg. Actually, I need to order some new running shoes – just a simple pair. I don't think the expensive ones make you run faster!"
-            },
-            {
-              "name": "Sharon",
-              "subtitle": "Skateboarder 🛹",
-              "text": "I go skateboarding most evenings in the park. I suppose that's quite a lot, but the park is only a minute or two from our apartment, and I only stay there half an hour or so. Although I stay longer when my friends are there. Sometimes my cousin's there too. He's a beginner, and I'm teaching him a few moves. He's starting to get really good!"
-            },
-            {
-              "name": "Latifa",
-              "subtitle": "Rock Climber 🧗‍♀️",
-              "text": "Two of my best friends suggested I should start rock climbing, so now the three of us do it together. The mother of one of them takes us once or twice a month, but I'd like to do it every week. When I started, I didn't know you need to get so much stuff – and it isn't exactly cheap! I really love it. I don't think I'll ever get bored of climbing!"
-            }
-          ]
-        }
-      },
-      {
-        "number": 8,
-        "part": "Part 2",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "Which person does her hobby near her home?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Melissa"
-          },
-          {
-            "letter": "B",
-            "text": "Sharon"
-          },
-          {
-            "letter": "C",
-            "text": "Latifa"
-          }
-        ],
-        "answer": "B",
-        "tableStyle": true
-      },
-      {
-        "number": 9,
-        "part": "Part 2",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "Which person says she is getting better at her hobby?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Melissa"
-          },
-          {
-            "letter": "B",
-            "text": "Sharon"
-          },
-          {
-            "letter": "C",
-            "text": "Latifa"
-          }
-        ],
-        "answer": "A",
-        "tableStyle": true
-      },
-      {
-        "number": 10,
-        "part": "Part 2",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "Which person does her hobby with a family member?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Melissa"
-          },
-          {
-            "letter": "B",
-            "text": "Sharon"
-          },
-          {
-            "letter": "C",
-            "text": "Latifa"
-          }
-        ],
-        "answer": "B",
-        "tableStyle": true
-      },
-      {
-        "number": 11,
-        "part": "Part 2",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "Which person wants to do her hobby more often?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Melissa"
-          },
-          {
-            "letter": "B",
-            "text": "Sharon"
-          },
-          {
-            "letter": "C",
-            "text": "Latifa"
-          }
-        ],
-        "answer": "C",
-        "tableStyle": true
-      },
-      {
-        "number": 12,
-        "part": "Part 2",
-        "partInstruction": "For each question, choose the correct answer.",
-        "question": "Which person needs to buy something for her hobby?",
-        "options": [
-          {
-            "letter": "A",
-            "text": "Melissa"
-          },
-          {
-            "letter": "B",
-            "text": "Sharon"
-          },
-          {
-            "letter": "C",
-            "text": "Latifa"
-          }
-        ],
-        "answer": "A",
-        "tableStyle": true
       },
       {
         "number": 13,
-        "part": "Part 2",
+        "part": "Part 1",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "Which person says her hobby was more expensive than she thought?",
+        "question": "John needs",
         "options": [
           {
             "letter": "A",
-            "text": "Melissa"
+            "text": "A bicycle for tomorrow."
           },
           {
             "letter": "B",
-            "text": "Sharon"
+            "text": "to visit his uncle tomorrow."
           },
           {
             "letter": "C",
-            "text": "Latifa"
+            "text": "Peter to lend him his uncle's bicycle."
           }
         ],
         "answer": "C",
-        "tableStyle": true
+        "tableStyle": false,
+        "stimulus": {
+          "type": "message",
+          "body": "New Message\nFrom: John\nTo: Peter\n\nHello,\nPeter can I borrow your bicycle tomorrow? I need it to go to school. I left my bike at my uncle's house.\nThanks"
+        }
+      },
+      {
+        "number": 14,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Visitors can open the gate without ringing the bell."
+          },
+          {
+            "letter": "B",
+            "text": "Visitors need to say what they are doing at the school."
+          },
+          {
+            "letter": "C",
+            "text": "Visitors must close the gate after entering the school."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "School Entrance\nAll visitors must see the receptionist before going into the school.\nIf the gate is closed, please ring the bell."
+        }
+      },
+      {
+        "number": 15,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "What should James do?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "tell Andrew why he likes the new Disney film"
+          },
+          {
+            "letter": "B",
+            "text": "invite Andrew's brother to the cinema"
+          },
+          {
+            "letter": "C",
+            "text": "tell Andrew if he wants to go with them"
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "text",
+          "body": "Hi James,\nI'm going to the cinema with my brother this evening to see the new Disney film. Do you want to come with us?\nLet me know.\nAndrew"
+        }
+      },
+      {
+        "number": 16,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Students must give their phones to their teacher."
+          },
+          {
+            "letter": "B",
+            "text": "Students can't use their phones in the classroom."
+          },
+          {
+            "letter": "C",
+            "text": "The teacher must turn off the students' phones."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "sign",
+          "body": "SMART PHONES\nStudents must turn off their smart phones before going into the classroom. Any noisy phones will be taken by the teacher."
+        }
+      },
+      {
+        "number": 17,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "-",
+        "options": [
+          {
+            "letter": "A",
+            "text": "The course will last for about a month."
+          },
+          {
+            "letter": "B",
+            "text": "Only 2nd-year students can go to this class."
+          },
+          {
+            "letter": "C",
+            "text": "Classes are four times a week."
+          }
+        ],
+        "answer": "B",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "sign",
+          "body": "Cooking Class\nThe course starts on Saturday at 11am and will run for four weeks.\nAll students of both years are welcome. Cost: £16"
+        }
+      },
+      {
+        "number": 18,
+        "part": "Part 1",
+        "partInstruction": "For each question, choose the correct answer.",
+        "question": "What does this notice say?",
+        "options": [
+          {
+            "letter": "A",
+            "text": "It's dangerous for students to eat at the zoo."
+          },
+          {
+            "letter": "B",
+            "text": "Students will stay at their teacher's house after the trip to the zoo."
+          },
+          {
+            "letter": "C",
+            "text": "Students can be in danger if they touch any animals at the zoo."
+          }
+        ],
+        "answer": "C",
+        "tableStyle": false,
+        "stimulus": {
+          "type": "notice",
+          "body": "Coach Trip To The Zoo\nPlease DO NOT touch or give food to the animals. They are very dangerous. Always stay with your teacher."
+        }
       }
-    ]
+    ],
+    "published": true,
+    "updatedAt": "2026-05-16T10:33:20.547Z"
   }
 ]

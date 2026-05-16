@@ -184,7 +184,7 @@
             "text": "Right now, parents' tickets are half price."
           }
         ],
-        "answer": "C",
+        "answer": "B",
         "tableStyle": false,
         "stimulus": {
           "type": "sign",
@@ -207,10 +207,10 @@
           },
           {
             "letter": "C",
-            "text": "The trip to the museum is after next week."
+            "text": "The trip to the museum after this week."
           }
         ],
-        "answer": "B",
+        "answer": "C",
         "tableStyle": false,
         "stimulus": {
           "type": "text",
@@ -221,7 +221,7 @@
         "number": 9,
         "part": "Part 1",
         "partInstruction": "For each question, choose the correct answer.",
-        "question": "-",
+        "question": "CITY Zoo   -- is  open  everyday from 9 am to 5pm. all children over 12 adults on each members. closed Monday all day",
         "options": [
           {
             "letter": "A",
@@ -236,7 +236,7 @@
             "text": "Only adults can visit the city zoo."
           }
         ],
-        "answer": "B",
+        "answer": "A",
         "tableStyle": false,
         "stimulus": {
           "type": "sign",
@@ -262,7 +262,7 @@
             "text": "will be at their school in 20 minutes."
           }
         ],
-        "answer": "C",
+        "answer": "A",
         "tableStyle": false,
         "stimulus": {
           "type": "notice",
@@ -340,7 +340,7 @@
             "text": "Peter to lend him his uncle's bicycle."
           }
         ],
-        "answer": "C",
+        "answer": "A",
         "tableStyle": false,
         "stimulus": {
           "type": "message",
@@ -444,7 +444,7 @@
             "text": "Classes are four times a week."
           }
         ],
-        "answer": "B",
+        "answer": "A",
         "tableStyle": false,
         "stimulus": {
           "type": "sign",
@@ -479,6 +479,6 @@
       }
     ],
     "published": true,
-    "updatedAt": "2026-05-16T11:04:05.271Z"
+    "updatedAt": "2026-05-16T13:11:31.734Z"
   }
 ]

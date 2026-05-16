@@ -366,7 +366,7 @@
             "text": "Visitors must close the gate after entering the school."
           }
         ],
-        "answer": "B",
+        "answer": "A",
         "tableStyle": false,
         "stimulus": {
           "type": "notice",
@@ -479,6 +479,6 @@
       }
     ],
     "published": true,
-    "updatedAt": "2026-05-16T13:22:44.664Z"
+    "updatedAt": "2026-05-16T13:34:12.060Z"
   }
 ]

@@ -1007,5 +1007,640 @@
     ],
     "published": true,
     "updatedAt": "2026-05-15T12:44:41.110Z"
+  },
+  {
+    "id": "exam_1778925923695_x9dup",
+    "title": "Science — Topic 1 - Micro Organisms (General)",
+    "subject": "Science",
+    "topic": "Topic 1 - Micro Organisms",
+    "gradeLevel": "",
+    "duration": 40,
+    "description": "",
+    "sheetsUrl": "",
+    "questions": [
+      {
+        "number": 1,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question.",
+        "question": "What do we call the tiny living things that are so small we need a microscope to see them?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Organisms"
+          },
+          {
+            "letter": "B",
+            "text": "Micro-organisms"
+          },
+          {
+            "letter": "C",
+            "text": "Germs"
+          },
+          {
+            "letter": "D",
+            "text": "Bacteria only"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 2,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question.",
+        "question": "What does a microscope do?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Makes things smaller"
+          },
+          {
+            "letter": "B",
+            "text": "Magnifies things"
+          },
+          {
+            "letter": "C",
+            "text": "Destroys micro-organisms"
+          },
+          {
+            "letter": "D",
+            "text": "Creates micro-organisms"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 3,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question.",
+        "question": "Which of the following is NOT a type of micro-organism mentioned in the document?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Viruses"
+          },
+          {
+            "letter": "B",
+            "text": "Bacteria"
+          },
+          {
+            "letter": "C",
+            "text": "Microscopic fungi"
+          },
+          {
+            "letter": "D",
+            "text": "Protozoa"
+          }
+        ],
+        "answer": "D",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 4,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question.",
+        "question": "What disease can viruses give us?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Food poisoning only"
+          },
+          {
+            "letter": "B",
+            "text": "Colds and influenza"
+          },
+          {
+            "letter": "C",
+            "text": "Foot infections"
+          },
+          {
+            "letter": "D",
+            "text": "None of the above"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 5,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question.",
+        "question": "What bacteria are used to make yoghurt and cheese?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Harmful bacteria"
+          },
+          {
+            "letter": "B",
+            "text": "E.coli bacteria"
+          },
+          {
+            "letter": "C",
+            "text": "Useful bacteria"
+          },
+          {
+            "letter": "D",
+            "text": "Dead bacteria"
+          }
+        ],
+        "answer": "C",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 6,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question.",
+        "question": "Which microscopic fungus is used to make bread rise?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Mould"
+          },
+          {
+            "letter": "B",
+            "text": "Yeast"
+          },
+          {
+            "letter": "C",
+            "text": "Mushroom"
+          },
+          {
+            "letter": "D",
+            "text": "Penicillium"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 7,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question.",
+        "question": "What does hygiene mean?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Doing things to stay dirty"
+          },
+          {
+            "letter": "B",
+            "text": "Doing things to stay clean and healthy"
+          },
+          {
+            "letter": "C",
+            "text": "Using a microscope"
+          },
+          {
+            "letter": "D",
+            "text": "Growing bacteria"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 8,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question.",
+        "question": "Why should everyone who touches food wash their hands with soap and water first?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "To make their hands wet"
+          },
+          {
+            "letter": "B",
+            "text": "To help stop harmful micro-organisms going into the food"
+          },
+          {
+            "letter": "C",
+            "text": "To make the food taste better"
+          },
+          {
+            "letter": "D",
+            "text": "To remove all bacteria completely"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 9,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question.",
+        "question": "What happens if micro-organisms are allowed to grow and reproduce on food?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "The food becomes healthier"
+          },
+          {
+            "letter": "B",
+            "text": "They may cause food poisoning"
+          },
+          {
+            "letter": "C",
+            "text": "The food tastes better"
+          },
+          {
+            "letter": "D",
+            "text": "Nothing happens"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 10,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question.",
+        "question": "Why should food be covered?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "To make it look nice"
+          },
+          {
+            "letter": "B",
+            "text": "To make it harder for micro-organisms from insects to reach it"
+          },
+          {
+            "letter": "C",
+            "text": "To keep it warm"
+          },
+          {
+            "letter": "D",
+            "text": "To make it cook faster"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 11,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question.",
+        "question": "What is the advantage of storing food in a refrigerator?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "It is warm inside a refrigerator"
+          },
+          {
+            "letter": "B",
+            "text": "It is cool inside, so micro-organisms grow and reproduce more slowly"
+          },
+          {
+            "letter": "C",
+            "text": "It kills all micro-organisms"
+          },
+          {
+            "letter": "D",
+            "text": "It makes food taste better"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 12,
+        "part": "Part 1",
+        "partInstruction": "Choose the correct answer for each question.",
+        "question": "What are moulds?",
+        "questionType": "mcq",
+        "options": [
+          {
+            "letter": "A",
+            "text": "Types of bacteria"
+          },
+          {
+            "letter": "B",
+            "text": "Types of microscopic fungi that live on food"
+          },
+          {
+            "letter": "C",
+            "text": "Types of viruses"
+          },
+          {
+            "letter": "D",
+            "text": "Types of insects"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 13,
+        "part": "Part 2",
+        "partInstruction": "Indicate whether each statement is True or False.",
+        "question": "Hundreds of years ago, doctors knew about micro-organisms.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 14,
+        "part": "Part 2",
+        "partInstruction": "Indicate whether each statement is True or False.",
+        "question": "Some doctors in the 1600s thought bad air or bad smells caused diseases.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 15,
+        "part": "Part 2",
+        "partInstruction": "Indicate whether each statement is True or False.",
+        "question": "'Germs' is a scientific word for micro-organisms that cause disease.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 16,
+        "part": "Part 2",
+        "partInstruction": "Indicate whether each statement is True or False.",
+        "question": "All bacteria are harmful to humans.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 17,
+        "part": "Part 2",
+        "partInstruction": "Indicate whether each statement is True or False.",
+        "question": "All fungi are micro-organisms.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 18,
+        "part": "Part 2",
+        "partInstruction": "Indicate whether each statement is True or False.",
+        "question": "Yeast feeds on sugar in bread dough and uses it for respiration.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 19,
+        "part": "Part 2",
+        "partInstruction": "Indicate whether each statement is True or False.",
+        "question": "Carbon dioxide gas makes bread dough rise.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 20,
+        "part": "Part 2",
+        "partInstruction": "Indicate whether each statement is True or False.",
+        "question": "Insects can bring micro-organisms from dead animals onto our food.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 21,
+        "part": "Part 2",
+        "partInstruction": "Indicate whether each statement is True or False.",
+        "question": "Decomposers break down materials they feed on, which is called decay.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 22,
+        "part": "Part 2",
+        "partInstruction": "Indicate whether each statement is True or False.",
+        "question": "Decomposers help to recycle materials in dead plants and animals.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 23,
+        "part": "Part 2",
+        "partInstruction": "Indicate whether each statement is True or False.",
+        "question": "Professor Alexander Fleming discovered penicillin, an antibiotic medicine.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 24,
+        "part": "Part 2",
+        "partInstruction": "Indicate whether each statement is True or False.",
+        "question": "Antibiotics can kill both bacteria and viruses.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "B",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      },
+      {
+        "number": 25,
+        "part": "Part 2",
+        "partInstruction": "Indicate whether each statement is True or False.",
+        "question": "Decomposer micro-organisms need oxygen in air for respiration.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "letter": "A",
+            "text": "True"
+          },
+          {
+            "letter": "B",
+            "text": "False"
+          }
+        ],
+        "answer": "A",
+        "modelAnswer": "",
+        "tableStyle": false,
+        "stimulus": null
+      }
+    ],
+    "published": true,
+    "updatedAt": "2026-05-16T10:05:23.695Z"
   }
 ]

@@ -80,7 +80,7 @@
             "text": "John wants to help Jill with his homework."
           }
         ],
-        "answer": "C",
+        "answer": "B",
         "tableStyle": false,
         "stimulus": {
           "type": "text",
@@ -479,6 +479,6 @@
       }
     ],
     "published": true,
-    "updatedAt": "2026-05-16T13:11:31.734Z"
+    "updatedAt": "2026-05-16T13:22:44.664Z"
   }
 ]
